@@ -27,10 +27,47 @@ before_install:
   - conda update -q conda
   # Useful for debugging any issues with conda
   - conda info -a
-  # Create the conda environment with dependencies installed
-  - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION --file requirements.txt
+  # Create the conda environment with pip as the only dependency installed
+  - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION pip
   # Activate the test environment
   - source activate test-environment
+  # ----------------------------------------------------------------------------
+  # Make an empty requirements.txt file if there isn't one already
+  - touch requirements.txt
+  # Isolate packages which are editable and definitely need to be installed
+  # with pip, and those which can possibly be installed with conda.
+  - sed '/^-e/d' requirements.txt > requirements_static.txt &&
+      cat requirements_static.txt
+  - sed '/^-e/!d' requirements.txt > requirements_editable.txt &&
+      cat requirements_editable.txt
+  # Install the packages which might be possible with conda. For each one,
+  # check if they are on conda's package database and if they aren't try to pip
+  # install it instead.
+  # First, we remove the version requirement and get just the package name.
+  # Then we search the conda database to see if a package with this exact name
+  # is present. We already updated our cache, so we don't need to ask the
+  # server again, and just use the cached copy. The output of this is a
+  # header line and then a list of matching package names. We then grep
+  # this to check whether one of the lines of the output is an exact match
+  # for the name of the package we want to install.
+  - while read PV; do
+      echo "";
+      echo "==================================================================";
+      PN="$(echo $PV | sed 's/^\([^=<>]*\).*/\1/')";
+      if conda search $PN --full-name --use-index-cache --names-only |
+           grep -qFxi $PN;
+      then
+        echo "Package $PN is on conda. Installing it from there.";
+        echo "------------------------------------------------------------------";
+        conda install -q $PV;
+      else
+        echo "Package $PN isn't on conda. Trying to install it from PyPI.";
+        echo "------------------------------------------------------------------";
+        pip install $PV;
+      fi
+    done < requirements_static.txt
+  # Install the packages which are editable and must be done with pip
+  - pip install -v -r requirements_editable.txt
   # ----------------------------------------------------------------------------
 
 install:

@@ -9,6 +9,10 @@ python:
 ################################################################################
 # Setup the environment before installing
 before_install:
+  # Remember the directory where our repository to test is located
+  - pwd
+  - REPOPATH=`pwd`
+  # ----------------------------------------------------------------------------
   # Update the package list
   - sudo apt-get update
   # ----------------------------------------------------------------------------
@@ -46,7 +50,7 @@ before_install:
   # header line and then a list of matching package names. We then grep
   # this to check whether one of the lines of the output is an exact match
   # for the name of the package we want to install.
-  - function conda_or_pip_install_file {
+  - function conda_or_pip_install_packages {
         while read PV; do
           echo "";
           echo "==================================================================";
@@ -73,7 +77,7 @@ install:
   # on there, and pip if they aren't. It is much faster to install from conda
   # because the packages are pre-compiled, but not everything is there.
   - if [ -f requirements.txt ]; then
-      conda_or_pip_install_file requirements.txt;
+      conda_or_pip_install_packages requirements.txt;
     fi;
   # ----------------------------------------------------------------------------
   # Now install your own package, e.g.
@@ -103,8 +107,11 @@ script:
 
 ################################################################################
 after_script:
-  # Check where we ended up and what's going on where we are
+  # Show where we ended up
   - pwd
+  # Go back to the repository directory, just in case
+  - cd ${REPOPATH}
+  # Show what results files there are
   - ls -alh
   # ----------------------------------------------------------------------------
   # Move results and coverage files into appropriate places

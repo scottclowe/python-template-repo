@@ -3,4 +3,4 @@
 
 # python-ci
 
-Example of how to setup continuous integration for Python.
+Example of how to set-up continuous integration for Python.

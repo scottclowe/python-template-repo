@@ -34,12 +34,6 @@ before_install:
   # ----------------------------------------------------------------------------
   # Make an empty requirements.txt file if there isn't one already
   - touch requirements.txt
-  # Isolate packages which are editable and definitely need to be installed
-  # with pip, and those which can possibly be installed with conda.
-  - sed '/^-e/d' requirements.txt > requirements_static.txt &&
-      cat requirements_static.txt
-  - sed '/^-e/!d' requirements.txt > requirements_editable.txt &&
-      cat requirements_editable.txt
   # Install the packages which might be possible with conda. For each one,
   # check if they are on conda's package database and if they aren't try to pip
   # install it instead.
@@ -70,9 +64,7 @@ before_install:
           if [[ $? -ne 0 ]]; then return 1; fi;
         done < $1;
     }
-  - conda_or_pip_install_file requirements_static.txt
-  # Install the packages which are editable and must be done with pip
-  - pip install -v -r requirements_editable.txt
+  - conda_or_pip_install_file requirements.txt
   # ----------------------------------------------------------------------------
 
 install:

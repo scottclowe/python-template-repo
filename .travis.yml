@@ -87,3 +87,4 @@ script:
   # ----------------------------------------------------------------------------
   # Your test script goes here, e.g.
   # - python setup.py test
+  # - py.test --junitxml=testresults.xml --cov=PACKAGE_DIRECTORY --cov-report xml --cov-config .coveragerc

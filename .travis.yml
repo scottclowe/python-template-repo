@@ -81,6 +81,14 @@ install:
   - pip freeze
 
 ################################################################################
+before_script:
+  # Set up folders for test results
+  - if [ "$SHIPPABLE" = "true" ]; then
+      mkdir -p shippable/testresults;
+      mkdir -p shippable/codecoverage;
+    fi;
+
+################################################################################
 script:
   - which python
   - pip freeze
@@ -88,3 +96,16 @@ script:
   # Your test script goes here, e.g.
   # - python setup.py test
   # - py.test --junitxml=testresults.xml --cov=PACKAGE_DIRECTORY --cov-report xml --cov-config .coveragerc
+
+################################################################################
+after_script:
+  # Check where we ended up and what's going on where we are
+  - pwd
+  - ls -alh
+  # Move results and coverage files into appropriate places
+  - if [ "$SHIPPABLE" = "true" ] && [ -f testresults.xml ]; then
+      mv testresults.xml shippable/testresults/;
+    fi;
+  - if [ "$SHIPPABLE" = "true" ] && [ -f coverage.xml ]; then
+      mv coverage.xml shippable/codecoverage/;
+    fi;

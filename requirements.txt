@@ -1,5 +1,5 @@
 numpy>=1.6.1
 scipy==0.16.0
--e git://github.com/scikit-learn/scikit-learn.git@7e497ba791365c0938e07d9fc3ab5dd3cd5abcb8#egg=scikit-learn
+-e git://github.com/nose-devs/nose2.git@a2e601ac34a963626c4805bcb74a98f4487c6458#egg=nose2
 pytest
 pytest-cov

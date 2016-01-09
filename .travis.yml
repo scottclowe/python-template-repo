@@ -9,18 +9,20 @@ python:
 ################################################################################
 # Setup the environment before installing
 before_install:
+  # Update the package list
   - sudo apt-get update
   # ----------------------------------------------------------------------------
   # The following is taken/adapted from Minicoda's how-to Travis page
   # http://conda.pydata.org/docs/travis.html
   # ----------------------------------------------------------------------------
-  # We do this conditionally because it saves us some downloading if the
-  # version is the same.
+  # Download miniconda.  If the python version we want is 2.7, we can download
+  # a smller miniconda file.
   - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
       wget https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh;
     else
       wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
     fi
+  # Install miniconda to the home directory
   - bash miniconda.sh -b -p $HOME/miniconda
   - export PATH="$HOME/miniconda/bin:$PATH"
   - hash -r

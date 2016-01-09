@@ -49,7 +49,7 @@ before_install:
           echo "";
           echo "==================================================================";
           PN="$(echo $PV | sed 's/^\([^=<>]*\).*/\1/')";
-          if echo "$PN" | grep -qEv '^-e' &&
+          if echo "$PV" | grep -qEv '^-e' &&
             conda search $PN --full-name --use-index-cache --names-only |
               grep -qFxi $PN;
           then

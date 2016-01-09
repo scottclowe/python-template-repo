@@ -79,6 +79,8 @@ install:
 
 ################################################################################
 after_install:
+  # Double-check we are still in the right directory
+  - pwd
   # Check what python packages we have installed
   - pip freeze
 

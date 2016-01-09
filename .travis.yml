@@ -55,8 +55,9 @@ before_install:
           echo "";
           echo "==================================================================";
           PN="$(echo $PV | sed 's/^\([^=<>]*\).*/\1/')";
-          if conda search $PN --full-name --use-index-cache --names-only |
-               grep -qFxi $PN;
+          if echo "$PN" | grep -qEv '^-e' &&
+            conda search $PN --full-name --use-index-cache --names-only |
+              grep -qFxi $PN;
           then
             echo "Package $PN is on conda. Installing it from there.";
             echo "------------------------------------------------------------------";

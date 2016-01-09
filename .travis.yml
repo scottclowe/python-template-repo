@@ -78,14 +78,12 @@ install:
   # - python setup.py install
 
 ################################################################################
-after_install:
+before_script:
   # Double-check we are still in the right directory
   - pwd
   # Check what python packages we have installed
   - pip freeze
-
-################################################################################
-before_script:
+  # ----------------------------------------------------------------------------
   # Set up folders for test results
   - if [ "$SHIPPABLE" = "true" ]; then
       mkdir -p shippable/testresults;
@@ -106,6 +104,7 @@ after_script:
   # Check where we ended up and what's going on where we are
   - pwd
   - ls -alh
+  # ----------------------------------------------------------------------------
   # Move results and coverage files into appropriate places
   - if [ "$SHIPPABLE" = "true" ] && [ -f testresults.xml ]; then
       mv testresults.xml shippable/testresults/;

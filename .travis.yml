@@ -1,10 +1,12 @@
 language: python
 
+################################################################################
 python:
   # We don't actually use the Travis Python, but this keeps it organized.
   - "2.7"
   - "3.4"
 
+################################################################################
 # Setup the environment before installing
 before_install:
   - sudo apt-get update
@@ -62,8 +64,8 @@ before_install:
           if [[ $? -ne 0 ]]; then return 1; fi;
         done < $1;
     }
-  # ----------------------------------------------------------------------------
 
+################################################################################
 install:
   # Install required packages listed in requirements.txt. Use conda if they are
   # on there, and pip if they aren't. It is much faster to install from conda
@@ -78,6 +80,7 @@ install:
   # Show what python packages we have installed
   - pip freeze
 
+################################################################################
 script:
   - which python
   - pip freeze

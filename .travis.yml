@@ -32,11 +32,9 @@ before_install:
   # Activate the test environment
   - source activate test-environment
   # ----------------------------------------------------------------------------
-  # Make an empty requirements.txt file if there isn't one already
-  - touch requirements.txt
-  # Install the packages which might be possible with conda. For each one,
-  # check if they are on conda's package database and if they aren't try to pip
-  # install it instead.
+  # Define a helper function which installs dependencies from a list in a file,
+  # which uses conda where it can and pip when it can't.
+  #
   # First, we remove the version requirement and get just the package name.
   # Then we search the conda database to see if a package with this exact name
   # is present. We already updated our cache, so we don't need to ask the
@@ -64,15 +62,25 @@ before_install:
           if [[ $? -ne 0 ]]; then return 1; fi;
         done < $1;
     }
-  - conda_or_pip_install_file requirements.txt
   # ----------------------------------------------------------------------------
 
 install:
+  # Install required packages listed in requirements.txt. Use conda if they are
+  # on there, and pip if they aren't. It is much faster to install from conda
+  # because the packages are pre-compiled, but not everything is there.
+  - if [ -f requirements.txt ]; then
+      conda_or_pip_install_file requirements.txt;
+    fi;
+  # ----------------------------------------------------------------------------
+  # Now install your own package, e.g.
+  # - python setup.py install
+  # ----------------------------------------------------------------------------
+  # Show what python packages we have installed
   - pip freeze
-  #- python setup.py install
 
 script:
   - which python
   - pip freeze
+  # ----------------------------------------------------------------------------
   # Your test script goes here, e.g.
-  #- python setup.py test
+  # - python setup.py test

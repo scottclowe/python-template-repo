@@ -129,5 +129,9 @@ after_script:
       mv testresults.xml shippable/testresults/;
     fi;
   - if [ "$SHIPPABLE" = "true" ] && [ -f coverage.xml ]; then
-      mv coverage.xml shippable/codecoverage/;
+      cp coverage.xml shippable/codecoverage/;
     fi;
+
+################################################################################
+after_success:
+  - coveralls

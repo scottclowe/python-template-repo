@@ -1,3 +1,7 @@
+"""
+Module provides a simple cubic_rectification function.
+"""
+
 import numpy as np
 
 

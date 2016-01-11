@@ -16,15 +16,17 @@ from numpy.testing import (assert_almost_equal,
                            assert_array_less,
                            assert_equal,
                            assert_raises,
-                           #assert_raises_regex,
+                           # assert_raises_regex,
                            assert_warns,
                            assert_string_equal)
 
 
 class BaseTestCase(unittest.TestCase):
+
     """
     Superclass for test cases, including support for numpy.
     """
+
     def __init__(self, *args, **kw):
         """Instance initialisation"""
         # First to the __init__ associated with parent class
@@ -64,14 +66,13 @@ class BaseTestCase(unittest.TestCase):
         Raises an AssertionError if two objects are not equal up to
         desired tolerance.
         """
-        return assert_allclose(*args,**kwargs)
+        return assert_allclose(*args, **kwargs)
 
     def assert_array_almost_equal_nulp(self, *args, **kwargs):
         """
         Compare two arrays relatively to their spacing.
         """
         return assert_array_almost_equal_nulp(*args, **kwargs)
-
 
     def assert_array_max_ulp(self, *args, **kwargs):
         """

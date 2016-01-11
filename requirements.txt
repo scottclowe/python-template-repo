@@ -1,5 +1,4 @@
-numpy>=1.6.1
-scipy==0.16.0
--e git://github.com/nose-devs/nose2.git@a2e601ac34a963626c4805bcb74a98f4487c6458#egg=nose2
+numpy
+scipy
 pytest
 pytest-cov

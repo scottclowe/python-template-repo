@@ -134,4 +134,12 @@ after_script:
 
 ################################################################################
 after_success:
-  - coveralls
+  # Only run coveralls on Travis. When running on a public Travis-CI, the
+  # repo token is automatically inferred, but to run coveralls on Shippable
+  # the repo token needs to be specified in a .coveralls.yml or as an
+  # environment variable COVERALLS_REPO_TOKEN. This should be kept hidden
+  # from public viewing, either by encrypting the token or running on a
+  # private build.
+  - if [ "$TRAVIS" = "true" ] && [ "$SHIPPABLE" != "true" ]; then
+      coveralls;
+    fi;

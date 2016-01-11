@@ -58,7 +58,7 @@ before_install:
           if echo "$PV" | grep -qE '^#';
           then
             continue;
-          elif echo "$PV" | grep -qEv '^-e' &&
+          elif echo "$PV" | grep -qEv '^-e|.*\+.*|.*git://' &&
             conda search $PN --full-name --use-index-cache --names-only |
               grep -qFxi $PN;
           then

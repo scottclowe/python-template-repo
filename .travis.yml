@@ -89,6 +89,13 @@ install:
   - if [ -f requirements.txt ]; then
       conda_or_pip_install_packages requirements.txt;
     fi;
+  # Also install any developmental requirements, if present.
+  - if [ -f requirements-dev.txt ]; then
+      conda_or_pip_install_packages requirements-dev.txt;
+    fi;
+  - if [ -f requirements-test.txt ]; then
+      conda_or_pip_install_packages requirements-test.txt;
+    fi;
   # ----------------------------------------------------------------------------
   # Now install your own package, e.g.
   # - python setup.py install

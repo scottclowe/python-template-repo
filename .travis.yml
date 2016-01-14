@@ -81,13 +81,12 @@ before_install:
     fi;
   # Install miniconda to the home directory, if it isn't already. If it is,
   # we need to remove the environment we will use for testing.
-  - if [ -d $HOME/miniconda ]; then
-      conda remove -n test-environment;
-    else
+  - if [ ! -d $HOME/miniconda ]; then
       bash $HOME/Downloads/miniconda.sh -b -p $HOME/miniconda;
     fi;
   - export PATH="$HOME/miniconda/bin:$PATH"
   - hash -r
+  - conda remove -n test-environment || echo "No test-environment to remove";
   # Automatically say yes to any check from conda
   - conda config --set always_yes yes --set changeps1 no
   - conda update -q conda

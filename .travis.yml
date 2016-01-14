@@ -206,3 +206,17 @@ after_success:
   - if [ "$TRAVIS" = "true" ] && [ "$SHIPPABLE" != "true" ]; then
       coveralls;
     fi;
+
+###############################################################################
+# Steps to take before archiving on Shippable (does nothing on Travis)
+before_archive:
+  # Have shippable archive the environment.yml artifact by putting it in
+  # the REPO/shippable folder. This is available to download as a tar file for
+  # each build.
+  - if [ "$SHIPPABLE" = "true" ] && [ -f environment.yml ]; then
+      cp coverage.xml shippable/;
+    fi;
+
+###############################################################################
+# Enable archiving of artifacts on Shippable (does nothing on Travis)
+archive: true

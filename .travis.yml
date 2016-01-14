@@ -27,6 +27,12 @@ before_install:
       done;
     fi;
   # ---------------------------------------------------------------------------
+  # Check which versions of numpy and scipy we are using
+  - if [ -f requirements.txt ]; then
+      NUMPY_REQUIREMENT=$(grep -w 'numpy' requirements.txt);
+      SCIPY_REQUIREMENT=$(grep -w 'scipy' requirements.txt);
+    fi;
+  # ---------------------------------------------------------------------------
   # Update the package list
   - sudo apt-get update
   # ---------------------------------------------------------------------------

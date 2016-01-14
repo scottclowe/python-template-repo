@@ -15,6 +15,7 @@ cache:
     # but if this sounds like too much hassle, you can just comment out this
     # line to stop caching.
     - $HOME/Downloads
+    - $HOME/miniconda
 
 ###############################################################################
 python:

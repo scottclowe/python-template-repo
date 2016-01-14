@@ -120,7 +120,7 @@ before_install:
           then
             echo "Package $PV isn't on conda. Trying to install it from PyPI.";
             echo "------------------------------------------------------------------";
-            pip install "$PV";
+            pip install -U "$PV";
             ERRORCODE=$?;
           fi;
           if [[ $ERRORCODE -ne 0 ]]; then return 1; fi;

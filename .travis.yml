@@ -90,6 +90,18 @@ before_install:
   - conda update -q conda
   # Useful for debugging any issues with conda
   - conda info -a
+  #
+  # If necessary, check which is the earliest version of numpy and scipy
+  # available on conda for this version of python
+  #
+  - if [[ "$USE_OLDEST_DEPENDENCIES" == "true" ]]; then
+      if [[ "$NUMPY_REQUIREMENT" != "" ]]; then
+          NUMPY_REQUIREMENT=$(bash conda_min_version.sh "$NUMPY_REQUIREMENT" "$TRAVIS_PYTHON_VERSION");
+      fi;
+      if [[ "$SCIPY_REQUIREMENT" != "" ]]; then
+          SCIPY_REQUIREMENT=$(bash conda_min_version.sh "$SCIPY_REQUIREMENT" "$TRAVIS_PYTHON_VERSION");
+      fi;
+    fi;
   # Create the conda environment with pip, numpy and scipy installed (if they
   # are in requirements.txt)
   - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION

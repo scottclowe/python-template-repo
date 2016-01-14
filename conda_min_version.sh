@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 # conda_min_version
 # Helps you get the conda numpy version number you are after.
 #

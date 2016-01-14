@@ -77,8 +77,10 @@ before_install:
   - conda update -q conda
   # Useful for debugging any issues with conda
   - conda info -a
-  # Create the conda environment with pip as the only dependency installed
-  - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION pip
+  # Create the conda environment with pip, numpy and scipy installed (if they
+  # are in requirements.txt)
+  - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION
+      pip $NUMPY_REQUIREMENT $SCIPY_REQUIREMENT
   # Activate the test environment
   - source activate test-environment
   # ---------------------------------------------------------------------------

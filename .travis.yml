@@ -41,18 +41,18 @@ before_install:
   - pwd
   - REPOPATH="$(pwd)"
   # ---------------------------------------------------------------------------
+  # Check which versions of numpy and scipy we are using
+  - if [ -f requirements.txt ]; then
+      NUMPY_REQUIREMENT="$(grep '^numpy\([<>=!]\|$\)' requirements.txt)";
+      SCIPY_REQUIREMENT="$(grep '^scipy\([<>=!]\|$\)' requirements.txt)";
+    fi;
+  # ---------------------------------------------------------------------------
   # If we want to run the tests using the oldest set of dependencies we
   # support, modify any *requirements*.txt files every '>=' becomes '=='.
   - if [[ "$USE_OLDEST_DEPENDENCIES" == "true" ]]; then
       for FILE in *requirements*.txt; do
           sed -e 's/>=/==/g' $FILE > $FILE.tmp && mv $FILE.tmp $FILE;
       done;
-    fi;
-  # ---------------------------------------------------------------------------
-  # Check which versions of numpy and scipy we are using
-  - if [ -f requirements.txt ]; then
-      NUMPY_REQUIREMENT=$(grep -w 'numpy' requirements.txt);
-      SCIPY_REQUIREMENT=$(grep -w 'scipy' requirements.txt);
     fi;
   # ---------------------------------------------------------------------------
   # Update the package list

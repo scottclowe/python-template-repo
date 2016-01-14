@@ -111,7 +111,7 @@ before_install:
             USEPIP=0;
             echo "Package $PN is on conda. Installing it from there.";
             echo "------------------------------------------------------------------";
-            conda install -q $PV;
+            conda install -q "$PV";
             ERRORCODE=$?;
           else
             USEPIP=1;
@@ -120,7 +120,7 @@ before_install:
           then
             echo "Package $PV isn't on conda. Trying to install it from PyPI.";
             echo "------------------------------------------------------------------";
-            pip install $PV;
+            pip install "$PV";
             ERRORCODE=$?;
           fi;
           if [[ $ERRORCODE -ne 0 ]]; then return 1; fi;

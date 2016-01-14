@@ -1,6 +1,14 @@
 language: python
 
 ###############################################################################
+# Cache data which has to be downloaded on every build.
+# This is just for Travis and doesn't do anything on Shippable.
+cache:
+  directories:
+    # Cache files downloaded by pip
+    - $HOME/.cache/pip
+
+###############################################################################
 python:
   # We don't actually use the Travis Python, but this keeps it organized.
   - "2.7"

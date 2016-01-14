@@ -105,6 +105,7 @@ before_script:
   # Double-check we are still in the right directory
   - pwd
   # Check what python packages we have installed
+  - conda info -a
   - pip freeze
   # ----------------------------------------------------------------------------
   # Set up folders for test results

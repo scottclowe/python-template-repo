@@ -22,8 +22,11 @@ python:
   # provider, which we don't use in favour of conda. But we use this to pick
   # out which python version we install with conda, since it means the provider
   # gets appropriate metadata to keep things organised.
+  - "2.6"
   - "2.7"
+  - "3.3"
   - "3.4"
+  - "3.5"
 
 ###############################################################################
 env:

@@ -48,9 +48,9 @@ before_install:
   # lines from requirements.txt
   - if [ -f requirements.txt ]; then
       NUMPY_REQUIREMENT="$(grep '^numpy\([<>=!]\|$\)' requirements.txt)";
-      echo "NumPy requirement is this: $NUMPY_REQUIREMENT";
+      echo "NumPy requirement is... $NUMPY_REQUIREMENT";
       SCIPY_REQUIREMENT="$(grep '^scipy\([<>=!]\|$\)' requirements.txt)";
-      echo "SciPy requirement is this: $SCIPY_REQUIREMENT";
+      echo "SciPy requirement is... $SCIPY_REQUIREMENT";
       sed '/^\(num\|sci\)py\([<>=!]\|$\)/d' requirements.txt >
         requirements.txt.tmp &&
         mv requirements.txt.tmp requirements.txt;

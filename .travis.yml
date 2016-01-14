@@ -39,7 +39,7 @@ env:
 before_install:
   # Remember the directory where our repository to test is located
   - pwd
-  - REPOPATH=`pwd`
+  - REPOPATH="$(pwd)"
   # ---------------------------------------------------------------------------
   # If we want to run the tests using the oldest set of dependencies we
   # support, modify any *requirements*.txt files every '>=' becomes '=='.

@@ -35,6 +35,10 @@ before_install:
   # ---------------------------------------------------------------------------
   # Update the package list
   - sudo apt-get update
+  # Install scipy dependencies with apt-get. We only need ATLAS.
+  - if [[ "$SCIPY_REQUIREMENT" != "" ]]; then
+      sudo apt-get install -y libatlas3gf-base libatlas-dev;
+    fi;
   # ---------------------------------------------------------------------------
   # The following is taken/adapted from Minicoda's how-to Travis page
   # http://conda.pydata.org/docs/travis.html

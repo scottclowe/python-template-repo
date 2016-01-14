@@ -7,10 +7,21 @@ cache:
   directories:
     # Cache files downloaded by pip
     - $HOME/.cache/pip
+    # Cache our miniconda download.
+    # Cautionary note: if a new version of Python is released and added to
+    # conda and you want to test on the new version, your cached copy will be
+    # out of date and you'll need to wipe the cache. Details are here
+    # https://docs.travis-ci.com/user/caching/#Clearing-Caches
+    # but if this sounds like too much hassle, you can just comment out this
+    # line to stop caching.
+    - $HOME/Downloads
 
 ###############################################################################
 python:
-  # We don't actually use the Travis Python, but this keeps it organized.
+  # This is a flag for the built-in version of Python provided by the CI-server
+  # provider, which we don't use in favour of conda. But we use this to pick
+  # out which python version we install with conda, since it means the provider
+  # gets appropriate metadata to keep things organised.
   - "2.7"
   - "3.4"
 
@@ -48,18 +59,17 @@ before_install:
       sudo apt-get install -y libatlas3gf-base libatlas-dev;
     fi;
   # ---------------------------------------------------------------------------
-  # The following is taken/adapted from Minicoda's how-to Travis page
+  # The following is based on Minicoda's how-to Travis page
   # http://conda.pydata.org/docs/travis.html
   # ---------------------------------------------------------------------------
-  # Download miniconda.  If the python version we want is 2.7, we can download
-  # a smller miniconda file.
-  - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
-      wget https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh;
-    else
-      wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
-    fi
+  # Download miniconda. If the python version we want is 2.7, we can download
+  # a smaller miniconda file.
+  - mkdir -p $HOME/Downloads
+  - if [ -f $HOME/Downloads/miniconda.sh ]; then
+      wget https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O $HOME/Downloads/miniconda.sh;
+    fi;
   # Install miniconda to the home directory
-  - bash miniconda.sh -b -p $HOME/miniconda
+  - bash $HOME/Downloads/miniconda.sh -b -p $HOME/miniconda
   - export PATH="$HOME/miniconda/bin:$PATH"
   - hash -r
   # Automatically say yes to any check from conda

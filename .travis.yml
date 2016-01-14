@@ -67,11 +67,12 @@ before_install:
   - if [ ! -f $HOME/Downloads/miniconda.sh ]; then
       wget https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O "$HOME/Downloads/miniconda.sh";
     fi;
-  # Install miniconda to the home directory. Only do this if this folder hasn't
-  # persisted from the last build.
-  - if [ ! -d $HOME/miniconda ]; then
-      bash $HOME/Downloads/miniconda.sh -b -p $HOME/miniconda;
-    fi
+  # Install miniconda to the home directory.
+  # May have to remove an old copy from the last build if we're on Shippable
+  - if [ -d $HOME/miniconda ]; then
+      rm -r $HOME/miniconda;
+    fi;
+  - bash $HOME/Downloads/miniconda.sh -b -p $HOME/miniconda;
   - export PATH="$HOME/miniconda/bin:$PATH"
   - hash -r
   # Automatically say yes to any check from conda

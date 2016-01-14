@@ -7,11 +7,25 @@ python:
   - "3.4"
 
 ################################################################################
+env:
+  # Run tests with newest and oldest dependencies
+  - USE_OLDEST_DEPENDENCIES="false"
+  - USE_OLDEST_DEPENDENCIES="true"
+
+################################################################################
 # Setup the environment before installing
 before_install:
   # Remember the directory where our repository to test is located
   - pwd
   - REPOPATH=`pwd`
+  # ----------------------------------------------------------------------------
+  # If we want to run the tests using the oldest set of dependencies we
+  # support, modify any *requirements*.txt files every '>=' becomes '=='.
+  - if [[ "$USE_OLDEST_DEPENDENCIES" == "true" ]]; then
+      for FILE in *requirements*.txt; do
+          sed -e 's/>=/==/g' $FILE > $FILE.tmp && mv $FILE.tmp $FILE;
+      done;
+    fi;
   # ----------------------------------------------------------------------------
   # Update the package list
   - sudo apt-get update

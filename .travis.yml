@@ -1,24 +1,24 @@
 language: python
 
-################################################################################
+###############################################################################
 python:
   # We don't actually use the Travis Python, but this keeps it organized.
   - "2.7"
   - "3.4"
 
-################################################################################
+###############################################################################
 env:
   # Run tests with newest and oldest dependencies
   - USE_OLDEST_DEPENDENCIES="false"
   - USE_OLDEST_DEPENDENCIES="true"
 
-################################################################################
+###############################################################################
 # Setup the environment before installing
 before_install:
   # Remember the directory where our repository to test is located
   - pwd
   - REPOPATH=`pwd`
-  # ----------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------
   # If we want to run the tests using the oldest set of dependencies we
   # support, modify any *requirements*.txt files every '>=' becomes '=='.
   - if [[ "$USE_OLDEST_DEPENDENCIES" == "true" ]]; then
@@ -26,13 +26,13 @@ before_install:
           sed -e 's/>=/==/g' $FILE > $FILE.tmp && mv $FILE.tmp $FILE;
       done;
     fi;
-  # ----------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------
   # Update the package list
   - sudo apt-get update
-  # ----------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------
   # The following is taken/adapted from Minicoda's how-to Travis page
   # http://conda.pydata.org/docs/travis.html
-  # ----------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------
   # Download miniconda.  If the python version we want is 2.7, we can download
   # a smller miniconda file.
   - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
@@ -53,7 +53,7 @@ before_install:
   - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION pip
   # Activate the test environment
   - source activate test-environment
-  # ----------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------
   # Define a helper function which installs dependencies from a list in a file,
   # which uses conda where it can and pip when it can't.
   #
@@ -95,7 +95,7 @@ before_install:
         done < $1;
     }
 
-################################################################################
+###############################################################################
 install:
   # Install required packages listed in requirements.txt. Use conda if they are
   # on there, and pip if they aren't. It is much faster to install from conda
@@ -113,34 +113,34 @@ install:
       cat requirements-test.txt;
       conda_or_pip_install_packages requirements-test.txt;
     fi;
-  # ----------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------
   # Now install your own package, e.g.
   # - python setup.py install
 
-################################################################################
+###############################################################################
 before_script:
   # Double-check we are still in the right directory
   - pwd
   # Check what python packages we have installed
   - conda info -a
   - pip freeze
-  # ----------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------
   # Set up folders for test results
   - if [ "$SHIPPABLE" = "true" ]; then
       mkdir -p shippable/testresults;
       mkdir -p shippable/codecoverage;
     fi;
 
-################################################################################
+###############################################################################
 script:
   - which python
   - pip freeze
-  # ----------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------
   # Your test script goes here, e.g.
   # - python setup.py test
   - py.test --flake8 --junitxml=testresults.xml --cov=package_name --cov-report xml --cov-config .coveragerc
 
-################################################################################
+###############################################################################
 after_script:
   # Show where we ended up
   - pwd
@@ -148,7 +148,7 @@ after_script:
   - cd ${REPOPATH}
   # Show what results files there are
   - ls -alh
-  # ----------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------
   # Move results and coverage files into appropriate places
   - if [ "$SHIPPABLE" = "true" ] && [ -f testresults.xml ]; then
       mv testresults.xml shippable/testresults/;
@@ -157,7 +157,7 @@ after_script:
       cp coverage.xml shippable/codecoverage/;
     fi;
 
-################################################################################
+###############################################################################
 after_success:
   # Only run coveralls on Travis. When running on a public Travis-CI, the
   # repo token is automatically inferred, but to run coveralls on Shippable

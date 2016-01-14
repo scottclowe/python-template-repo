@@ -220,7 +220,7 @@ before_archive:
   # the REPO/shippable folder. This is available to download as a tar file for
   # each build.
   - if [ "$SHIPPABLE" = "true" ] && [ -f environment.yml ]; then
-      cp coverage.xml shippable/;
+      cp environment.yml shippable/;
     fi;
 
 ###############################################################################

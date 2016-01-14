@@ -101,13 +101,16 @@ install:
   # on there, and pip if they aren't. It is much faster to install from conda
   # because the packages are pre-compiled, but not everything is there.
   - if [ -f requirements.txt ]; then
+      cat requirements.txt;
       conda_or_pip_install_packages requirements.txt;
     fi;
   # Also install any developmental requirements, if present.
   - if [ -f requirements-dev.txt ]; then
+      cat requirements-dev.txt;
       conda_or_pip_install_packages requirements-dev.txt;
     fi;
   - if [ -f requirements-test.txt ]; then
+      cat requirements-test.txt;
       conda_or_pip_install_packages requirements-test.txt;
     fi;
   # ----------------------------------------------------------------------------

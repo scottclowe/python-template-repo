@@ -238,11 +238,14 @@ after_success:
   # environment variable COVERALLS_REPO_TOKEN. This should be kept hidden
   # from public viewing, either by encrypting the token or running on a
   # private build.
+  # We ignore coveralls failures because the coveralls server is not 100%
+  # reliable and we don't want the CI to report a failure just because the
+  # coverage report wasn't published.
   - if [ "$TRAVIS" = "true" ] && [ "$SHIPPABLE" != "true" ]; then
       pip install coveralls;
-      travis_retry coveralls;
+      travis_retry coveralls || echo "Coveralls push failed";
       pip install codecov;
-      travis_retry codecov;
+      travis_retry codecov || echo "Codecov push failed";
     fi;
 
 ###############################################################################

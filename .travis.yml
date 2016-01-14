@@ -62,14 +62,16 @@ before_install:
   # The following is based on Minicoda's how-to Travis page
   # http://conda.pydata.org/docs/travis.html
   # ---------------------------------------------------------------------------
-  # Download miniconda. If the python version we want is 2.7, we can download
-  # a smaller miniconda file.
+  # Download miniconda. Only do this if the cached file isn't present.
   - mkdir -p $HOME/Downloads
   - if [ ! -f $HOME/Downloads/miniconda.sh ]; then
       wget https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O "$HOME/Downloads/miniconda.sh";
     fi;
-  # Install miniconda to the home directory
-  - bash $HOME/Downloads/miniconda.sh -b -p $HOME/miniconda
+  # Install miniconda to the home directory. Only do this if this folder hasn't
+  # persisted from the last build.
+  - if [ ! -d $HOME/miniconda ]; then
+      bash $HOME/Downloads/miniconda.sh -b -p $HOME/miniconda;
+    fi
   - export PATH="$HOME/miniconda/bin:$PATH"
   - hash -r
   # Automatically say yes to any check from conda

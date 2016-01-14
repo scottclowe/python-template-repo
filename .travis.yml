@@ -32,9 +32,10 @@ python:
 
 ###############################################################################
 env:
-  # Run tests with newest and oldest dependencies
-  - USE_OLDEST_DEPENDENCIES="false"
-  - USE_OLDEST_DEPENDENCIES="true"
+  matrix:
+    # Run tests with newest and oldest dependencies
+    - USE_OLDEST_DEPENDENCIES="false"
+    - USE_OLDEST_DEPENDENCIES="true"
 
 ###############################################################################
 # Setup the environment before installing

@@ -186,6 +186,14 @@ after_script:
   - if [ "$SHIPPABLE" = "true" ] && [ -f coverage.xml ]; then
       cp coverage.xml shippable/codecoverage/;
     fi;
+  # ---------------------------------------------------------------------------
+  # Make an environment.yml artifact file. Since this build was successful,
+  # you can share it for users to install from with the command
+  # `conda env create -f environment.yml` and know they have a working build.
+  # If you want to save this file, you will need to turn on the artifacts addon
+  # or do something else with it. See here for details about artifacts
+  # https://docs.travis-ci.com/user/uploading-artifacts/
+  - conda env export > environment.yml && cat environment.yml
 
 ###############################################################################
 after_success:

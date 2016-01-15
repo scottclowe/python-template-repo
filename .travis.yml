@@ -89,9 +89,11 @@ before_install:
     fi;
   - export PATH="$HOME/miniconda/bin:$PATH"
   - hash -r
-  - conda remove -n test-environment || echo "No test-environment to remove";
   # Automatically say yes to any check from conda
   - conda config --set always_yes yes --set changeps1 no
+  # Remove test environment from conda, if it's still there from last time
+  - conda remove -n test-environment --all || echo "No test-environment to remove";
+  # Update conda
   - conda update -q conda
   # Useful for debugging any issues with conda
   - conda info -a

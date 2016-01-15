@@ -213,6 +213,9 @@ before_script:
   - pwd
   # Check what python packages we have installed
   - conda info -a
+  - which python
+  - python --version
+  - conda env export > environment.yml && cat environment.yml
   - pip freeze
   # ---------------------------------------------------------------------------
   # Set up folders for test results
@@ -223,8 +226,13 @@ before_script:
 
 ###############################################################################
 script:
-  - which python
-  - pip freeze
+  - python --version
+  - if [[ "$NUMPY_REQUIREMENT" != "" ]]; then
+      python -c "import numpy; print('numpy %s' % numpy.__version__)";
+    fi;
+  - if [[ "$SCIPY_REQUIREMENT" != "" ]]; then
+      python -c "import scipy; print('scipy %s' % scipy.__version__)";
+    fi;
   # ---------------------------------------------------------------------------
   # Your test script goes here, e.g.
   # - python setup.py test
@@ -246,14 +254,6 @@ after_script:
   - if [ "$SHIPPABLE" = "true" ] && [ -f coverage.xml ]; then
       cp coverage.xml shippable/codecoverage/;
     fi;
-  # ---------------------------------------------------------------------------
-  # Make an environment.yml artifact file. Since this build was successful,
-  # you can share it for users to install from with the command
-  # `conda env create -f environment.yml` and know they have a working build.
-  # If you want to save this file, you will need to turn on the artifacts addon
-  # or do something else with it. See here for details about artifacts
-  # https://docs.travis-ci.com/user/uploading-artifacts/
-  - conda env export > environment.yml && cat environment.yml
 
 ###############################################################################
 after_success:
@@ -273,6 +273,12 @@ before_archive:
   # Have shippable archive the environment.yml artifact by putting it in
   # the REPO/shippable folder. This is available to download as a tar file for
   # each build.
+  # Since this build was successful, you can share it for users to install from
+  # with the command `conda env create -f environment.yml` and know they have
+  # a working build.
+  # If you want to save this file on Travis, you will need to turn on the
+  # artifacts addon (or do something else with it). See here for details
+  # https://docs.travis-ci.com/user/uploading-artifacts/
   - if [ "$SHIPPABLE" = "true" ] && [ -f environment.yml ]; then
       cp environment.yml shippable/;
     fi;

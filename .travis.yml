@@ -94,22 +94,48 @@ before_install:
   - conda info -a
   #
   # If necessary, check which is the earliest version of numpy and scipy
-  # available on conda for this version of python
-  #
+  # available on conda for this version of python.
+  # Because any given version of scipy is only available for a narrow range
+  # of numpy versions, we constrain only scipy and not numpy to its oldest
+  # possible requirement when scipy is being installed. The version of numpy
+  # we end up must still satisfy the original requirement.txt setting, and
+  # be from around the time of the oldest supported scipy release.
   - if [[ "$USE_OLDEST_DEPENDENCIES" == "true" ]]; then
-      if [[ "$NUMPY_REQUIREMENT" != "" ]]; then
-          NUMPY_REQUIREMENT="numpy==$(bash conda_min_version.sh
-              "$NUMPY_REQUIREMENT" "$TRAVIS_PYTHON_VERSION")";
-      fi;
       if [[ "$SCIPY_REQUIREMENT" != "" ]]; then
           SCIPY_REQUIREMENT="scipy==$(bash conda_min_version.sh
               "$SCIPY_REQUIREMENT" "$TRAVIS_PYTHON_VERSION")";
+      elif [[ "$NUMPY_REQUIREMENT" != "" ]]; then
+          NUMPY_REQUIREMENT="numpy==$(bash conda_min_version.sh
+              "$NUMPY_REQUIREMENT" "$TRAVIS_PYTHON_VERSION")";
       fi;
     fi;
   # Create the conda environment with pip, numpy and scipy installed (if they
   # are in requirements.txt)
   - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION
       pip $NUMPY_REQUIREMENT $SCIPY_REQUIREMENT
+  # If you get an error from this command which looks like this:
+  #   Error: Unsatisfiable package specifications.
+  #   Generating hint:
+  #   [      COMPLETE      ]|###########| 100%
+  #   Hint: the following packages conflict with each other:
+  #     - numpy >=1.9.0
+  #     - scipy ==0.12.0
+  #
+  # This is because you have constrained the numpy version in requirements.txt
+  # to a more recent set of values (e.g. numpy>=1.9.0) than the scipy
+  # constraint (e.g. scipy>=0.12.0). The USE_OLDEST_DEPENDENCIES code has
+  # looked up the oldest compatible version available on conda (scipy==0.12.0)
+  # but there is no numpy version for this which matches your constraint.
+  #
+  # You can resolve this by doing a search of the conda packages available
+  #   conda search scipy
+  # and changing your scipy constraint to be scipy>=x.y.z, where x.y.z is the
+  # oldest version which has a matching numpy version in its buildstring.
+  # To resolve the example, we look for the first scipy version which has
+  # 'np19' in its buildstring, and find it is scipy version 0.14.0, so we
+  # update the requirements.txt file to have 'scipy>=0.14.0' instead of
+  # 'scipy>=0.12.0'.
+  #
   # Activate the test environment
   - source activate test-environment
   # ---------------------------------------------------------------------------

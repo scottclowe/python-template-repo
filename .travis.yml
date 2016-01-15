@@ -81,8 +81,11 @@ before_install:
     fi;
   # Install miniconda to the home directory, if it isn't already. If it is,
   # we need to remove the environment we will use for testing.
-  - if [ ! -d $HOME/miniconda ]; then
-      bash $HOME/Downloads/miniconda.sh -b -p $HOME/miniconda;
+  - if [ ! -d "$HOME/miniconda/bin" ]; then
+      if [ -d "$HOME/miniconda" ]; then rm -r "$HOME/miniconda"; fi;
+      bash $HOME/Downloads/miniconda.sh -b -p "$HOME/miniconda";
+    else
+      ls -alh "$HOME/miniconda";
     fi;
   - export PATH="$HOME/miniconda/bin:$PATH"
   - hash -r

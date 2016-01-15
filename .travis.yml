@@ -79,24 +79,26 @@ before_install:
   - if [ ! -f $HOME/Downloads/miniconda.sh ]; then
       wget https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O "$HOME/Downloads/miniconda.sh";
     fi;
-  # Install miniconda to the home directory, if it isn't already. If it is,
-  # we need to remove the environment we will use for testing.
+  # Install miniconda to the home directory, if it isn't there already.
   - if [ ! -d "$HOME/miniconda/bin" ]; then
       if [ -d "$HOME/miniconda" ]; then rm -r "$HOME/miniconda"; fi;
       bash $HOME/Downloads/miniconda.sh -b -p "$HOME/miniconda";
-    else
-      ls -alh "$HOME/miniconda";
     fi;
+  - ls -alh "$HOME/miniconda";
   - export PATH="$HOME/miniconda/bin:$PATH"
   - hash -r
   # Automatically say yes to any check from conda
   - conda config --set always_yes yes --set changeps1 no
+  # Useful for debugging any issues with conda
+  - conda info -a
+  - conda list
   # Remove test environment from conda, if it's still there from last time
   - conda remove -n test-environment --all || echo "No test-environment to remove";
   # Update conda
   - conda update -q conda
   # Useful for debugging any issues with conda
   - conda info -a
+  - conda list
   #
   # If necessary, check which is the earliest version of numpy and scipy
   # available on conda for this version of python.

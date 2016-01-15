@@ -48,9 +48,9 @@ before_install:
   # lines from requirements.txt
   - if [ -f requirements.txt ]; then
       NUMPY_REQUIREMENT="$(grep '^numpy\([<>=!]\|$\)' requirements.txt)";
-      echo "NumPy requirement is... $NUMPY_REQUIREMENT";
+      echo "NumPy requirement is '$NUMPY_REQUIREMENT'";
       SCIPY_REQUIREMENT="$(grep '^scipy\([<>=!]\|$\)' requirements.txt)";
-      echo "SciPy requirement is... $SCIPY_REQUIREMENT";
+      echo "SciPy requirement is '$SCIPY_REQUIREMENT'";
       sed '/^\(num\|sci\)py\([<>=!]\|$\)/d' requirements.txt >
         requirements.txt.tmp &&
         mv requirements.txt.tmp requirements.txt;
@@ -75,8 +75,8 @@ before_install:
   # http://conda.pydata.org/docs/travis.html
   # ---------------------------------------------------------------------------
   # Download miniconda. Only do this if the cached file isn't present.
-  - mkdir -p $HOME/Downloads
-  - if [ ! -f $HOME/Downloads/miniconda.sh ]; then
+  - mkdir -p $HOME/Downloads;
+    if [ ! -f $HOME/Downloads/miniconda.sh ]; then
       wget https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O "$HOME/Downloads/miniconda.sh";
     fi;
   # Install miniconda to the home directory, if it isn't there already.
@@ -85,10 +85,10 @@ before_install:
       bash $HOME/Downloads/miniconda.sh -b -p "$HOME/miniconda";
     fi;
   - ls -alh "$HOME/miniconda";
-  - export PATH="$HOME/miniconda/bin:$PATH"
-  - hash -r
-  # Automatically say yes to any check from conda
-  - conda config --set always_yes yes --set changeps1 no
+  # Add conda to the path and automatically say yes to any check from conda
+  - export PATH="$HOME/miniconda/bin:$PATH";
+    hash -r;
+    conda config --set always_yes yes --set changeps1 no
   # Useful for debugging any issues with conda
   - conda info -a
   - conda list
@@ -233,11 +233,11 @@ before_script:
 
 ###############################################################################
 script:
-  - python --version
-  - if [[ "$NUMPY_REQUIREMENT" != "" ]]; then
+  - python --version;
+    if [[ "$NUMPY_REQUIREMENT" != "" ]]; then
       python -c "import numpy; print('numpy %s' % numpy.__version__)";
     fi;
-  - if [[ "$SCIPY_REQUIREMENT" != "" ]]; then
+    if [[ "$SCIPY_REQUIREMENT" != "" ]]; then
       python -c "import scipy; print('scipy %s' % scipy.__version__)";
     fi;
   # ---------------------------------------------------------------------------
@@ -258,7 +258,7 @@ after_script:
   - if [ "$SHIPPABLE" = "true" ] && [ -f testresults.xml ]; then
       mv testresults.xml shippable/testresults/;
     fi;
-  - if [ "$SHIPPABLE" = "true" ] && [ -f coverage.xml ]; then
+    if [ "$SHIPPABLE" = "true" ] && [ -f coverage.xml ]; then
       cp coverage.xml shippable/codecoverage/;
     fi;
 

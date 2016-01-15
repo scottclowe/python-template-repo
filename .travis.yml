@@ -98,10 +98,12 @@ before_install:
   #
   - if [[ "$USE_OLDEST_DEPENDENCIES" == "true" ]]; then
       if [[ "$NUMPY_REQUIREMENT" != "" ]]; then
-          NUMPY_REQUIREMENT=$(bash conda_min_version.sh "$NUMPY_REQUIREMENT" "$TRAVIS_PYTHON_VERSION");
+          NUMPY_REQUIREMENT="numpy==$(bash conda_min_version.sh
+              "$NUMPY_REQUIREMENT" "$TRAVIS_PYTHON_VERSION")";
       fi;
       if [[ "$SCIPY_REQUIREMENT" != "" ]]; then
-          SCIPY_REQUIREMENT=$(bash conda_min_version.sh "$SCIPY_REQUIREMENT" "$TRAVIS_PYTHON_VERSION");
+          SCIPY_REQUIREMENT="scipy==$(bash conda_min_version.sh
+              "$SCIPY_REQUIREMENT" "$TRAVIS_PYTHON_VERSION")";
       fi;
     fi;
   # Create the conda environment with pip, numpy and scipy installed (if they

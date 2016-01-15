@@ -101,7 +101,11 @@ before_install:
   # we end up must still satisfy the original requirement.txt setting, and
   # be from around the time of the oldest supported scipy release.
   - if [[ "$USE_OLDEST_DEPENDENCIES" == "true" ]]; then
-      if [[ "$SCIPY_REQUIREMENT" != "" ]]; then
+      if [[ "$SCIPY_REQUIREMENT" != "" ]] &&
+         ( [[ "$SCIPY_REQUIREMENT" != "scipy" ]] ||
+           [[ "$NUMPY_REQUIREMENT" == "" ]] ||
+           [[ "$NUMPY_REQUIREMENT" == "numpy" ]] );
+      then
           SCIPY_REQUIREMENT="scipy==$(bash conda_min_version.sh
               "$SCIPY_REQUIREMENT" "$TRAVIS_PYTHON_VERSION")";
       elif [[ "$NUMPY_REQUIREMENT" != "" ]]; then

@@ -250,9 +250,8 @@ after_script:
   # Show where we ended up
   - pwd
   # Go back to the repository directory, just in case
-  - cd ${REPOPATH}
   # Show what results files there are
-  - ls -alh
+  - cd ${REPOPATH} && ls -alh;
   # ---------------------------------------------------------------------------
   # Move results and coverage files into appropriate places
   - if [ "$SHIPPABLE" = "true" ] && [ -f testresults.xml ]; then

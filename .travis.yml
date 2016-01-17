@@ -155,16 +155,16 @@ install:
   # because the packages are pre-compiled, but not everything is there.
   - if [ -f requirements.txt ]; then
       cat requirements.txt;
-      ./continuous_integration/conda_or_pip_install_packages.sh requirements.txt;
+      pip install -Ur requirements.txt;
     fi;
   # Also install any developmental requirements, if present.
   - if [ -f requirements-dev.txt ]; then
       cat requirements-dev.txt;
-      ./continuous_integration/conda_or_pip_install_packages.sh requirements-dev.txt;
+      pip install -Ur requirements-dev.txt;
     fi;
   - if [ -f requirements-test.txt ]; then
       cat requirements-test.txt;
-      ./continuous_integration/conda_or_pip_install_packages.sh requirements-test.txt;
+      pip install -Ur requirements-test.txt;
     fi;
   # ---------------------------------------------------------------------------
   # Now install your own package, e.g.

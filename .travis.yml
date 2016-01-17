@@ -150,52 +150,6 @@ before_install:
   #
   # Activate the test environment
   - source activate test-environment
-  # ---------------------------------------------------------------------------
-  # Define a helper function which installs dependencies from a list in a file,
-  # which uses conda where it can and pip when it can't.
-  #
-  # conda_or_pip_install_packages
-  # Inputs
-  #   Path to file listing package constraints (i.e. a requirements.txt file).
-  # Exit code 0 if success, 1 if fail on any package
-  #
-  # First, we remove the version requirement and get just the package name.
-  # Then we search the conda database to see if a package with this exact name
-  # is present. We already updated our cache, so we don't need to ask the
-  # server again, and just use the cached copy. The output of this is a
-  # header line and then a list of matching package names. We then grep
-  # this to check whether one of the lines of the output is an exact match
-  # for the name of the package we want to install.
-  - function conda_or_pip_install_packages {
-        while read PV; do
-          echo "";
-          echo "==================================================================";
-          PN="$(echo $PV | sed 's/^\([^=<>]*\).*/\1/')";
-          if echo "$PV" | grep -qE '^#';
-          then
-            continue;
-          elif echo "$PV" | grep -qEv '^-e|.*\+.*|.*git://' &&
-            conda search $PN --full-name --use-index-cache --names-only |
-              grep -qFxi $PN;
-          then
-            USEPIP=0;
-            echo "Package $PN is on conda. Installing it from there.";
-            echo "------------------------------------------------------------------";
-            conda install -q "$PV";
-            ERRORCODE=$?;
-          else
-            USEPIP=1;
-          fi;
-          if [[ $ERRORCODE -ne 0 ]] || [[ $USEPIP -gt 0 ]];
-          then
-            echo "Package $PV isn't on conda. Trying to install it from PyPI.";
-            echo "------------------------------------------------------------------";
-            pip install -U "$PV";
-            ERRORCODE=$?;
-          fi;
-          if [[ $ERRORCODE -ne 0 ]]; then return 1; fi;
-        done < $1;
-    }
 
 ###############################################################################
 install:
@@ -204,16 +158,16 @@ install:
   # because the packages are pre-compiled, but not everything is there.
   - if [ -f requirements.txt ]; then
       cat requirements.txt;
-      conda_or_pip_install_packages requirements.txt;
+      ./continuous_integration/conda_or_pip_install_packages.sh requirements.txt;
     fi;
   # Also install any developmental requirements, if present.
   - if [ -f requirements-dev.txt ]; then
       cat requirements-dev.txt;
-      conda_or_pip_install_packages requirements-dev.txt;
+      ./continuous_integration/conda_or_pip_install_packages.sh requirements-dev.txt;
     fi;
   - if [ -f requirements-test.txt ]; then
       cat requirements-test.txt;
-      conda_or_pip_install_packages requirements-test.txt;
+      ./continuous_integration/conda_or_pip_install_packages.sh requirements-test.txt;
     fi;
   # ---------------------------------------------------------------------------
   # Now install your own package, e.g.

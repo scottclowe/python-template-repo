@@ -273,6 +273,7 @@ after_success:
   # from public viewing, either by encrypting the token or running on a
   # private build.
   - if [ "$TRAVIS" = "true" ] && [ "$SHIPPABLE" != "true" ]; then
+      pip install coveralls;
       coveralls;
       pip install codecov;
       codecov

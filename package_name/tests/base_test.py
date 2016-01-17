@@ -3,9 +3,10 @@ Provides a base test class for other test classes to inherit from.
 Includes the numpy testing functions as methods.
 """
 import unittest
+import os.path
+from inspect import getsourcefile
 
 import numpy as np
-
 from numpy.testing import (assert_almost_equal,
                            assert_approx_equal,
                            assert_array_almost_equal,
@@ -26,6 +27,11 @@ class BaseTestCase(unittest.TestCase):
     """
     Superclass for test cases, including support for numpy.
     """
+
+    # The attribute `test_directory` provides the path to the directory
+    # containing the file `base_test.py`, which is useful to obtain
+    # test resources - files which are needed to run tests.
+    test_directory = os.path.dirname(os.path.abspath(getsourcefile(lambda: 0)))
 
     def __init__(self, *args, **kw):
         '''Instance initialisation'''

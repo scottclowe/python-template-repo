@@ -274,6 +274,8 @@ after_success:
   # private build.
   - if [ "$TRAVIS" = "true" ] && [ "$SHIPPABLE" != "true" ]; then
       coveralls;
+      pip install codecov;
+      codecov
     fi;
 
 ###############################################################################

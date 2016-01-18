@@ -4,7 +4,6 @@
 
 # Ignore test result XML files
 testresults.xml
-coverage.xml
 
 
 ##---------------------------------------------------

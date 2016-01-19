@@ -41,8 +41,7 @@ env:
 # Setup the environment before installing
 before_install:
   # Remember the directory where our repository to test is located
-  - pwd
-  - REPOPATH="$(pwd)"
+  - REPOPATH="$(pwd)" && pwd
   # ---------------------------------------------------------------------------
   # Check which versions of numpy and scipy we are using, then remove these
   # lines from requirements.txt

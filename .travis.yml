@@ -149,9 +149,9 @@ before_install:
 
 ###############################################################################
 install:
-  # Install required packages listed in requirements.txt. Use conda if they are
-  # on there, and pip if they aren't. It is much faster to install from conda
-  # because the packages are pre-compiled, but not everything is there.
+  # Install required packages listed in requirements.txt. We install this
+  # with the upgrade ('-U') flag to ensure we have the most recent version of
+  # the dependency which is compatible with the specification.
   - if [ -f requirements.txt ]; then
       cat requirements.txt;
       pip install -Ur requirements.txt;

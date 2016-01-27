@@ -150,20 +150,28 @@ before_install:
 ###############################################################################
 install:
   # Install required packages listed in requirements.txt. We install this
-  # with the upgrade ('-U') flag to ensure we have the most recent version of
-  # the dependency which is compatible with the specification.
+  # with the --upgrade flag *and* with --no-deps to make sure we have the
+  # most up to date version of all *immediate* dependencies of the package
+  # we are developing (whilst still compatible with the version specifier),
+  # without upgrading recursively (since that would invariably involve
+  # upgrading numpy and/or scipy). We then need to make sure the dependency
+  # "chain" is satisfied (dependencies of dependencies are adequate) without
+  # upgrading unnecessarily.
   - if [ -f requirements.txt ]; then
       cat requirements.txt;
-      pip install -Ur requirements.txt;
+      pip install --no-deps --upgrade -r requirements.txt;
+      pip install -r requirements.txt;
     fi;
   # Also install any developmental requirements, if present.
   - if [ -f requirements-dev.txt ]; then
       cat requirements-dev.txt;
-      pip install -Ur requirements-dev.txt;
+      pip install --no-deps --upgrade -r requirements-dev.txt;
+      pip install -r requirements-dev.txt;
     fi;
   - if [ -f requirements-test.txt ]; then
       cat requirements-test.txt;
-      pip install -Ur requirements-test.txt;
+      pip install --no-deps --upgrade -r requirements-test.txt;
+      pip install -r requirements-test.txt;
     fi;
   # ---------------------------------------------------------------------------
   # Now install your own package, e.g.

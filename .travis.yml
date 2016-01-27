@@ -94,7 +94,7 @@ before_install:
   # Remove test environment from conda, if it's still there from last time
   - conda remove -n test-environment --all || echo "No test-environment to remove";
   # Update conda
-  - conda update -q conda
+  - travis_retry conda update -q conda
   # Useful for debugging any issues with conda
   - conda info -a
   - conda list

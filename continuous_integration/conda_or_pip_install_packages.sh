@@ -29,10 +29,11 @@ while read PV; do
     then
         continue;
     # Don't even try conda if the line starts with '-e' (editable install)
+    # or other parameter (such as '-r', linking to another requirements file)
     # or is a link to a version control system repository ('git+', 'hg+',
     # 'bzr+', 'svn+', or git://)
     # https://pip.pypa.io/en/stable/reference/pip_install/#vcs-support
-    elif echo "$PV" | grep -qEv '^-e|.*\+.*|.*git://' &&
+    elif echo "$PV" | grep -qEv '^-|.*\+.*|.*git://' &&
         # Now we search the conda database to see if a package with
         # this exact (--use-index-cache) name, `$PN`, is present.
         # We already updated our cache, so we don't need to ask the

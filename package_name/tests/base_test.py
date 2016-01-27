@@ -2,7 +2,7 @@
 Provides a base test class for other test classes to inherit from.
 Includes the numpy testing functions as methods.
 """
-import unittest
+import sys
 import os.path
 from inspect import getsourcefile
 
@@ -20,6 +20,12 @@ from numpy.testing import (assert_almost_equal,
                            # assert_raises_regex,
                            assert_warns,
                            assert_string_equal)
+
+# For Python < 2.7, unittest2 is a backport of unittest
+if sys.version_info[:2] <= (2, 6):
+    import unittest2 as unittest
+else:
+    import unittest
 
 
 class BaseTestCase(unittest.TestCase):

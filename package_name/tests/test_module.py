@@ -1,16 +1,20 @@
 '''
 Tests for module in package_name.
 '''
-
-import unittest
+import sys
 import math
 
 import numpy as np
 
 from .base_test import BaseTestCase
-
 # from package_name.module import cubic_rectification
 from ..module import cubic_rectification
+
+# For Python < 2.7, unittest2 is a backport of unittest
+if sys.version_info[:2] <= (2, 6):
+    import unittest2 as unittest
+else:
+    import unittest
 
 
 class TestCubicRectification(BaseTestCase):

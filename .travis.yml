@@ -180,6 +180,11 @@ before_script:
   - conda env export > environment.yml && cat environment.yml
   - pip freeze
   # ---------------------------------------------------------------------------
+  # Remove any cached results files from previous build, if present
+  - rm -f testresults.xml;
+    rm -f coverage.xml;
+    rm -f .coverage;
+  # ---------------------------------------------------------------------------
   # Set up folders for test results
   - if [ "$SHIPPABLE" = "true" ]; then
       mkdir -p shippable/testresults;

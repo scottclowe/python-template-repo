@@ -185,8 +185,9 @@ before_script:
     rm -f coverage.xml;
     rm -f .coverage;
   # ---------------------------------------------------------------------------
-  # Set up folders for test results
+  # Set up folders for test results on Shippable
   - if [ "$SHIPPABLE" = "true" ]; then
+      rm -fr shippable;
       mkdir -p shippable/testresults;
       mkdir -p shippable/codecoverage;
     fi;

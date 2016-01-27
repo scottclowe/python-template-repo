@@ -79,7 +79,7 @@ before_install:
   # Download miniconda. Only do this if the cached file isn't present.
   - mkdir -p $HOME/Downloads;
     if [ ! -f $HOME/Downloads/miniconda.sh ]; then
-      wget https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O "$HOME/Downloads/miniconda.sh";
+      travis_retry wget https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O "$HOME/Downloads/miniconda.sh";
     fi;
   # Install miniconda to the home directory, if it isn't there already.
   - if [ ! -d "$HOME/miniconda/bin" ]; then

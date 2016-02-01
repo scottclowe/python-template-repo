@@ -240,9 +240,9 @@ after_success:
   # private build.
   - if [ "$TRAVIS" = "true" ] && [ "$SHIPPABLE" != "true" ]; then
       pip install coveralls;
-      coveralls;
+      travis_retry coveralls;
       pip install codecov;
-      codecov;
+      travis_retry codecov;
     fi;
 
 ###############################################################################

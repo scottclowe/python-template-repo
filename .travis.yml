@@ -92,7 +92,7 @@ before_install:
     hash -r;
     conda config --set always_yes yes --set changeps1 no
   # Remove test environment from conda, if it's still there from last time
-  - conda remove -n test-environment --all || echo "No test-environment to remove";
+  - conda remove -n testenv --all || echo "No 'testenv' environment to remove";
   # Update conda
   - travis_retry conda update -q conda
   # Useful for debugging any issues with conda
@@ -119,7 +119,7 @@ before_install:
     fi;
   # Create the conda environment with pip, numpy and scipy installed (if they
   # are in requirements.txt)
-  - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION
+  - conda create -q -n testenv python=$TRAVIS_PYTHON_VERSION
       pip $NUMPY_REQUIREMENT $SCIPY_REQUIREMENT
   # If you get an error from this command which looks like this:
   #   Error: Unsatisfiable package specifications.
@@ -145,7 +145,7 @@ before_install:
   # 'scipy>=0.12.0'.
   #
   # Activate the test environment
-  - source activate test-environment
+  - source activate testenv
 
 ###############################################################################
 install:

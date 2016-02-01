@@ -69,7 +69,7 @@ before_install:
   # support, modify any *requirements*.txt files every '>=' becomes '=='.
   - if [[ "$USE_OLDEST_DEPENDENCIES" == "true" ]]; then
       for FILE in *requirements*.txt; do
-          sed -e 's/>=/==/g' $FILE > $FILE.tmp && mv $FILE.tmp $FILE;
+          sed -e 's/>=/~=/g' $FILE > $FILE.tmp && mv $FILE.tmp $FILE;
       done;
     fi;
   # ---------------------------------------------------------------------------

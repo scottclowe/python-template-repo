@@ -212,7 +212,7 @@ script:
   # ---------------------------------------------------------------------------
   # Your test script goes here, e.g.
   # - python setup.py test
-  - py.test --flake8 --junitxml=testresults.xml --cov=package_name --cov-report xml --cov-config .coveragerc
+  - py.test --flake8 --cov=package_name --cov-report term --cov-report xml --cov-config .coveragerc --junitxml=testresults.xml
 
 ###############################################################################
 after_script:

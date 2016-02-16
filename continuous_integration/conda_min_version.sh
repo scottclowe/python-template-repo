@@ -36,7 +36,7 @@ REVERSAL_FLAG=$3;
 
 read -r PACKAGE_NAME VERSION_SIGN VERSION_NUMBER <<< \
     $(echo "$REQUIREMENT_SPEC" | \
-        sed 's%^\([^=<>!~]*\)\([=<>!~ ]*\)\(.*\)%\1\n\2\n\3%');
+        sed 's%^\([^!<>=~]*\)\([!<>=~ ]*\)\(.*\)%\1\n\2\n\3%');
 
 # Example:
 # REQUIREMENT_SPEC="numpy>=1.6.2"

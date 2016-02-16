@@ -46,11 +46,11 @@ before_install:
   # Check which versions of numpy and scipy we are using, then remove these
   # lines from requirements.txt
   - if [ -f requirements.txt ]; then
-      NUMPY_REQUIREMENT="$(grep '^numpy\([<>=!~ ]\|$\)' requirements.txt)";
+      NUMPY_REQUIREMENT="$(grep '^numpy\([!<>=~ ]\|$\)' requirements.txt)";
       echo "NumPy requirement is '$NUMPY_REQUIREMENT'";
-      SCIPY_REQUIREMENT="$(grep '^scipy\([<>=!~ ]\|$\)' requirements.txt)";
+      SCIPY_REQUIREMENT="$(grep '^scipy\([!<>=~ ]\|$\)' requirements.txt)";
       echo "SciPy requirement is '$SCIPY_REQUIREMENT'";
-      sed '/^\(num\|sci\)py\([<>=!~ ]\|$\)/d' requirements.txt >
+      sed '/^\(num\|sci\)py\([!<>=~ ]\|$\)/d' requirements.txt >
         requirements.txt.tmp &&
         mv requirements.txt.tmp requirements.txt;
     fi;

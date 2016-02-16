@@ -8,6 +8,8 @@
 #   Path to file listing package constraints (i.e. a requirements.txt file).
 #
 # Exit code 0 if success, 1 if fail on any package
+#
+# Scott C. Lowe <scott.code.lowe@gmail.com>
 
 #==============================================================================
 # Input handling

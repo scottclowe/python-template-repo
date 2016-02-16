@@ -18,6 +18,8 @@
 #     instead.
 #
 # Exit code 1 if no output produced.
+#
+# Scott C. Lowe <scott.code.lowe@gmail.com>
 
 #==============================================================================
 # Input handling

@@ -74,7 +74,7 @@ before_install:
     fi;
   # ---------------------------------------------------------------------------
   # Use a space separated list of package names as PACKAGES_TO_CONDA
-  - PACKAGES_TO_CONDA="";
+  - PACKAGES_TO_CONDA="Cython h5py";
   # Now we automatically search for these package settings in requirements.txt
   - OTHER_CONDA_REQUIREMENTS="";
     if [ -f requirements.txt ]; then

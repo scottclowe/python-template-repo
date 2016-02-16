@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+#
 # conda_or_pip_install_packages
 # Define a helper function which installs dependencies from a list in a file,
 # which uses conda where it can and pip when it can't.
@@ -9,11 +9,19 @@
 #
 # Exit code 0 if success, 1 if fail on any package
 
+#==============================================================================
+# Input handling
+#==============================================================================
+
 # Check number of inputs is correct
 if (( $# != 1 )); then
     echo "Wrong number of inputs. Given $#, expected 1.";
     return 1;
 fi;
+
+#==============================================================================
+# Main
+#==============================================================================
 
 # Make sure conda is up-to-date
 conda update -q conda

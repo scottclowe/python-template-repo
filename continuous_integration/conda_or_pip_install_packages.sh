@@ -32,7 +32,7 @@ while read PV; do
     echo "";
     echo "==================================================================";
     # First, we remove the version requirement and get just the package name.
-    PN="$(echo $PV | sed 's/^\([^=<>]*\).*/\1/')";
+    PN="$(echo $PV | sed 's/^\([^<>=!~ ]*\).*/\1/')";
 
     # Skip entirely commented out lines
     if echo "$PV" | grep -qE '^#';

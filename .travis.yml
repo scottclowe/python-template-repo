@@ -73,6 +73,19 @@ before_install:
       done;
     fi;
   # ---------------------------------------------------------------------------
+  # Use a space separated list of package names as PACKAGES_TO_CONDA
+  - PACKAGES_TO_CONDA="";
+  # Now we automatically search for these package settings in requirements.txt
+  - OTHER_CONDA_REQUIREMENTS="";
+    if [ -f requirements.txt ]; then
+        while read -r PKG_NAME; do
+            THIS_REQUIREMENT="$(grep "^$PKG_NAME\([!<>=~ ]\|$\)" requirements.txt)";
+            OTHER_CONDA_REQUIREMENTS+=" $THIS_REQUIREMENT";
+            sed -i "/^$PKG_NAME\([!<>=~ ]\|$\)/d" requirements.txt;
+        done < <(echo "$PACKAGES_TO_CONDA" | tr ' ' '\n');
+    fi;
+    echo $OTHER_CONDA_REQUIREMENTS;
+  # ---------------------------------------------------------------------------
   # The following is based on Minicoda's how-to Travis page
   # http://conda.pydata.org/docs/travis.html
   # ---------------------------------------------------------------------------
@@ -120,7 +133,7 @@ before_install:
   # Create the conda environment with pip, numpy and scipy installed (if they
   # are in requirements.txt)
   - conda create -q -n testenv python=$TRAVIS_PYTHON_VERSION
-      pip $NUMPY_REQUIREMENT $SCIPY_REQUIREMENT
+      pip $NUMPY_REQUIREMENT $SCIPY_REQUIREMENT $OTHER_CONDA_REQUIREMENTS
   # If you get an error from this command which looks like this:
   #   Error: Unsatisfiable package specifications.
   #   Generating hint:

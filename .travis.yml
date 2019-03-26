@@ -1,6 +1,10 @@
 ###############################################################################
 language: python
 
+# Current requirements for Python 3.7 on Travis
+sudo: required
+dist: xenial
+
 ###############################################################################
 # Cache data which has to be downloaded on every build.
 # This is just for Travis and doesn't do anything on Shippable.
@@ -24,11 +28,11 @@ python:
   # provider, which we don't use in favour of conda. But we use this to pick
   # out which python version we install with conda, since it means the provider
   # gets appropriate metadata to keep things organised.
-  - "2.6"
   - "2.7"
-  - "3.3"
   - "3.4"
   - "3.5"
+  - "3.6"
+  - "3.7"
 
 ###############################################################################
 env:

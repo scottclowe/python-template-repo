@@ -24,9 +24,9 @@ class TestCubicRectification(BaseTestCase):
 
     def test_int(self):
         '''Test with integer inputs.'''
-        self.assertEquals(cubic_rectification(2), 8)
-        self.assertEquals(cubic_rectification(-2), 0)
-        self.assertEquals(cubic_rectification(3), 27)
+        self.assertEqual(cubic_rectification(2), 8)
+        self.assertEqual(cubic_rectification(-2), 0)
+        self.assertEqual(cubic_rectification(3), 27)
 
     def test_float(self):
         '''Test with float inputs.'''
@@ -59,8 +59,8 @@ class TestCubicRectification(BaseTestCase):
     def test_nan_skipped(self):
         '''Test for NaN input with invalid comparison methods.'''
         # We can't use the standard assertEquals for comparing two NaNs
-        self.assertEquals(cubic_rectification(float('nan')), float('nan'))
-        self.assertEquals(cubic_rectification(np.nan), np.nan)
+        self.assertEqual(cubic_rectification(float('nan')), float('nan'))
+        self.assertEqual(cubic_rectification(np.nan), np.nan)
 
     def test_nan(self):
         '''Test for NaN input with valid comparison methods.'''

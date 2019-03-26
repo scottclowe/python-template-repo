@@ -1,6 +1,10 @@
 ###############################################################################
 language: python
 
+# Current requirements for Python 3.7 on Travis
+sudo: required
+dist: xenial
+
 ###############################################################################
 # Cache data which has to be downloaded on every build.
 # This is just for Travis and doesn't do anything on Shippable.
@@ -9,14 +13,7 @@ cache:
     # Cache files downloaded by pip
     - $HOME/.cache/pip
     # Cache our miniconda download.
-    # Cautionary note: if a new version of Python is released and added to
-    # conda and you want to test on the new version, your cached copy will be
-    # out of date and you'll need to wipe the cache. Details are here
-    # https://docs.travis-ci.com/user/caching/#Clearing-Caches
-    # but if this sounds like too much hassle, you can just comment out this
-    # line to stop caching.
     - $HOME/Downloads
-    - $HOME/miniconda
 
 ###############################################################################
 python:
@@ -24,11 +21,11 @@ python:
   # provider, which we don't use in favour of conda. But we use this to pick
   # out which python version we install with conda, since it means the provider
   # gets appropriate metadata to keep things organised.
-  - "2.6"
   - "2.7"
-  - "3.3"
   - "3.4"
   - "3.5"
+  - "3.6"
+  - "3.7"
 
 ###############################################################################
 env:
@@ -89,11 +86,9 @@ before_install:
   # The following is based on Minicoda's how-to Travis page
   # http://conda.pydata.org/docs/travis.html
   # ---------------------------------------------------------------------------
-  # Download miniconda. Only do this if the cached file isn't present.
+  # Download miniconda. No need to redownload if we already have the latest version cached.
   - mkdir -p $HOME/Downloads;
-    if [ ! -f $HOME/Downloads/miniconda.sh ]; then
-      travis_retry wget https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O "$HOME/Downloads/miniconda.sh";
-    fi;
+    travis_retry wget -c https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O "$HOME/Downloads/miniconda.sh";
   # Install miniconda to the home directory, if it isn't there already.
   - if [ ! -d "$HOME/miniconda/bin" ]; then
       if [ -d "$HOME/miniconda" ]; then rm -r "$HOME/miniconda"; fi;
@@ -121,13 +116,19 @@ before_install:
   # be from around the time of the oldest supported scipy release.
   - if [[ "$USE_OLDEST_DEPENDENCIES" == "true" ]]; then
       if [[ "$SCIPY_REQUIREMENT" != "" ]]; then
-          SCIPY_REQUIREMENT="scipy==$(bash
+          SCIPY_VERSION="$(bash
               ./.ci/conda_min_version.sh
               "$SCIPY_REQUIREMENT" "$TRAVIS_PYTHON_VERSION")";
+          if [[ "$SCIPY_VERSION" != "" ]]; then
+            SCIPY_REQUIREMENT="scipy==$SCIPY_VERSION";
+          fi;
       elif [[ "$NUMPY_REQUIREMENT" != "" ]]; then
-          NUMPY_REQUIREMENT="numpy==$(bash
+          NUMPY_VERSION="$(bash
               ./.ci/conda_min_version.sh
               "$NUMPY_REQUIREMENT" "$TRAVIS_PYTHON_VERSION")";
+          if [[ "$NUMPY_VERSION" != "" ]]; then
+            NUMPY_REQUIREMENT="numpy==$NUMPY_VERSION";
+          fi;
       fi;
     fi;
   # Create the conda environment with pip, numpy and scipy installed (if they

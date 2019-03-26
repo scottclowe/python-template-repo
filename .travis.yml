@@ -13,14 +13,7 @@ cache:
     # Cache files downloaded by pip
     - $HOME/.cache/pip
     # Cache our miniconda download.
-    # Cautionary note: if a new version of Python is released and added to
-    # conda and you want to test on the new version, your cached copy will be
-    # out of date and you'll need to wipe the cache. Details are here
-    # https://docs.travis-ci.com/user/caching/#Clearing-Caches
-    # but if this sounds like too much hassle, you can just comment out this
-    # line to stop caching.
     - $HOME/Downloads
-    - $HOME/miniconda
 
 ###############################################################################
 python:
@@ -93,11 +86,9 @@ before_install:
   # The following is based on Minicoda's how-to Travis page
   # http://conda.pydata.org/docs/travis.html
   # ---------------------------------------------------------------------------
-  # Download miniconda. Only do this if the cached file isn't present.
+  # Download miniconda. No need to redownload if we already have the latest version cached.
   - mkdir -p $HOME/Downloads;
-    if [ ! -f $HOME/Downloads/miniconda.sh ]; then
-      travis_retry wget https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O "$HOME/Downloads/miniconda.sh";
-    fi;
+    travis_retry wget -c https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O "$HOME/Downloads/miniconda.sh";
   # Install miniconda to the home directory, if it isn't there already.
   - if [ ! -d "$HOME/miniconda/bin" ]; then
       if [ -d "$HOME/miniconda" ]; then rm -r "$HOME/miniconda"; fi;

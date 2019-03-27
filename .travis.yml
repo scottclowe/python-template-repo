@@ -117,14 +117,14 @@ before_install:
   - if [[ "$USE_OLDEST_DEPENDENCIES" == "true" ]]; then
       if [[ "$SCIPY_REQUIREMENT" != "" ]]; then
           SCIPY_VERSION="$(bash
-              ./continuous_integration/conda_min_version.sh
+              ./.ci/conda_min_version.sh
               "$SCIPY_REQUIREMENT" "$TRAVIS_PYTHON_VERSION")";
           if [[ "$SCIPY_VERSION" != "" ]]; then
             SCIPY_REQUIREMENT="scipy==$SCIPY_VERSION";
           fi;
       elif [[ "$NUMPY_REQUIREMENT" != "" ]]; then
           NUMPY_VERSION="$(bash
-              ./continuous_integration/conda_min_version.sh
+              ./.ci/conda_min_version.sh
               "$NUMPY_REQUIREMENT" "$TRAVIS_PYTHON_VERSION")";
           if [[ "$NUMPY_VERSION" != "" ]]; then
             NUMPY_REQUIREMENT="numpy==$NUMPY_VERSION";

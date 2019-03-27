@@ -11,11 +11,6 @@ def read(fname):
     with open(os.path.join(os.path.dirname(__file__), fname)) as f:
         return f.read()
 
-# Can't import __meta__.py if the requirements aren't installed
-# due to imports in __init__.py. This is a workaround.
-meta = {}
-exec(read('package_name/__meta__.py'), meta)
-
 install_requires = read('requirements.txt')
 
 extras_require = {}
@@ -27,6 +22,12 @@ extras_require['dev'] = read('requirements-dev.txt')
 extras_require['all'] = (
     + extras_require['dev']
 )
+
+
+# Can't import __meta__.py if the requirements aren't installed
+# due to imports in __init__.py. This is a workaround.
+meta = {}
+exec(read('package_name/__meta__.py'), meta)
 
 
 class PyTest(TestCommand):

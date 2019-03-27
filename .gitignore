@@ -92,13 +92,6 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-
-# C extensions
-*.so
-
 
 ##---------------------------------------------------
 # Linux default .gitignore

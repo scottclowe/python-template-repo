@@ -37,6 +37,9 @@ env:
 ###############################################################################
 # Setup the environment before installing
 before_install:
+  # Set documentation building option to always be enabled
+  # If you only want to do this some of the time, set it with env above.
+  - BUILD_DOCS="true"
   # Remember the directory where our repository to test is located
   - REPOPATH="$(pwd)" && pwd
   # ---------------------------------------------------------------------------
@@ -191,6 +194,11 @@ install:
       pip install -r requirements-test.txt;
     fi;
   # ---------------------------------------------------------------------------
+  # Conditionally install the packages which are needed for building docs
+  - if [[ "$BUILD_DOCS" == "true" ]]; then
+      pip install -r requirements-docs.txt;
+    fi
+  # ---------------------------------------------------------------------------
   # Now install your own package
   - python setup.py install
 
@@ -230,6 +238,10 @@ script:
   # Your test script goes here, e.g.
   # - python setup.py test
   - py.test --flake8 --cov=package_name --cov-report term --cov-report xml --cov-config .coveragerc --junitxml=testresults.xml
+  # Build the documentation
+  - if [[ "$BUILD_DOCS" == "true" ]]; then
+      make -C docs html;
+    fi;
 
 ###############################################################################
 after_script:

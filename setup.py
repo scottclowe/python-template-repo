@@ -27,10 +27,14 @@ except FileNotFoundError:
     # doesn't exist
     continue
 
-# Everything
-extras_require['all'] = (
-    + extras_require['dev']
-)
+
+# If there are any extras, add a catch-all case that includes everything.
+# This assumes that entries in extras_require are lists (not single strings).
+if extras_require:
+    extras_require['all'] = sorted(
+        {x for v in extras_require.values() for x in v}
+    )
+
 
 # Import meta data from __meta__.py
 #

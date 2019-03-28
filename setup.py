@@ -21,7 +21,11 @@ install_requires = read('requirements.txt')
 extras_require = {}
 
 # Dev dependencies
-extras_require['dev'] = read('requirements-dev.txt')
+try:
+    extras_require['dev'] = read('requirements-dev.txt').splitlines()
+except FileNotFoundError:
+    # doesn't exist
+    continue
 
 # Everything
 extras_require['all'] = (

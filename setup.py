@@ -154,7 +154,7 @@ setup(
     description = meta['description'],
     long_description = long_description,
     long_description_content_type = long_description_content_type,
-    license = "MIT",
+    license = meta['license'],
     url = meta['url'],
     classifiers = [
         # Trove classifiers

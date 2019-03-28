@@ -5,3 +5,4 @@ author = 'Author Name'
 author_email = ''
 description = ''
 url = ''  # project homepage
+license = 'MIT'  # See https://choosealicense.com

@@ -1,13 +1,13 @@
+##---------------------------------------------------
+# Common .gitattributes
+##---------------------------------------------------
+
 # Auto detect text files and perform LF normalization
-*           text=auto
+* text=auto
 
 #
 # The above will handle all files NOT found below
 #
-
-##---------------------------------------------------
-# Common .gitattributes
-##---------------------------------------------------
 
 # Documents
 # ============
@@ -22,6 +22,7 @@
 *.rtf	    diff=astextplain
 *.RTF	    diff=astextplain
 *.md        text
+*.tex       text
 *.adoc      text
 *.textile   text
 *.mustache  text
@@ -39,8 +40,18 @@
 *.tif       binary
 *.tiff      binary
 *.ico       binary
-*.svg       text
+# SVG treated as an asset (binary) by default. If you want to treat it as text,
+# comment-out the following line and uncomment the line after.
+*.svg       binary
+#*.svg      text
 *.eps       binary
+
+#
+# Exclude files from exporting
+#
+
+.gitattributes export-ignore
+.gitignore export-ignore
 
 
 ##---------------------------------------------------

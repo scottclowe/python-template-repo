@@ -188,13 +188,13 @@ $RECYCLE.BIN/
 # Mac OSX default .gitignore
 ##---------------------------------------------------
 
+# General
 .DS_Store
 .AppleDouble
 .LSOverride
 
 # Icon must end with two \r
 Icon
-
 
 # Thumbnails
 ._*
@@ -206,6 +206,7 @@ Icon
 .TemporaryItems
 .Trashes
 .VolumeIcon.icns
+.com.apple.timemachine.donotpresent
 
 # Directories potentially created on remote AFP share
 .AppleDB

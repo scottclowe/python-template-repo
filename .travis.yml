@@ -70,7 +70,10 @@ before_install:
       done;
     fi;
   # ---------------------------------------------------------------------------
-  # Use a space separated list of package names as PACKAGES_TO_CONDA
+  # A minority of packages need to be installed through conda instead of pip
+  # for a variety of reasons. PACKAGES_TO_CONDA is a space separated list of
+  # package names which should be installed using conda if they are in the
+  # requirements. Packages not in this list will be installed through pip.
   - PACKAGES_TO_CONDA="Cython h5py";
   # Now we automatically search for these package settings in requirements.txt
   - OTHER_CONDA_REQUIREMENTS="";

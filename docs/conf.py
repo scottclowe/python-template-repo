@@ -12,18 +12,18 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
+import datetime
 import os
 import sys
 sys.path.insert(0, os.path.abspath('.'))
 sys.path.insert(0, os.path.abspath('../'))
 
 
-from package_name import __meta__ as meta
+from package_name import __meta__ as meta  # noqa: E402
 
 
 # -- Project information -----------------------------------------------------
 
-import datetime
 now = datetime.datetime.now()
 
 project = meta.name
@@ -64,12 +64,14 @@ def run_apidoc(_):
         argv.insert(0, apidoc.__file__)
         apidoc.main(argv)
 
+
 def retitle_modules(_):
     pth = 'source/packages/modules.rst'
     lines = open(pth).read().splitlines()
     lines[0] = 'API'
     lines[1] = '==='
     open(pth, 'w').write('\n'.join(lines))
+
 
 def setup(app):
     app.connect('builder-inited', run_apidoc)
@@ -253,7 +255,7 @@ intersphinx_mapping = {
     'matplotlib': ('https://matplotlib.org', None),
     'sklearn': ('https://scikit-learn.org/stable', None),
     'Pillow': ('https://pillow.readthedocs.io/en/stable/', None),
-    'skimage': ('https://github.com/scikit-image/docs/raw/gh-pages/dev/', None),
+    'skimage': ('https://github.com/scikit-image/docs/raw/gh-pages/dev', None),
 }
 
 # -- Options for todo extension ----------------------------------------------

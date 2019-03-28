@@ -27,6 +27,13 @@ except FileNotFoundError:
     # doesn't exist
     continue
 
+# Documentation dependencies
+try:
+    extras_require['docs'] = read('requirements-docs.txt').splitlines()
+except FileNotFoundError:
+    # doesn't exist
+    continue
+
 
 # If there are any extras, add a catch-all case that includes everything.
 # This assumes that entries in extras_require are lists (not single strings).

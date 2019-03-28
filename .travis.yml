@@ -188,8 +188,8 @@ install:
       pip install -r requirements-test.txt;
     fi;
   # ---------------------------------------------------------------------------
-  # Now install your own package, e.g.
-  # - python setup.py install
+  # Now install your own package
+  - python setup.py install
 
 ###############################################################################
 before_script:

@@ -23,14 +23,14 @@ extras_require = {}
 # Dev dependencies
 try:
     extras_require['dev'] = read('requirements-dev.txt').splitlines()
-except FileNotFoundError:
+except IOError:
     # doesn't exist
     pass
 
 # Documentation dependencies
 try:
     extras_require['docs'] = read('requirements-docs.txt').splitlines()
-except FileNotFoundError:
+except IOError:
     # doesn't exist
     pass
 
@@ -66,7 +66,7 @@ readme_fname = ''
 for fname in possible_readme_names:
     try:
         long_description = read(fname)
-    except FileNotFoundError:
+    except IOError:
         # doesn't exist
         continue
     else:

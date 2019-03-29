@@ -87,7 +87,7 @@ before_install:
             sed -i "/^$PKG_NAME\([!<>=~ ]\|$\)/d" requirements.txt;
         done < <(echo "$PACKAGES_TO_CONDA" | tr ' ' '\n');
     fi;
-    echo $OTHER_CONDA_REQUIREMENTS;
+    echo "$OTHER_CONDA_REQUIREMENTS";
   # ---------------------------------------------------------------------------
   # The following is based on Minicoda's how-to Travis page
   # http://conda.pydata.org/docs/travis.html

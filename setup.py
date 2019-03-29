@@ -16,6 +16,7 @@ def read(fname):
     with open(os.path.join(os.path.dirname(__file__), fname)) as f:
         return f.read()
 
+
 install_requires = read('requirements.txt').splitlines()
 
 extras_require = {}
@@ -124,7 +125,10 @@ class UploadCommand(Command):
             pass
 
         self.status('Building Source and Wheel (universal) distribution...')
-        os.system('{0} setup.py sdist bdist_wheel --universal'.format(sys.executable))
+        os.system(
+            '{0} setup.py sdist bdist_wheel --universal'
+            ''.format(sys.executable)
+        )
 
         self.status('Uploading the package to PyPI via Twine...')
         os.system('twine upload dist/*')
@@ -138,25 +142,27 @@ class UploadCommand(Command):
 
 setup(
     # Essential details on the package and its dependencies
-    name = meta['name'],
-    version = meta['version'],
-    packages = find_packages(exclude=["tests", "*.tests", "*.tests.*", "tests.*"]),
-    package_dir = {meta['name']: os.path.join(".", meta['path'])},
+    name=meta['name'],
+    version=meta['version'],
+    packages=find_packages(
+        exclude=["tests", "*.tests", "*.tests.*", "tests.*"]
+    ),
+    package_dir={meta['name']: os.path.join(".", meta['path'])},
     # If any package contains *.txt or *.rst files, include them:
     # package_data={'': ['*.txt', '*.rst'],}
 
-    install_requires = install_requires,
-    extras_require = extras_require,
+    install_requires=install_requires,
+    extras_require=extras_require,
 
     # Metadata to display on PyPI
-    author = meta['author'],
-    author_email = meta['author_email'],
-    description = meta['description'],
-    long_description = long_description,
-    long_description_content_type = long_description_content_type,
-    license = "MIT",
-    url = meta['url'],
-    classifiers = [
+    author=meta['author'],
+    author_email=meta['author_email'],
+    description=meta['description'],
+    long_description=long_description,
+    long_description_content_type=long_description_content_type,
+    license="MIT",
+    url=meta['url'],
+    classifiers=[
         # Trove classifiers
         # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
         'License :: OSI Approved :: MIT License',
@@ -167,7 +173,7 @@ setup(
     # Could also include keywords, download_url, project_urls, etc.
 
     # Custom commands
-    cmdclass = {
+    cmdclass={
         'test': PyTest,
         'upload': UploadCommand,
     },

@@ -25,14 +25,14 @@ try:
     extras_require['dev'] = read('requirements-dev.txt').splitlines()
 except FileNotFoundError:
     # doesn't exist
-    continue
+    pass
 
 # Documentation dependencies
 try:
     extras_require['docs'] = read('requirements-docs.txt').splitlines()
 except FileNotFoundError:
     # doesn't exist
-    continue
+    pass
 
 
 # If there are any extras, add a catch-all case that includes everything.

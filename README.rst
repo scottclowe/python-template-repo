@@ -185,8 +185,8 @@ One can also get continuous integration for code quality review:
 - `Codacy <https://www.codacy.com/>`_ (free for open source).
 - `CodeBeat <https://codebeat.co/>`_ (free for open source).
 - `SonarCloud <https://sonarcloud.io/>`_ (free for open source); `SonarQube <https://www.sonarqube.org/>`_ as a cloud service.
-- `Scrutinizer <https://scrutinizer-ci.com/>`_ (no free option).
-- `GitPrime <https://www.gitprime.com/>`_ (no free option).
+- `Scrutinizer <https://scrutinizer-ci.com/>`_ (free for open source).
+- `GitPrime <https://www.gitprime.com/>`_ (free for open source).
 - `Code Climate <https://codeclimate.com/>`_ (no free option).
 
 .gitignore

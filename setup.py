@@ -1,9 +1,5 @@
 #!/usr/bin/env python
 
-# For examples, see here:
-# https://setuptools.readthedocs.io/en/latest/setuptools.html#basic-use
-# https://github.com/kennethreitz/setup.py
-
 import os
 import sys
 from shutil import rmtree
@@ -45,8 +41,6 @@ if extras_require:
 
 
 # Import meta data from __meta__.py
-#
-# ** You need to customize the path to __meta__.py **
 #
 # We use exec for this because __meta__.py runs its __init__.py first,
 # __init__.py may assume the requirements are already present, but this code

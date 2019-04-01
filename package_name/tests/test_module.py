@@ -22,6 +22,7 @@ class NumbersTest(BaseTestCase):
 
 
 class TestCubicRectification(BaseTestCase):
+
     '''
     Tests for the cubic_rectification function.
     '''

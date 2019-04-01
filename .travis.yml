@@ -31,8 +31,8 @@ python:
 env:
   matrix:
     # Run tests with newest and oldest dependencies
-    - USE_OLDEST_DEPS="false"
-    - USE_OLDEST_DEPS="true"
+    - OLDEST_DEPS="false"
+    - OLDEST_DEPS="true"
 
 ###############################################################################
 # Setup the environment before installing
@@ -67,7 +67,7 @@ before_install:
   # ---------------------------------------------------------------------------
   # If we want to run the tests using the oldest set of dependencies we
   # support, modify any *requirements*.txt files every '>=' becomes '=='.
-  - if [[ "$USE_OLDEST_DEPS" == "true" ]]; then
+  - if [[ "$OLDEST_DEPS" == "true" ]]; then
       for FILE in *requirements*.txt; do
           sed -e 's/>=/~=/g' $FILE > $FILE.tmp && mv $FILE.tmp $FILE;
       done;
@@ -120,7 +120,7 @@ before_install:
   # possible requirement when scipy is being installed. The version of numpy
   # we end up must still satisfy the original requirement.txt setting, and
   # be from around the time of the oldest supported scipy release.
-  - if [[ "$USE_OLDEST_DEPS" == "true" ]]; then
+  - if [[ "$OLDEST_DEPS" == "true" ]]; then
       if [[ "$SCIPY_REQUIREMENT" != "" ]]; then
           SCIPY_VERSION="$(bash
               ./.ci/conda_min_version.sh
@@ -151,7 +151,7 @@ before_install:
   #
   # This is because you have constrained the numpy version in requirements.txt
   # to a more recent set of values (e.g. numpy>=1.9.0) than the scipy
-  # constraint (e.g. scipy>=0.12.0). The USE_OLDEST_DEPS code has
+  # constraint (e.g. scipy>=0.12.0). The OLDEST_DEPS code has
   # looked up the oldest compatible version available on conda (scipy==0.12.0)
   # but there is no numpy version for this which matches your constraint.
   #

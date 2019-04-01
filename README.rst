@@ -15,17 +15,17 @@ When creating a new repository from this skeleton, these are the steps to follow
 
 #. If you want to keep the skeleton's commit history in your own history, replacing ``your_repo_name`` with the name of your new repository, run the commands::
 
-      git clone git@github.com:scottclowe/python-continuous-integration.git your_repo_name
+      git clone git@github.com:scottclowe/python-template-repo.git your_repo_name
       cd your_repo_name
 
    Alternatively, if you don't want to keep the skeleton's commit history, instead run the commands::
 
       git init your_repo_name
       cd your_repo_name
-      wget https://github.com/scottclowe/python-continuous-integration/archive/master.zip
+      wget https://github.com/scottclowe/python-template-repo/archive/master.zip
       unzip master.zip
-      mv python-continuous-integration-master/* .
-      rm -r python-continuous-integration-master/
+      mv python-template-repo-master/* .
+      rm -r python-template-repo-master/
       rm master.zip
       git add .
       git commit -m "Add skeleton repository"
@@ -144,7 +144,7 @@ Alternative themes can be found `concisely from writethedocs <https://www.writet
 
 Continuous integration
 ~~~~~~~~~~~~~~~~~~~~~~
-The file ``.travis.yml`` provides configuration for continuous integration *both* on `Travis CI <https://travis-ci.org/>`_  (`documentation <https://docs.travis-ci.com/user/languages/python/>`_) and on `Shippable <https://shippable.com>`_ (`documentation <http://docs.shippable.com/ci/python-continuous-integration>`_)
+The file ``.travis.yml`` provides configuration for continuous integration *both* on `Travis CI <https://travis-ci.org/>`_  (`documentation <https://docs.travis-ci.com/user/languages/python/>`_) and on `Shippable <https://shippable.com>`_ (`documentation <http://docs.shippable.com/ci/python-template-repo>`_)
 Note that Shippable has an API aligned with Travis and `operates from <https://docs.platformio.org/en/latest/ci/shippable.html>`_ the ``.travis.yml`` if there is no ``shippable.yml`` configuration file.
 
 Alternative continuous integration services are also available:
@@ -213,11 +213,11 @@ Contributions are welcome! If you can see a way to improve this skeleton:
 Or to report a bug or request something new, make an issue.
 
 
-.. |Travis build| image:: https://travis-ci.org/scottclowe/python-continuous-integration.svg?branch=master
-   :target: https://travis-ci.org/scottclowe/python-continuous-integration
+.. |Travis build| image:: https://travis-ci.org/scottclowe/python-template-repo.svg?branch=master
+   :target: https://travis-ci.org/scottclowe/python-template-repo
 .. |Shippable build| image:: https://img.shields.io/shippable/5674d4821895ca447466a204/master.svg?label=shippable
    :target: https://app.shippable.com/projects/5674d4821895ca447466a204
-.. |Coveralls report| image:: https://coveralls.io/repos/scottclowe/python-continuous-integration/badge.svg?branch=master&service=github
-   :target: https://coveralls.io/github/scottclowe/python-continuous-integration?branch=master
-.. |Codecov report| image:: https://codecov.io/github/scottclowe/python-continuous-integration/coverage.svg?branch=master
-   :target: https://codecov.io/github/scottclowe/python-continuous-integration?branch=master
+.. |Coveralls report| image:: https://coveralls.io/repos/scottclowe/python-template-repo/badge.svg?branch=master&service=github
+   :target: https://coveralls.io/github/scottclowe/python-template-repo?branch=master
+.. |Codecov report| image:: https://codecov.io/github/scottclowe/python-template-repo/coverage.svg?branch=master
+   :target: https://codecov.io/github/scottclowe/python-template-repo?branch=master

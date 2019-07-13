@@ -167,6 +167,9 @@ artifacts:
 on_finish:
   # Upload test results to AppVeyor
   - ps: |
-      # this uploads nosetests.xml produced in test_script step
-      $wc = New-Object 'System.Net.WebClient'
-      $wc.UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\nosetests.xml))
+      If (Test-Path .\testresults.xml) {
+        (new-object net.webclient).UploadFile(
+          "https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)",
+          (Resolve-Path .\testresults.xml)
+        )
+      }

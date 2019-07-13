@@ -67,17 +67,6 @@ environment:
       PYTHON_VERSION: "3.5.0"
       PYTHON_ARCH: "64"
 
-    # Major and minor releases (i.e x.0.0 and x.y.0) prior to 3.3.0 use
-    # a different naming scheme.
-
-    - PYTHON: "C:\\Python270"
-      PYTHON_VERSION: "2.7.0"
-      PYTHON_ARCH: "32"
-
-    - PYTHON: "C:\\Python270-x64"
-      PYTHON_VERSION: "2.7.0"
-      PYTHON_ARCH: "64"
-
 install:
   # If there is a newer build queued for the same PR, cancel this one.
   # The AppVeyor 'rollout builds' option is supposed to serve the same

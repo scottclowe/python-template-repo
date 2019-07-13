@@ -140,12 +140,9 @@ build_script:
   - "%CMD_IN_ENV% python setup.py build"
 
 test_script:
-  # Run the project tests and store results in .xml log
-  - ps: |
-      # this produces nosetests.xml which is uploaded on_finish
-      &$env:PYTHON\python setup.py nosetests --with-xunit
-      if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode) }
-      
+  # Run the project tests and store results in testresults.xml log
+  - "%CMD_IN_ENV% py.test --junitxml=testresults.xml"
+
 after_test:
   # If tests are successful, create binary packages for the project.
   - "%CMD_IN_ENV% python setup.py bdist_wheel"

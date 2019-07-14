@@ -1,4 +1,4 @@
-|Travis build| |Coveralls report| |Codecov report|
+|Travis build| |AppVeyor build| |Coveralls report| |Codecov report|
 
 Python Template/Skeleton Repository
 ===================================
@@ -217,6 +217,8 @@ Or to report a bug or request something new, make an issue.
    :target: https://travis-ci.org/scottclowe/python-template-repo
 .. |Shippable build| image:: https://img.shields.io/shippable/5674d4821895ca447466a204/master.svg?label=shippable
    :target: https://app.shippable.com/projects/5674d4821895ca447466a204
+.. |AppVeyor build| image:: https://ci.appveyor.com/api/projects/status/3r2wmghdv5vvcta4/branch/master?svg=true
+   :target: https://ci.appveyor.com/project/scottclowe/python-template-repo/branch/master
 .. |Coveralls report| image:: https://coveralls.io/repos/scottclowe/python-template-repo/badge.svg?branch=master&service=github
    :target: https://coveralls.io/github/scottclowe/python-template-repo?branch=master
 .. |Codecov report| image:: https://codecov.io/github/scottclowe/python-template-repo/coverage.svg?branch=master

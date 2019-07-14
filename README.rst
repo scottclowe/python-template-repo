@@ -3,7 +3,7 @@
 Python Template/Skeleton Repository
 ===================================
 
-This repository gives a template or skeleton for new Python repositories.
+This repository gives a fully-featured template or skeleton for new Python repositories.
 
 
 Quick start
@@ -18,7 +18,7 @@ When creating a new repository from this skeleton, these are the steps to follow
       git clone git@github.com:scottclowe/python-template-repo.git your_repo_name
       cd your_repo_name
 
-   Alternatively, if you don't want to keep the skeleton's commit history, instead run the commands::
+   Alternatively, if you don't want to keep the skeleton's commit history, instead run the shell commands::
 
       git init your_repo_name
       cd your_repo_name
@@ -30,7 +30,7 @@ When creating a new repository from this skeleton, these are the steps to follow
       git add .
       git commit -m "Add skeleton repository"
 
-   If you find it more convenient, you can download and unzip the zip file through the GUI instead.
+   If you find it more convenient, or you are on Windows, you can download and unzip the zip file through the GUI instead.
 
 #. Make a new, empty git repository on GitHub or other web host of your choice.
    Note down the url of the remote, ``your_repo_url``, either in its ``https`` or ``git@...`` form.

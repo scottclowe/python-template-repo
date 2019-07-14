@@ -49,6 +49,12 @@ environment:
       PYTHON_VERSION: "3.7.x"
       PYTHON_ARCH: "64"
 
+init:
+  - ECHO "PYTHON_VERSION = %PYTHON_VERSION%"
+    & ECHO "PYTHON = %PYTHON%"
+    & ECHO "PYTHON_ARCH = %PYTHON_ARCH%"
+    & ECHO "MINICONDA = %MINICONDA%"
+
 install:
   # If there is a newer build queued for the same PR, cancel this one.
   # The AppVeyor 'rollout builds' option is supposed to serve the same

@@ -1,4 +1,4 @@
-|Travis build| |Shippable build| |Coveralls report| |Codecov report|
+|Travis build| |Coveralls report| |Codecov report|
 
 Python Template/Skeleton Repository
 ===================================

@@ -22,7 +22,6 @@ python:
   # out which python version we install with conda, since it means the provider
   # gets appropriate metadata to keep things organised.
   - "2.7"
-  - "3.4"
   - "3.5"
   - "3.6"
   - "3.7"

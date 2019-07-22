@@ -33,6 +33,11 @@ env:
     - OLDEST_DEPS="false"
     - OLDEST_DEPS="true"
 
+matrix:
+  # Mark as failure as soon as a required job fails. Otherwise, mark as success
+  # as soon the only remaining jobs are allowed to fail.
+  fast_finish: true
+
 ###############################################################################
 # Setup the environment before installing
 before_install:

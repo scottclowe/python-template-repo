@@ -24,11 +24,13 @@ When creating a new repository from this skeleton, these are the steps to follow
       cd your_repo_name
       wget https://github.com/scottclowe/python-template-repo/archive/master.zip
       unzip master.zip
-      mv python-template-repo-master/* .
+      mv -n python-template-repo-master/* python-template-repo-master/.[!.]* .
       rm -r python-template-repo-master/
       rm master.zip
       git add .
       git commit -m "Add skeleton repository"
+
+   Note that we are doing the move with ``-n`` argument, which will prevent the skeleton repository from clobbering your own files (in case you already made a README.rst file, for instance).
 
    If you find it more convenient, or you are on Windows, you can download and unzip the zip file through the GUI instead.
 

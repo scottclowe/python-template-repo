@@ -3,6 +3,8 @@
 # License: CC0 1.0 Universal
 
 environment:
+  global:
+    BUILD_DOCS: "true"
 
   matrix:
 
@@ -158,7 +160,8 @@ install:
   # compiled extensions and are not provided as pre-built wheel packages,
   # pip will build them from source using the MSVC compiler matching the
   # target Python version and architecture
-  - "%CMD_IN_ENV% pip install -r requirements.txt"
+  - "%CMD_IN_ENV% python -m pip install ."
+  - IF "%BUILD_DOCS%"=="true" ( %CMD_IN_ENV% python -m pip install .[docs] )
   # Also install any developmental requirements, if present.
   - IF EXIST requirements-dev.txt %CMD_IN_ENV% pip install -r requirements-dev.txt
   - IF EXIST requirements-test.txt %CMD_IN_ENV% pip install -r requirements-test.txt
@@ -170,6 +173,10 @@ build_script:
 test_script:
   # Run the project tests and store results in testresults.xml log
   - "%CMD_IN_ENV% python -m pytest --cov=package_name --cov-report term --cov-report xml --cov-config .coveragerc --junitxml=testresults.xml"
+  # Check documentation can be built
+  - cd docs
+  - IF "%BUILD_DOCS%"=="true" ( make.bat html )
+  - cd ..
 
 after_test:
   # If tests are successful, create binary packages for the project.

@@ -13,12 +13,14 @@ When creating a new repository from this skeleton, these are the steps to follow
 
 #. **Don't click the fork button**
 
-#. If you want to keep the skeleton's commit history in your own history, replacing ``your_repo_name`` with the name of your new repository, run the commands::
+#.  As a one-step process, you can create a new repository on GitHub from this template by clicking the `Use this template <https://github.com/scottclowe/python-template-repo/generate>` button.
+
+    Alternatively, if you want to keep the skeleton's commit history in your own history, replacing ``your_repo_name`` with the name of your new repository, run the commands::
 
       git clone git@github.com:scottclowe/python-template-repo.git your_repo_name
       cd your_repo_name
 
-   Alternatively, if you don't want to keep the skeleton's commit history, instead run the shell commands::
+   If you don't want to keep the skeleton's commit history and aren't using GitHub, run the shell commands::
 
       git init your_repo_name
       cd your_repo_name

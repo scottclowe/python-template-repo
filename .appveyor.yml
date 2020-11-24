@@ -169,7 +169,7 @@ build_script:
 
 test_script:
   # Run the project tests and store results in testresults.xml log
-  - "%CMD_IN_ENV% py.test --junitxml=testresults.xml"
+  - "%CMD_IN_ENV% python -m pytest --cov=package_name --cov-report term --cov-report xml --cov-config .coveragerc --junitxml=testresults.xml"
 
 after_test:
   # If tests are successful, create binary packages for the project.
@@ -188,9 +188,12 @@ artifacts:
   # Archive the generated packages in the ci.appveyor.com build report.
   - path: dist\*
 
-#on_success:
-#  - TODO: upload the content of dist/*.whl to a public wheelhouse
-#
+on_success:
+  # Push coverage reports
+  - '%CMD_IN_ENV% python -m pip install codecov'
+  - '%CMD_IN_ENV% python -m codecov -f coverage.xml || echo "Codecov push failed" && ver>nul'
+  - '%CMD_IN_ENV% python -m pip install coveralls'
+  - '%CMD_IN_ENV% python -m coveralls || echo "Coveralls push failed" && ver>nul'
 
 on_finish:
   # Upload test results to AppVeyor

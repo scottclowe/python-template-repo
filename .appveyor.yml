@@ -12,15 +12,19 @@ environment:
     # See: https://www.appveyor.com/docs/windows-images-software/#miniconda
     - PYTHON_VERSION: "2.7"
       MINICONDA: C:\Miniconda
+      PYTHON_ARCH: "32"
 
     - PYTHON_VERSION: "2.7"
       MINICONDA: C:\Miniconda-x64
+      PYTHON_ARCH: "64"
 
     - PYTHON_VERSION: "3.6"
       MINICONDA: C:\Miniconda3
+      PYTHON_ARCH: "32"
 
     - PYTHON_VERSION: "3.6"
       MINICONDA: C:\Miniconda3-x64
+      PYTHON_ARCH: "64"
 
     # Versions listed below which are pre-installed on Appveyor will be
     # used when available.
@@ -60,9 +64,21 @@ environment:
       PYTHON_VERSION: "3.7.x"
       PYTHON_ARCH: "64"
 
+
+# Run jobs on Windows 32bit and 64bit
+platform:
+  - x86
+  - x64
+
 # Cancel pending jobs after first job failure
+# Only run Python 32bit on 32bit arch, and 64bit on 64bit
 matrix:
   fast_finish: true
+  exclude:
+    - platform: x86
+      PYTHON_ARCH: "64"
+    - platform: x64
+      PYTHON_ARCH: "32"
 
 init:
   - ECHO "PYTHON_VERSION = %PYTHON_VERSION%"

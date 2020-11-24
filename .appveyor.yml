@@ -204,3 +204,4 @@ on_finish:
           (Resolve-Path .\testresults.xml)
         )
       }
+      $LastExitCode = 0

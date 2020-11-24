@@ -90,6 +90,33 @@ matrix:
     - platform: x64
       PYTHON_ARCH: "32"
 
+# Here we override common configuration
+for:
+# Override settings for release branches
+-
+  branches:
+    only:
+      - /^v?\d+(\.[x\d]+)+$/
+
+  configuration: Release
+
+  after_test:
+    # If tests are successful, create binary packages for the project.
+    - "%CMD_IN_ENV% python -m pip install --upgrade pip setuptools wheel"
+    - "%CMD_IN_ENV% python setup.py sdist bdist_wheel --universal"
+    - "%CMD_IN_ENV% python setup.py bdist_wininst"
+    # Allow failure on bdist_msi, because it does not work with letters in
+    # the package version number. Using letters is normal for development
+    # versions (e.g. 1.3.dev0, 1.3.2rc4), and we don't want to cause Appveyor
+    # to mark the build to fail because of it. The command will work for your
+    # release versions if their version numbers are only numeric (e.g. 1.3.2).
+    - "%CMD_IN_ENV% python setup.py bdist_msi || ver>nul"
+    - ps: ls dist
+
+  artifacts:
+    # Archive the generated packages in the ci.appveyor.com build report.
+    - path: dist\*
+
 init:
   # If there is a newer build queued for the same PR, cancel this one.
   # The AppVeyor 'rollout builds' option is supposed to serve the same
@@ -188,23 +215,6 @@ test_script:
   - cd docs
   - IF "%BUILD_DOCS%"=="true" ( make.bat html )
   - cd ..
-
-after_test:
-  # If tests are successful, create binary packages for the project.
-  - python -m pip install --upgrade wheel
-  - "%CMD_IN_ENV% python setup.py bdist_wheel"
-  - "%CMD_IN_ENV% python setup.py bdist_wininst"
-  # Allow failure on bdist_msi, because it does not work with letters in
-  # the package version number. Using letters is normal for development
-  # versions (e.g. 1.3.dev0, 1.3.2rc4), and we don't want to cause Appveyor
-  # to mark the build to fail because of it. The command will work for your
-  # release versions if their version numbers are only numeric (e.g. 1.3.2).
-  - "%CMD_IN_ENV% python setup.py bdist_msi || ver>nul"
-  - ps: ls dist
-
-artifacts:
-  # Archive the generated packages in the ci.appveyor.com build report.
-  - path: dist\*
 
 on_success:
   # Push coverage reports

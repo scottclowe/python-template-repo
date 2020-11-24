@@ -137,7 +137,10 @@ install:
 
   # Check that we have the expected version and architecture for Python
   - python --version
-  - python -c "import struct; print(struct.calcsize('P') * 8)"
+  - >-
+     %CMD_IN_ENV%
+     python -c "import sys,platform,struct;
+     print(sys.platform, platform.machine(), struct.calcsize('P') * 8, )"
 
   # Upgrade to the latest version of pip to avoid it displaying warnings
   # about it being out of date.
@@ -146,6 +149,10 @@ install:
   # Show current directory contents
   - ECHO "Project directory:"
   - ps: "ls"
+
+  # Show PATH variable
+  - ECHO "PATH:"
+  - ECHO "%PATH%"
 
   # Install the build dependencies of the project. If some dependencies contain
   # compiled extensions and are not provided as pre-built wheel packages,

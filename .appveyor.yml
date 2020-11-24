@@ -2,6 +2,9 @@
 # https://github.com/ogrisel/python-appveyor-demo
 # License: CC0 1.0 Universal
 
+cache:
+  - '%LOCALAPPDATA%\pip\Cache'
+
 environment:
   global:
     BUILD_DOCS: "true"

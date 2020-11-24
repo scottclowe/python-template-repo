@@ -27,6 +27,8 @@ When creating a new repository from this skeleton, these are the steps to follow
       mv -n python-template-repo-master/* python-template-repo-master/.[!.]* .
       rm -r python-template-repo-master/
       rm master.zip
+      wget https://raw.githubusercontent.com/scottclowe/python-template-repo/master/.gitignore
+      wget https://raw.githubusercontent.com/scottclowe/python-template-repo/master/.gitattributes
       git add .
       git commit -m "Add skeleton repository"
 

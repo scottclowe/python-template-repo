@@ -31,6 +31,13 @@ except IOError:
     # doesn't exist
     pass
 
+# Test dependencies
+try:
+    extras_require['test'] = read('requirements-test.txt').splitlines()
+except IOError:
+    # doesn't exist
+    pass
+
 
 # If there are any extras, add a catch-all case that includes everything.
 # This assumes that entries in extras_require are lists (not single strings).

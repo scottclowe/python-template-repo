@@ -68,7 +68,7 @@ When creating a new repository from this skeleton, these are the steps to follow
 
 #. Change references to ``package_name`` to ``your_new_path``:
 
-   - In ``setup.py``, L51::
+   - In ``setup.py``, L58::
 
       exec(read('package_name/__meta__.py'), meta)
 

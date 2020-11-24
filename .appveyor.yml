@@ -148,7 +148,7 @@ install:
     )
 
   # Check that we have the expected version and architecture for Python
-  - python --version
+  - "%CMD_IN_ENV% python --version"
   - >-
      %CMD_IN_ENV%
      python -c "import sys,platform,struct;
@@ -156,7 +156,7 @@ install:
 
   # Upgrade to the latest version of pip to avoid it displaying warnings
   # about it being out of date.
-  - python -m pip install --upgrade pip
+  - "%CMD_IN_ENV% python -m pip install --upgrade pip"
 
   # Show current directory contents
   - ECHO "Project directory:"

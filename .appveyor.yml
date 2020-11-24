@@ -2,6 +2,8 @@
 # https://github.com/ogrisel/python-appveyor-demo
 # License: CC0 1.0 Universal
 
+image: Visual Studio 2019
+
 cache:
   - '%LOCALAPPDATA%\pip\Cache'
 

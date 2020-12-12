@@ -180,24 +180,24 @@ install:
   # upgrading unnecessarily.
   - if [ -f requirements.txt ]; then
         cat requirements.txt;
-        pip install --no-deps --upgrade -r requirements.txt;
-        pip install -r requirements.txt;
+        python -m pip install --no-deps --upgrade -r requirements.txt;
+        python -m pip install -r requirements.txt;
     fi;
   # Also install any developmental requirements, if present.
   - if [ -f requirements-dev.txt ]; then
         cat requirements-dev.txt;
-        pip install --no-deps --upgrade -r requirements-dev.txt;
-        pip install -r requirements-dev.txt;
+        python -m pip install --no-deps --upgrade -r requirements-dev.txt;
+        python -m pip install -r requirements-dev.txt;
     fi;
   - if [ -f requirements-test.txt ]; then
         cat requirements-test.txt;
-        pip install --no-deps --upgrade -r requirements-test.txt;
-        pip install -r requirements-test.txt;
+        python -m pip install --no-deps --upgrade -r requirements-test.txt;
+        python -m pip install -r requirements-test.txt;
     fi;
   # ---------------------------------------------------------------------------
   # Conditionally install the packages which are needed for building docs
   - if [[ "$BUILD_DOCS" == "true" ]]; then
-        pip install -r requirements-docs.txt;
+        python -m pip install -r requirements-docs.txt;
     fi
   # ---------------------------------------------------------------------------
   # Now install your own package
@@ -211,7 +211,7 @@ before_script:
   - conda info -a || echo "No conda"
   - python --version
   - conda env export > environment.yml && cat environment.yml || echo "No conda"
-  - pip freeze
+  - python -m pip freeze
   # ---------------------------------------------------------------------------
   # Remove any cached results files from previous build, if present
   - rm -f testresults.xml coverage.xml .coverage;
@@ -235,7 +235,7 @@ script:
   # ---------------------------------------------------------------------------
   # Your test script goes here, e.g.
   # - python setup.py test
-  - py.test --flake8 --cov=package_name --cov-report term --cov-report xml --cov-config .coveragerc --junitxml=testresults.xml
+  - python -m pytest --flake8 --cov=package_name --cov-report term --cov-report xml --cov-config .coveragerc --junitxml=testresults.xml
   # Build the documentation
   - if [[ "$BUILD_DOCS" == "true" ]]; then
         make -C docs html;

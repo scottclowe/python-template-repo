@@ -57,21 +57,21 @@ before_install:
   # Check which versions of numpy and scipy we are using, then remove these
   # lines from requirements.txt
   - if [ -f requirements.txt ]; then
-      NUMPY_REQUIREMENT="$(grep '^numpy\([!<>=~ ]\|$\)' requirements.txt)";
-      echo "NumPy requirement is '$NUMPY_REQUIREMENT'";
-      SCIPY_REQUIREMENT="$(grep '^scipy\([!<>=~ ]\|$\)' requirements.txt)";
-      echo "SciPy requirement is '$SCIPY_REQUIREMENT'";
-      sed '/^\(num\|sci\)py\([!<>=~ ]\|$\)/d' requirements.txt >
-        requirements.txt.tmp &&
-        mv requirements.txt.tmp requirements.txt;
+        NUMPY_REQUIREMENT="$(grep '^numpy\([!<>=~ ]\|$\)' requirements.txt)";
+        echo "NumPy requirement is '$NUMPY_REQUIREMENT'";
+        SCIPY_REQUIREMENT="$(grep '^scipy\([!<>=~ ]\|$\)' requirements.txt)";
+        echo "SciPy requirement is '$SCIPY_REQUIREMENT'";
+        sed '/^\(num\|sci\)py\([!<>=~ ]\|$\)/d' requirements.txt >
+            requirements.txt.tmp &&
+            mv requirements.txt.tmp requirements.txt;
     fi;
   # ---------------------------------------------------------------------------
   # If we want to run the tests using the oldest set of dependencies we
   # support, modify any *requirements*.txt files every '>=' becomes '=='.
   - if [[ "$OLDEST_DEPS" == "true" ]]; then
-      for FILE in *requirements*.txt; do
-          sed -e 's/>=/~=/g' $FILE > $FILE.tmp && mv $FILE.tmp $FILE;
-      done;
+        for FILE in *requirements*.txt; do
+            sed -e 's/>=/~=/g' $FILE > $FILE.tmp && mv $FILE.tmp $FILE;
+        done;
     fi;
   # ---------------------------------------------------------------------------
   # A minority of packages need to be installed through conda instead of pip
@@ -98,8 +98,8 @@ before_install:
     travis_retry wget -c https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O "$HOME/Downloads/miniconda.sh";
   # Install miniconda to the home directory, if it isn't there already.
   - if [ ! -d "$HOME/miniconda/bin" ]; then
-      if [ -d "$HOME/miniconda" ]; then rm -r "$HOME/miniconda"; fi;
-      bash $HOME/Downloads/miniconda.sh -b -p "$HOME/miniconda";
+        if [ -d "$HOME/miniconda" ]; then rm -r "$HOME/miniconda"; fi;
+        bash $HOME/Downloads/miniconda.sh -b -p "$HOME/miniconda";
     fi;
   - ls -alh "$HOME/miniconda";
   # Add conda to the path and automatically say yes to any check from conda
@@ -141,7 +141,7 @@ before_install:
   # Create the conda environment with pip, numpy and scipy installed (if they
   # are in requirements.txt)
   - conda create -q -n testenv python=$TRAVIS_PYTHON_VERSION
-      pip $NUMPY_REQUIREMENT $SCIPY_REQUIREMENT $OTHER_CONDA_REQUIREMENTS
+        pip $NUMPY_REQUIREMENT $SCIPY_REQUIREMENT $OTHER_CONDA_REQUIREMENTS
   # If you get an error from this command which looks like this:
   #   Error: Unsatisfiable package specifications.
   #   Generating hint:
@@ -179,25 +179,25 @@ install:
   # "chain" is satisfied (dependencies of dependencies are adequate) without
   # upgrading unnecessarily.
   - if [ -f requirements.txt ]; then
-      cat requirements.txt;
-      pip install --no-deps --upgrade -r requirements.txt;
-      pip install -r requirements.txt;
+        cat requirements.txt;
+        pip install --no-deps --upgrade -r requirements.txt;
+        pip install -r requirements.txt;
     fi;
   # Also install any developmental requirements, if present.
   - if [ -f requirements-dev.txt ]; then
-      cat requirements-dev.txt;
-      pip install --no-deps --upgrade -r requirements-dev.txt;
-      pip install -r requirements-dev.txt;
+        cat requirements-dev.txt;
+        pip install --no-deps --upgrade -r requirements-dev.txt;
+        pip install -r requirements-dev.txt;
     fi;
   - if [ -f requirements-test.txt ]; then
-      cat requirements-test.txt;
-      pip install --no-deps --upgrade -r requirements-test.txt;
-      pip install -r requirements-test.txt;
+        cat requirements-test.txt;
+        pip install --no-deps --upgrade -r requirements-test.txt;
+        pip install -r requirements-test.txt;
     fi;
   # ---------------------------------------------------------------------------
   # Conditionally install the packages which are needed for building docs
   - if [[ "$BUILD_DOCS" == "true" ]]; then
-      pip install -r requirements-docs.txt;
+        pip install -r requirements-docs.txt;
     fi
   # ---------------------------------------------------------------------------
   # Now install your own package
@@ -218,19 +218,19 @@ before_script:
   # ---------------------------------------------------------------------------
   # Set up folders for test results on Shippable
   - if [ "$SHIPPABLE" = "true" ]; then
-      rm -fr shippable;
-      mkdir -p shippable/testresults;
-      mkdir -p shippable/codecoverage;
+        rm -fr shippable;
+        mkdir -p shippable/testresults;
+        mkdir -p shippable/codecoverage;
     fi;
 
 ###############################################################################
 script:
   - python --version;
     if [[ "$NUMPY_REQUIREMENT" != "" ]]; then
-      python -c "import numpy; print('numpy %s' % numpy.__version__)";
+        python -c "import numpy; print('numpy %s' % numpy.__version__)";
     fi;
     if [[ "$SCIPY_REQUIREMENT" != "" ]]; then
-      python -c "import scipy; print('scipy %s' % scipy.__version__)";
+        python -c "import scipy; print('scipy %s' % scipy.__version__)";
     fi;
   # ---------------------------------------------------------------------------
   # Your test script goes here, e.g.
@@ -238,7 +238,7 @@ script:
   - py.test --flake8 --cov=package_name --cov-report term --cov-report xml --cov-config .coveragerc --junitxml=testresults.xml
   # Build the documentation
   - if [[ "$BUILD_DOCS" == "true" ]]; then
-      make -C docs html;
+        make -C docs html;
     fi;
 
 ###############################################################################
@@ -252,10 +252,10 @@ after_script:
   # ---------------------------------------------------------------------------
   # Move results and coverage files into appropriate places
   - if [ "$SHIPPABLE" = "true" ] && [ -f testresults.xml ]; then
-      mv testresults.xml shippable/testresults/;
+        mv testresults.xml shippable/testresults/;
     fi;
     if [ "$SHIPPABLE" = "true" ] && [ -f coverage.xml ]; then
-      cp coverage.xml shippable/codecoverage/;
+        cp coverage.xml shippable/codecoverage/;
     fi;
 
 ###############################################################################
@@ -270,10 +270,10 @@ after_success:
   # reliable and we don't want the CI to report a failure just because the
   # coverage report wasn't published.
   - if [ "$TRAVIS" = "true" ] && [ "$SHIPPABLE" != "true" ]; then
-      pip install coveralls;
-      travis_retry coveralls || echo "Coveralls push failed";
-      pip install codecov;
-      travis_retry codecov || echo "Codecov push failed";
+        pip install coveralls;
+        travis_retry coveralls || echo "Coveralls push failed";
+        pip install codecov;
+        travis_retry codecov || echo "Codecov push failed";
     fi;
 
 ###############################################################################
@@ -289,7 +289,7 @@ before_archive:
   # artifacts addon (or do something else with it). See here for details
   # https://docs.travis-ci.com/user/uploading-artifacts/
   - if [ "$SHIPPABLE" = "true" ] && [ -f environment.yml ]; then
-      cp environment.yml shippable/;
+        cp environment.yml shippable/;
     fi;
 
 ###############################################################################

@@ -208,16 +208,13 @@ before_script:
   # Double-check we are still in the right directory
   - pwd
   # Check what python packages we have installed
-  - conda info -a
-  - which python
+  - conda info -a || echo "No conda"
   - python --version
-  - conda env export > environment.yml && cat environment.yml
+  - conda env export > environment.yml && cat environment.yml || echo "No conda"
   - pip freeze
   # ---------------------------------------------------------------------------
   # Remove any cached results files from previous build, if present
-  - rm -f testresults.xml;
-    rm -f coverage.xml;
-    rm -f .coverage;
+  - rm -f testresults.xml coverage.xml .coverage;
   # ---------------------------------------------------------------------------
   # Set up folders for test results on Shippable
   - if [ "$SHIPPABLE" = "true" ]; then
@@ -245,6 +242,7 @@ script:
     fi;
 
 ###############################################################################
+# commands to run after tests are done
 after_script:
   # Show where we ended up
   - pwd

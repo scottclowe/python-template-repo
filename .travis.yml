@@ -269,11 +269,12 @@ after_success:
   # We ignore coveralls failures because the coveralls server is not 100%
   # reliable and we don't want the CI to report a failure just because the
   # coverage report wasn't published.
-  - if [ "$TRAVIS" = "true" ] && [ "$SHIPPABLE" != "true" ]; then
-        pip install coveralls;
+  - |
+    if [[ "$TRAVIS" = "true" && "$SHIPPABLE" != "true" ]]; then
+        curl -s -S -L --connect-timeout 5 --retry 6 https://codecov.io/bash -o codecov-upload.sh || echo "Codecov script failed to download";
+        travis_retry bash codecov-upload.sh || echo "Codecov push failed";
+        python -m pip install coveralls;
         travis_retry coveralls || echo "Coveralls push failed";
-        pip install codecov;
-        travis_retry codecov || echo "Codecov push failed";
     fi;
 
 ###############################################################################

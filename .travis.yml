@@ -1,9 +1,16 @@
 ###############################################################################
 language: python
+os: linux
 
-# Current requirements for Python 3.7 on Travis
-sudo: required
-dist: xenial
+addons:
+  apt:
+    packages:
+      # Install ATLAS and LAPACK for numpy/scipy
+      - libatlas-dev
+      - libatlas-base-dev
+      - liblapack-dev
+      # Install JPEG library for Pillow>=3.0.0
+      # - libjpeg-dev
 
 ###############################################################################
 # Cache data which has to be downloaded on every build.
@@ -57,16 +64,6 @@ before_install:
       sed '/^\(num\|sci\)py\([!<>=~ ]\|$\)/d' requirements.txt >
         requirements.txt.tmp &&
         mv requirements.txt.tmp requirements.txt;
-    fi;
-  # ---------------------------------------------------------------------------
-  # Update the package list
-  - travis_retry sudo apt-get update
-  # Install numpy/scipy dependencies with apt-get. We want ATLAS and LAPACK.
-  - if [[ "$NUMPY_REQUIREMENT" != "" ]] || [[ "$SCIPY_REQUIREMENT" != "" ]]; then
-      travis_retry sudo apt-get install -y libatlas-dev libatlas-base-dev;
-    fi;
-    if [[ "$SCIPY_REQUIREMENT" != "" ]]; then
-      travis_retry sudo apt-get install -y liblapack-dev;
     fi;
   # ---------------------------------------------------------------------------
   # If we want to run the tests using the oldest set of dependencies we

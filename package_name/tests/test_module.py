@@ -21,7 +21,6 @@ class NumbersTest(BaseTestCase):
 
 
 class TestCubicRectification(BaseTestCase):
-
     """
     Tests for the cubic_rectification function.
     """
@@ -40,7 +39,7 @@ class TestCubicRectification(BaseTestCase):
         self.assert_allclose(cubic_rectification(-1.2), 0)
 
     def test_empty_array(self):
-        """Test with empty array"""
+        """Test with empty array."""
         self.assert_equal(cubic_rectification(np.array([])), np.array([]))
 
     def test_array(self):

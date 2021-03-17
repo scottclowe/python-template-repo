@@ -1,5 +1,6 @@
 """
 Provides a base test class for other test classes to inherit from.
+
 Includes the numpy testing functions as methods.
 """
 
@@ -32,7 +33,6 @@ else:
 
 
 class BaseTestCase(unittest.TestCase):
-
     """
     Superclass for test cases, including support for numpy.
     """
@@ -43,7 +43,7 @@ class BaseTestCase(unittest.TestCase):
     test_directory = os.path.dirname(os.path.abspath(getsourcefile(lambda: 0)))
 
     def __init__(self, *args, **kw):
-        """Instance initialisation"""
+        """Instance initialisation."""
         # First to the __init__ associated with parent class
         # NB: The new method is like so, but this only works on Python3
         # super(self).__init__(*args, **kw)
@@ -66,29 +66,25 @@ class BaseTestCase(unittest.TestCase):
     # available as methods to all subclasses when we do our tests.
     def assert_almost_equal(self, *args, **kwargs):
         """
-        Raises an AssertionError if two items are not equal up to
-        desired precision.
+        Check if two items are not equal up to desired precision.
         """
         return assert_almost_equal(*args, **kwargs)
 
     def assert_approx_equal(self, *args, **kwargs):
         """
-        Raises an AssertionError if two items are not equal up to
-        significant digits.
+        Check if two items are not equal up to significant digits.
         """
         return assert_approx_equal(*args, **kwargs)
 
     def assert_array_almost_equal(self, *args, **kwargs):
         """
-        Raises an AssertionError if two objects are not equal up to
-        desired precision.
+        Check if two objects are not equal up to desired precision.
         """
         return assert_array_almost_equal(*args, **kwargs)
 
     def assert_allclose(self, *args, **kwargs):
         """
-        Raises an AssertionError if two objects are not equal up to
-        desired tolerance.
+        Check if two objects are equal up to desired tolerance.
         """
         return assert_allclose(*args, **kwargs)
 
@@ -100,42 +96,37 @@ class BaseTestCase(unittest.TestCase):
 
     def assert_array_max_ulp(self, *args, **kwargs):
         """
-        Check that all items of arrays differ in at most N Units in the
-        Last Place.
+        Check that all items of arrays differ in at most N Units in the Last Place.
         """
         return assert_array_max_ulp(*args, **kwargs)
 
     def assert_array_equal(self, *args, **kwargs):
         """
-        Raises an AssertionError if two array_like objects are not
-        equal.
+        Check if two array_like objects are equal.
         """
         return assert_array_equal(*args, **kwargs)
 
     def assert_array_less(self, *args, **kwargs):
         """
-        Raises an AssertionError if two array_like objects are not
-        ordered by less than.
+        Check if two array_like objects are not ordered by less than.
         """
         return assert_array_less(*args, **kwargs)
 
     def assert_equal(self, *args, **kwargs):
         """
-        Raises an AssertionError if two objects are not equal.
+        Check if two objects are not equal.
         """
         return assert_equal(*args, **kwargs)
 
     def assert_raises(self, *args, **kwargs):
         """
-        Fail unless an exception of class exception_class is thrown by
-        callable when invoked with arguments args and keyword arguments
-        kwargs.
+        Check that an exception of class exception_class is thrown by callable.
         """
         return assert_raises(*args, **kwargs)
 
     def assert_warns(self, *args, **kwargs):
         """
-        Fail unless the given callable throws the specified warning.
+        Check that the given callable throws the specified warning.
         """
         return assert_warns(*args, **kwargs)
 

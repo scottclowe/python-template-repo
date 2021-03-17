@@ -270,8 +270,8 @@ Contributions are welcome! If you can see a way to improve this skeleton:
 Or to report a bug or request something new, make an issue.
 
 
-.. |GHA tests| image:: https://github.com/scottclowe/test/workflows/tests/badge.svg
-   :target: https://github.com/scottclowe/test/actions?query=workflow%3Atests
+.. |GHA tests| image:: https://github.com/scottclowe/python-template-repo/workflows/tests/badge.svg
+   :target: https://github.com/scottclowe/python-template-repo/actions?query=workflow%3Atests
 .. |Travis build| image:: https://travis-ci.org/scottclowe/python-template-repo.svg?branch=master
    :target: https://travis-ci.org/scottclowe/python-template-repo
 .. |Shippable build| image:: https://img.shields.io/shippable/5674d4821895ca447466a204/master.svg?label=shippable

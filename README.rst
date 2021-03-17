@@ -94,6 +94,44 @@ When creating a new repository from this skeleton, these are the steps to follow
       git push
 
 
+Features
+--------
+
+The template repository comes with a `pre-commit <https://pre-commit.com/>`__ stack.
+This is a set of git hooks which are executed everytime you make a commit.
+The hooks catch errors as they occur, and will automatically fix some of these errors.
+
+To set up the pre-commit hook, run the following code::
+
+    pip install -r requirements-dev.txt
+    pre-commit install
+
+Whenever you try to commit code which needs to be modified by the commit hook, you'll have to add the commit hooks changes and then redo your commit.
+
+You can also manually run the pre-commit stack on all the files at any time::
+
+    pre-commit run --all-files
+
+The pre-commit stack will run the following operations:
+
+- Change the code style to be `black <https://github.com/psf/black>`__.
+  Any code `inside docstrings <https://github.com/asottile/blacken-docs>`__ will also be formatted.
+
+- Imports are automatically sorted using `isort <https://github.com/timothycrosley/isort>`__.
+
+- `flake8 <https://gitlab.com/pycqa/flake8>`__ is run to check for conformity to the python style guide `PEP8 <https://www.python.org/dev/peps/pep-0008/>`__, along with several other formatting issues.
+
+- `setup-cfg-fmt <https://github.com/asottile/setup-cfg-fmt>`__ is used to format any setup.cfg files.
+
+- Several `hooks from pre-commit <https://github.com/pre-commit/pre-commit-hooks>`__ are used to screen for non-language specific git issues, such as bugged JSON and YAML files, and overly large files.
+  JSON files are also prettified automatically to have standardised indentation.
+
+- Several `hooks from pre-commit specific to python <https://github.com/pre-commit/pygrep-hooks>`__ are used to screen for rST formatting issues, and ensure noqa flags always specify an error code to ignore.
+
+Once it is set up, the pre-commit stack will run locally on every commit.
+The pre-commit stack will also run on github with one of the action workflows, which ensures overall conformity to a common code style.
+
+
 Contents
 --------
 
@@ -148,8 +186,21 @@ This should work straight away with `readthedocs <https://readthedocs.org/>`_, i
 
 Alternative themes can be found `concisely from writethedocs <https://www.writethedocs.org/guide/tools/sphinx-themes/>`_, with further options at https://sphinx-themes.org.
 
-Continuous integration
-~~~~~~~~~~~~~~~~~~~~~~
+.github Workflow
+~~~~~~~~~~~~~~~~
+
+Three workflows are included by default
+- lint
+- pre-commit
+- test
+
+Both the lint and pre-commit workflows check for code style and formatting.
+If you are using the pre-commit hooks, the lint workflow is superfluous and can be deleted.
+
+The test workflow runs the unit tests.
+
+Other Continuous integration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 The file ``.travis.yml`` provides configuration for continuous integration *both* on `Travis CI <https://travis-ci.org/>`_  (`documentation <https://docs.travis-ci.com/user/languages/python/>`_) and on `Shippable <https://shippable.com>`_ (`documentation <http://docs.shippable.com/ci/python-template-repo>`_)
 Note that Shippable has an API aligned with Travis and `operates from <https://docs.platformio.org/en/latest/ci/shippable.html>`_ the ``.travis.yml`` if there is no ``shippable.yml`` configuration file.
 

@@ -1,4 +1,4 @@
-|Travis build| |AppVeyor build| |Coveralls report| |Codecov report|
+|GHA tests| |Travis build| |AppVeyor build| |Coveralls report| |Codecov report| |pre-commit| |black|
 
 Python Template/Skeleton Repository
 ===================================
@@ -270,6 +270,8 @@ Contributions are welcome! If you can see a way to improve this skeleton:
 Or to report a bug or request something new, make an issue.
 
 
+.. |GHA tests| image:: https://github.com/scottclowe/test/workflows/tests/badge.svg
+   :target: https://github.com/scottclowe/test/actions?query=workflow%3Atests
 .. |Travis build| image:: https://travis-ci.org/scottclowe/python-template-repo.svg?branch=master
    :target: https://travis-ci.org/scottclowe/python-template-repo
 .. |Shippable build| image:: https://img.shields.io/shippable/5674d4821895ca447466a204/master.svg?label=shippable
@@ -280,3 +282,8 @@ Or to report a bug or request something new, make an issue.
    :target: https://coveralls.io/github/scottclowe/python-template-repo?branch=master
 .. |Codecov report| image:: https://codecov.io/github/scottclowe/python-template-repo/coverage.svg?branch=master
    :target: https://codecov.io/github/scottclowe/python-template-repo?branch=master
+.. |pre-commit| image:: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white
+   :target: https://github.com/pre-commit/pre-commit
+   :alt: pre-commit
+.. |black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
+   :target: https://github.com/psf/black

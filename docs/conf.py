@@ -20,7 +20,7 @@ sys.path.insert(0, os.path.abspath("."))
 sys.path.insert(0, os.path.abspath("../"))
 
 
-from package_name import __meta__ as meta  # noqa: E402
+from package_name import __meta__ as meta  # noqa: E402 isort:skip
 
 
 # -- Project information -----------------------------------------------------
@@ -43,6 +43,9 @@ version = ".".join(release.split(".")[0:2])
 
 
 def run_apidoc(_):
+    """
+    Call apidoc, with customised set up.
+    """
     ignore_paths = [
         os.path.join("..", project_path, "tests"),
     ]
@@ -71,6 +74,9 @@ def run_apidoc(_):
 
 
 def retitle_modules(_):
+    """
+    Overwrite the title of the modules.rst file.
+    """
     pth = "source/packages/modules.rst"
     lines = open(pth).read().splitlines()
     # Overwrite the junk in the first two lines with a better title
@@ -80,6 +86,9 @@ def retitle_modules(_):
 
 
 def setup(app):
+    """
+    Set up our apidoc commands to run whenever sphinx is built.
+    """
     app.connect("builder-inited", run_apidoc)
     app.connect("builder-inited", retitle_modules)
 

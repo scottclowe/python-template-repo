@@ -4,11 +4,24 @@ import os
 import sys
 from shutil import rmtree
 
-from setuptools import find_packages, setup, Command
+from setuptools import Command, find_packages, setup
 from setuptools.command.test import test as TestCommand
 
 
 def read(fname):
+    """
+    Read the contents of a file.
+
+    Parameters
+    ----------
+    fname : str
+        Path to file.
+
+    Returns
+    -------
+    str
+        File contents.
+    """
     with open(os.path.join(os.path.dirname(__file__), fname)) as f:
         return f.read()
 
@@ -87,6 +100,8 @@ else:
 
 
 class PyTest(TestCommand):
+    """Support setup.py test."""
+
     def finalize_options(self):
         TestCommand.finalize_options(self)
         self.test_args = []
@@ -106,7 +121,7 @@ class UploadCommand(Command):
 
     @staticmethod
     def status(s):
-        """Prints things in bold."""
+        """Print things in bold."""
         print("\033[1m{0}\033[0m".format(s))
 
     def initialize_options(self):

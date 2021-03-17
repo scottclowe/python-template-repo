@@ -13,7 +13,7 @@ When creating a new repository from this skeleton, these are the steps to follow
 
 #. **Don't click the fork button**
 
-#.  As a one-step process, you can create a new repository on GitHub from this template by clicking the `Use this template <https://github.com/scottclowe/python-template-repo/generate>` button.
+#.  As a one-step process, you can create a new repository on GitHub from this template by clicking the `Use this template <https://github.com/scottclowe/python-template-repo/generate>`__ button.
 
     Alternatively, if you want to keep the skeleton's commit history in your own history, replacing ``your_repo_name`` with the name of your new repository, run the commands::
 

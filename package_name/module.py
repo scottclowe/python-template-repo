@@ -6,7 +6,7 @@ import numpy as np
 
 
 def cubic_rectification(x):
-    '''
+    """
     Rectified cube of an array.
 
     Parameters
@@ -27,5 +27,5 @@ def cubic_rectification(x):
     ----
     The use of intersphinx will cause numpy.ndarray above to link to its
     documentation, but not inside this Note.
-    '''
-    return np.maximum(0, x**3)
+    """
+    return np.maximum(0, x ** 3)

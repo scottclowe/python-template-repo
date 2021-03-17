@@ -44,7 +44,7 @@ class BaseTestCase(unittest.TestCase):
     test_directory = os.path.dirname(os.path.abspath(getsourcefile(lambda: 0)))
 
     def __init__(self, *args, **kw):
-        '''Instance initialisation'''
+        """Instance initialisation"""
         # First to the __init__ associated with parent class
         # NB: The new method is like so, but this only works on Python3
         # super(self).__init__(*args, **kw)
@@ -58,7 +58,7 @@ class BaseTestCase(unittest.TestCase):
     def subTest(self, *args, **kwargs):
         # For backwards compatability with Python < 3.4
         # Gracefully degrades into no-op.
-        if hasattr(super(BaseTestCase, self), 'subTest'):
+        if hasattr(super(BaseTestCase, self), "subTest"):
             yield super(BaseTestCase, self).subTest(*args, **kwargs)
         else:
             yield None
@@ -66,82 +66,82 @@ class BaseTestCase(unittest.TestCase):
     # Add assertions provided by numpy to this class, so they will be
     # available as methods to all subclasses when we do our tests.
     def assert_almost_equal(self, *args, **kwargs):
-        '''
+        """
         Raises an AssertionError if two items are not equal up to
         desired precision.
-        '''
+        """
         return assert_almost_equal(*args, **kwargs)
 
     def assert_approx_equal(self, *args, **kwargs):
-        '''
+        """
         Raises an AssertionError if two items are not equal up to
         significant digits.
-        '''
+        """
         return assert_approx_equal(*args, **kwargs)
 
     def assert_array_almost_equal(self, *args, **kwargs):
-        '''
+        """
         Raises an AssertionError if two objects are not equal up to
         desired precision.
-        '''
+        """
         return assert_array_almost_equal(*args, **kwargs)
 
     def assert_allclose(self, *args, **kwargs):
-        '''
+        """
         Raises an AssertionError if two objects are not equal up to
         desired tolerance.
-        '''
+        """
         return assert_allclose(*args, **kwargs)
 
     def assert_array_almost_equal_nulp(self, *args, **kwargs):
-        '''
+        """
         Compare two arrays relatively to their spacing.
-        '''
+        """
         return assert_array_almost_equal_nulp(*args, **kwargs)
 
     def assert_array_max_ulp(self, *args, **kwargs):
-        '''
+        """
         Check that all items of arrays differ in at most N Units in the
         Last Place.
-        '''
+        """
         return assert_array_max_ulp(*args, **kwargs)
 
     def assert_array_equal(self, *args, **kwargs):
-        '''
+        """
         Raises an AssertionError if two array_like objects are not
         equal.
-        '''
+        """
         return assert_array_equal(*args, **kwargs)
 
     def assert_array_less(self, *args, **kwargs):
-        '''
+        """
         Raises an AssertionError if two array_like objects are not
         ordered by less than.
-        '''
+        """
         return assert_array_less(*args, **kwargs)
 
     def assert_equal(self, *args, **kwargs):
-        '''
+        """
         Raises an AssertionError if two objects are not equal.
-        '''
+        """
         return assert_equal(*args, **kwargs)
 
     def assert_raises(self, *args, **kwargs):
-        '''
+        """
         Fail unless an exception of class exception_class is thrown by
         callable when invoked with arguments args and keyword arguments
         kwargs.
-        '''
+        """
         return assert_raises(*args, **kwargs)
 
     def assert_warns(self, *args, **kwargs):
-        '''
+        """
         Fail unless the given callable throws the specified warning.
-        '''
+        """
         return assert_warns(*args, **kwargs)
 
     def assert_string_equal(self, *args, **kwargs):
-        '''
+        """
         Test if two strings are equal.
-        '''
+        """
         return assert_string_equal(*args, **kwargs)

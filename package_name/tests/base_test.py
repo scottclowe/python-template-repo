@@ -4,25 +4,24 @@ Includes the numpy testing functions as methods.
 """
 
 import contextlib
-import sys
 import os.path
+import sys
 from inspect import getsourcefile
 
 import numpy as np
 from numpy.testing import (
+    assert_allclose,
     assert_almost_equal,
     assert_approx_equal,
     assert_array_almost_equal,
-    assert_allclose,
     assert_array_almost_equal_nulp,
-    assert_array_max_ulp,
     assert_array_equal,
     assert_array_less,
+    assert_array_max_ulp,
     assert_equal,
     assert_raises,
-    # assert_raises_regex,
-    assert_warns,
     assert_string_equal,
+    assert_warns,
 )
 
 # For Python < 2.7, unittest2 is a backport of unittest

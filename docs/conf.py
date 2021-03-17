@@ -20,7 +20,7 @@ sys.path.insert(0, os.path.abspath("."))
 sys.path.insert(0, os.path.abspath("../"))
 
 
-from package_name import __meta__ as meta  # noqa: E402
+from package_name import __meta__ as meta  # noqa: E402 isort:skip
 
 
 # -- Project information -----------------------------------------------------

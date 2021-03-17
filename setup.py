@@ -4,7 +4,7 @@ import os
 import sys
 from shutil import rmtree
 
-from setuptools import find_packages, setup, Command
+from setuptools import Command, find_packages, setup
 from setuptools.command.test import test as TestCommand
 
 

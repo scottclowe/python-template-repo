@@ -5,10 +5,9 @@ import math
 
 import numpy as np
 
-from .base_test import BaseTestCase, unittest
-
 # from package_name.module import cubic_rectification
 from ..module import cubic_rectification
+from .base_test import BaseTestCase, unittest
 
 
 class NumbersTest(BaseTestCase):

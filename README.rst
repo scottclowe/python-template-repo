@@ -79,7 +79,7 @@ When creating a new repository from this skeleton, these are the steps to follow
       from package_name import __meta__ as meta  # noqa: E402
 
    - In ``.travis.yml``, L240::
-   
+
       - py.test --flake8 --cov=package_name --cov-report term --cov-report xml --cov-config .coveragerc --junitxml=testresults.xml
 
 #. Swap out the contents of ``requirements.txt`` for your project's current requirements.

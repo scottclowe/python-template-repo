@@ -13,84 +13,162 @@ When creating a new repository from this skeleton, these are the steps to follow
 
 #. **Don't click the fork button**
 
-#.  As a one-step process, you can create a new repository on GitHub from this template by clicking the `Use this template <https://github.com/scottclowe/python-template-repo/generate>`__ button.
+#.
+    #.  You can create a new repository on GitHub from this template by clicking the `Use this template <https://github.com/scottclowe/python-template-repo/generate>`_ button.
 
-    Alternatively, if you want to keep the skeleton's commit history in your own history, replacing ``your_repo_name`` with the name of your new repository, run the commands::
+    #.  Alternatively, if your new repository is not going to be on GitHub, you can `download this repo as a zip <https://github.com/scottclowe/python-template-repo/archive/master.zip>`_ and work from there.
+        However, you should note that this zip does not include the .gitignore and .gitattributes files (because GitHub automatically ommits them, which use usually helpful but is not for our purposes).
+        Thus you will also need to download the `.gitignore <https://raw.githubusercontent.com/scottclowe/python-template-repo/master/.gitignore>`__ and `.gitattributes <https://raw.githubusercontent.com/scottclowe/python-template-repo/master/.gitattributes>`_ files.
 
-      git clone git@github.com:scottclowe/python-template-repo.git your_repo_name
-      cd your_repo_name
+        The following shell commands can be used for this purpose on \*nix systems::
 
-   If you don't want to keep the skeleton's commit history and aren't using GitHub, run the shell commands::
+          git init your_repo_name
+          cd your_repo_name
+          wget https://github.com/scottclowe/python-template-repo/archive/master.zip
+          unzip master.zip
+          mv -n python-template-repo-master/* python-template-repo-master/.[!.]* .
+          rm -r python-template-repo-master/
+          rm master.zip
+          wget https://raw.githubusercontent.com/scottclowe/python-template-repo/master/.gitignore
+          wget https://raw.githubusercontent.com/scottclowe/python-template-repo/master/.gitattributes
+          git add .
+          git commit -m "Initial commit"
+          git rm LICENSE
 
-      git init your_repo_name
-      cd your_repo_name
-      wget https://github.com/scottclowe/python-template-repo/archive/master.zip
-      unzip master.zip
-      mv -n python-template-repo-master/* python-template-repo-master/.[!.]* .
-      rm -r python-template-repo-master/
-      rm master.zip
-      wget https://raw.githubusercontent.com/scottclowe/python-template-repo/master/.gitignore
-      wget https://raw.githubusercontent.com/scottclowe/python-template-repo/master/.gitattributes
-      git add .
-      git commit -m "Add skeleton repository"
+        Note that we are doing the move with ``-n`` argument, which will prevent the template repository from clobbering your own files (in case you already made a README.rst file, for instance).
 
-   Note that we are doing the move with ``-n`` argument, which will prevent the skeleton repository from clobbering your own files (in case you already made a README.rst file, for instance).
+        You'll need to instruct your new local repository to synchronise with the remote ``your_repo_url``::
 
-   If you find it more convenient, or you are on Windows, you can download and unzip the zip file through the GUI instead.
+          git remote set-url origin your_repo_url
+          git push -u origin master
 
-#. Make a new, empty git repository on GitHub or other web host of your choice.
-   Note down the url of the remote, ``your_repo_url``, either in its ``https`` or ``git@...`` form.
+#.  Remove the dummy files ``package_name/module.py`` and ``package_name/tests/test_module.py``::
 
-#. Instruct your local repository to synchronise with the remote you just made::
+        rm package_name/module.py
+        rm package_name/tests/test_module.py
 
-      git remote set-url origin your_repo_url
-      git push -u origin master
+    If you prefer, you can keep them around as samples, but should note that they require numpy.
 
-#. Change the LICENSE file to contain `whichever license you wish to release your code under <https://choosealicense.com/>`_.
+#.  Depending on your needs, some of the files may be superflous to you.
+    You can remove any superflous files, as follows.
 
-#. Edit the file ``package_name/__meta__.py`` to contain your author and repo details.
+    - *Yes to pre-commit!* You can delete the lint GitHub Action, as it is superfluous with the lint checks which are also in pre-commit::
 
-   name
-      The name as it will/would be on PyPI (users will do ``pip install new_name_here``).
-      It is `recommended <https://www.python.org/dev/peps/pep-0008/>`_ to use a name all lowercase, runtogetherwords but if separators are needed hyphens are preferred over underscores.
+        rm -f .github/workflows/lint.yml
 
-   path
-      The path to the package. What you will rename the directory ``package_name``.
-      `Should be <https://www.python.org/dev/peps/pep-0008/>`_ the same as ``name``, but now hyphens are disallowed and should be swapped for underscores.
-      By default, this is automatically inferred from ``name``.
+    - *No pre-commit!* Delete these files::
 
-   license
-      Should be the name of the license you just picked and put in the LICENSE file.
+        rm -f .pre-commit-config.yaml
+        rm -f .github/workflows/pre-commit.yml
+        sed -i '/^pre-commit/d' requirements-dev.txt
 
-   Other fields to enter should be self-explanatory.
+    - *No Python 2.7 support!* Delete these items from the unit testing CI::
 
-#. Move the directory ``package_name`` to ``your_new_path``.::
+        sed -i 's/"2\.7", //' .github/workflows/test.yml
+        sed -i '/- "2\.7"/d' .travis.yml
+        sed -i '29,36d' .appveyor.yml
+        sed -i '16,23d' .appveyor.yml
 
-      mv package_name your_new_path
+    - *No GitHub Actions!* Delete this directory::
 
-#. Change references to ``package_name`` to ``your_new_path``:
+        rm -r .github/
 
-   - In ``setup.py``, L58::
+    - *No unit testing!* Delete these files::
 
-      exec(read('package_name/__meta__.py'), meta)
+        rm -rf .ci/
+        rm -rf package_name/tests/
+        rm -f .github/workflows/test.yml
+        rm -f .appveyor.yml
+        rm -f .coveragerc
+        rm -f .travis.yml
+        rm -f requirements-test.txt
 
-   - In ``docs/conf.py``, L22::
+    - *No Travis!* Delete this file::
 
-      from package_name import __meta__ as meta  # noqa: E402
+        rm -f .travis.yml
 
-   - In ``.travis.yml``, L240::
+    - *No Appveyor!* Delete these files::
 
-      - py.test --flake8 --cov=package_name --cov-report term --cov-report xml --cov-config .coveragerc --junitxml=testresults.xml
+        rm -rf .ci/appveyor/
+        rm -f .appveyor.yml
 
-#. Swap out the contents of ``requirements.txt`` for your project's current requirements.
+    - *No Documentation!* Delete these files and lines::
 
-#. Swap out the contents of ``README.rst`` with an inital description of your project.
+        rm -rf docs/
+        sed -i '70,74d' .github/workflows/test.yml
 
-#. Remove ``package_name/module.py`` and ``package_name/tests/test_module.py`` (or keep them around as samples, but note that they require numpy), and start writing your own modules and respective tests.
+#.  Delete the LICENSE file and replace it with a LICENSE file of your own choosing.
+    If the code is intended to be freely available for anyone to use, use an `open source license <https://choosealicense.com/>`__, such as `MIT License <https://choosealicense.com/licenses/mit/>`__ or `GPLv3 <https://choosealicense.com/licenses/gpl-3.0/>`__.
+    If you don't want your code to be used by anyone else, add a LICENSE file which just says
 
-#. Commit and push your changes::
+        Copyright (c) YEAR, YOUR NAME
 
-      git commit -am "Initialise project from skeleton repository"
+        All right reserved.
+
+    Note that if you don't include a LICENSE file, you will still have copyright over your own code (this copyright is automatically granted), and your code will be private source (technically nobody else will be permitted to use it, even if you make your code publicly available).
+
+#.  Edit the file ``package_name/__meta__.py`` to contain your author and repo details.
+
+    name
+          The name as it will/would be on PyPI (users will do ``pip install new_name_here``).
+          It is `recommended <https://www.python.org/dev/peps/pep-0008/>`__ to use a name all lowercase, runtogetherwords but if separators are needed hyphens are preferred over underscores.
+
+    path
+        The path to the package. What you will rename the directory ``package_name``.
+        `Should be <https://www.python.org/dev/peps/pep-0008/>`__ the same as ``name``, but now hyphens are disallowed and should be swapped for underscores.
+        By default, this is automatically inferred from ``name``.
+
+    license
+        Should be the name of the license you just picked and put in the LICENSE file (e.g. ``MIT`` or ``GPLv3``).
+
+    Other fields to enter should be self-explanatory.
+
+#. Rename the directory ``package_name`` to be the ``path`` variable you just added to ``__meta__.py``.::
+
+      PACKAGE_NAME=your_actual_package_name
+      mv package_name "$PACKAGE_NAME"
+
+#.  Change references to ``package_name`` to your path variable:
+
+    This can be done with the command::
+
+        PACKAGE_NAME=your_actual_package_name
+        sed -i "s/package_name/$PACKAGE_NAME/" setup.py \
+            docs/conf.py docs/index.rst \
+            .github/workflows/test.yml .travis.yml .appveyor.yml
+
+    Which will make changes in the following places.
+
+    - In ``setup.py``, L69::
+
+        exec(read('package_name/__meta__.py'), meta)
+
+    - In ``docs/conf.py``, L23::
+
+        from package_name import __meta__ as meta  # noqa: E402
+
+    - In ``.github/workflows/test.yml``, L62::
+
+        python -m pytest --cov=package_name --cov-report term --cov-report xml --cov-config .coveragerc --junitxml=testresults.xml
+
+    - In ``.travis.yml``, L244::
+
+        - py.test --flake8 --cov=package_name --cov-report term --cov-report xml --cov-config .coveragerc --junitxml=testresults.xml
+
+    - In ``.appveyor.yml``, L213::
+
+        - "%CMD_IN_ENV% python -m pytest --cov=package_name --cov-report term --cov-report xml --cov-config .coveragerc --junitxml=testresults.xml"
+
+#.  Swap out the contents of ``requirements.txt`` for your project's current requirements.
+    If you don't have any requirements yet, delete the contents of ``requirements.txt``.
+
+#.  Swap out the contents of ``README.rst`` with an inital description of your project.
+    If you are keeping all the badges, make sure to change the URLs from ``scottclowe/python-template-repo`` to ``your_username/your_repo``.
+    If you prefer, you can use markdown instead of rST.
+
+#.  Commit and push your changes::
+
+      git commit -am "Initialise project from template repository"
       git push
 
 
@@ -171,7 +249,9 @@ Documentation building
 The `sphinx <https://www.sphinx-doc.org/>`_ configuration file ``docs/conf.py`` is set up to work well out of the box.
 
 - `autodoc <http://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html>`_ is enabled, and will generate an API description based on the docstrings in your code.
+
 - `Napoleon <https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html>`_ is enabled, so you can write docstrings in plain `reST <http://docutils.sourceforge.net/rst.html>`_, or use `Google format <https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html#example-google>`_ or `Numpy format <https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_numpy.html#example-numpy-style-python-docstrings>`_.
+
 - `Intersphinx <http://www.sphinx-doc.org/en/master/usage/extensions/intersphinx.html>`_ mappings are enabled for some common packages, so if your docstrings refer to classes or functions from them these references should become links to the appropriate documentation.
 
 You can build the documentation with::
@@ -182,7 +262,8 @@ And view the documentation like so::
 
    sensible-browser docs/_build/html/index.html
 
-This should work straight away with `readthedocs <https://readthedocs.org/>`_, if you want to host the documentation online there, go ahead.
+This should work straight away with `readthedocs <https://readthedocs.org/>`_.
+If you want to host the documentation online there, go ahead.
 
 Alternative themes can be found `concisely from writethedocs <https://www.writethedocs.org/guide/tools/sphinx-themes/>`_, with further options at https://sphinx-themes.org.
 

@@ -190,6 +190,7 @@ Alternative themes can be found `concisely from writethedocs <https://www.writet
 ~~~~~~~~~~~~~~~~
 
 Three workflows are included by default
+
 - lint
 - pre-commit
 - test

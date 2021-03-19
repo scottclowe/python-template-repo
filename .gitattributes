@@ -10,7 +10,7 @@
 #
 
 # Documents
-# ============
+# =========
 *.doc       diff=astextplain
 *.DOC       diff=astextplain
 *.docx      diff=astextplain
@@ -32,7 +32,7 @@
 *.sql       text
 
 # Graphics
-# ============
+# ========
 *.png       binary
 *.jpg       binary
 *.jpeg      binary

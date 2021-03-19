@@ -84,4 +84,4 @@
 
 # Jupyter Notebooks
 # =================
-*.ipynb diff=ipynb
+*.ipynb     text diff=ipynb

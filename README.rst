@@ -155,7 +155,7 @@ When creating a new repository from this skeleton, these are the steps to follow
 
         python -m pytest --cov=package_name --cov-report term --cov-report xml --cov-config .coveragerc --junitxml=testresults.xml
 
-    - In ``.travis.yml``, `L244 <https://github.com/scottclowe/python-template-repo/blob/master/.travis.yml#L244>`_::
+    - In ``.travis.yml``, `L240 <https://github.com/scottclowe/python-template-repo/blob/master/.travis.yml#L240>`_::
 
         - py.test --flake8 --cov=package_name --cov-report term --cov-report xml --cov-config .coveragerc --junitxml=testresults.xml
 

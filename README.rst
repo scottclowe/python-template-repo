@@ -477,18 +477,25 @@ Or to report a bug or request something new, make an issue.
 
 .. |GHA tests| image:: https://github.com/scottclowe/python-template-repo/workflows/tests/badge.svg
    :target: https://github.com/scottclowe/python-template-repo/actions?query=workflow%3Atests
+   :alt: GHA Status
 .. |Travis build| image:: https://travis-ci.org/scottclowe/python-template-repo.svg?branch=master
    :target: https://travis-ci.org/scottclowe/python-template-repo
+   :alt: Travis Status
 .. |Shippable build| image:: https://img.shields.io/shippable/5674d4821895ca447466a204/master.svg?label=shippable
    :target: https://app.shippable.com/projects/5674d4821895ca447466a204
+   :alt: Shippable Status
 .. |AppVeyor build| image:: https://ci.appveyor.com/api/projects/status/3r2wmghdv5vvcta4/branch/master?svg=true
    :target: https://ci.appveyor.com/project/scottclowe/python-template-repo/branch/master
+   :alt: AppVeyor Status
 .. |Coveralls report| image:: https://coveralls.io/repos/scottclowe/python-template-repo/badge.svg?branch=master&service=github
    :target: https://coveralls.io/github/scottclowe/python-template-repo?branch=master
+   :alt: Coverage
 .. |Codecov report| image:: https://codecov.io/github/scottclowe/python-template-repo/coverage.svg?branch=master
    :target: https://codecov.io/github/scottclowe/python-template-repo?branch=master
+   :alt: Coverage
 .. |pre-commit| image:: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white
    :target: https://github.com/pre-commit/pre-commit
    :alt: pre-commit
 .. |black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :target: https://github.com/psf/black
+   :alt: black

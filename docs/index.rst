@@ -1,5 +1,5 @@
-Template documentation
-======================
+package_name documentation
+==========================
 
 .. toctree::
     :maxdepth: 2

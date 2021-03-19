@@ -7,11 +7,5 @@ package_name documentation
 
     source/readme
     source/packages/modules
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+    py-modindex
+    genindex

@@ -2,11 +2,11 @@ Template documentation
 ======================
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+    :maxdepth: 2
+    :caption: Contents:
 
-   source/readme
-   source/packages/modules
+    source/readme
+    source/packages/modules
 
 
 Indices and tables

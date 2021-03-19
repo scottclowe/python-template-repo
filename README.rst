@@ -1,7 +1,7 @@
 |GHA tests| |Travis build| |AppVeyor build| |Coveralls report| |Codecov report| |pre-commit| |black|
 
-Python Template/Skeleton Repository
-===================================
+Python Template Repository
+==========================
 
 This repository gives a fully-featured template or skeleton for new Python repositories.
 

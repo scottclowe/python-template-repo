@@ -139,27 +139,27 @@ When creating a new repository from this skeleton, these are the steps to follow
 
     Which will make changes in the following places.
 
-    - In ``setup.py``, L69::
+    - In ``setup.py``, `L69 <https://github.com/scottclowe/python-template-repo/blob/master/setup.py#L69>`_::
 
         exec(read('package_name/__meta__.py'), meta)
 
-    - In ``docs/conf.py``, L23::
+    - In ``docs/conf.py``, `L23 <https://github.com/scottclowe/python-template-repo/blob/master/docs/conf.py#L23>`_::
 
         from package_name import __meta__ as meta  # noqa: E402
 
-    - In ``docs/index.rst``, L1::
+    - In ``docs/index.rst``, `L1 <https://github.com/scottclowe/python-template-repo/blob/master/docs/index.rst#L1>`_::
 
         package_name documentation
 
-    - In ``.github/workflows/test.yml``, L62::
+    - In ``.github/workflows/test.yml``, `L62 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/test.yml#L62>`_::
 
         python -m pytest --cov=package_name --cov-report term --cov-report xml --cov-config .coveragerc --junitxml=testresults.xml
 
-    - In ``.travis.yml``, L244::
+    - In ``.travis.yml``, `L244 <https://github.com/scottclowe/python-template-repo/blob/master/.travis.yml#L244>`_::
 
         - py.test --flake8 --cov=package_name --cov-report term --cov-report xml --cov-config .coveragerc --junitxml=testresults.xml
 
-    - In ``.appveyor.yml``, L213::
+    - In ``.appveyor.yml``, `L213 <https://github.com/scottclowe/python-template-repo/blob/master/.appveyor.yml#L213>`_::
 
         - "%CMD_IN_ENV% python -m pytest --cov=package_name --cov-report term --cov-report xml --cov-config .coveragerc --junitxml=testresults.xml"
 
@@ -228,9 +228,9 @@ For a given block of code, a fixed version of black will always produce the same
 However, you should note that different versions of black will produce different outputs.
 If you want to upgrade to a newer version of black, you must change the version everywhere it is specified:
 
-- requirements-dev.txt
-- .pre-commit-config.yaml, L14 and L24
-- .github/workflows/lint.yml, L11
+- requirements-dev.txt, `L1 <https://github.com/scottclowe/python-template-repo/blob/master/requirements-dev.txt#L1>`_
+- .pre-commit-config.yaml, `L14 <https://github.com/scottclowe/python-template-repo/blob/master/.pre-commit-config.yaml#L14>`_ and `L24 <https://github.com/scottclowe/python-template-repo/blob/master/.pre-commit-config.yaml#L24>`_
+- .github/workflows/lint.yml, `L11 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/lint.yml#L11>`_
 
 .. _black: https://github.com/psf/black
 

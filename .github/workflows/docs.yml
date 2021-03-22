@@ -14,6 +14,7 @@ jobs:
         docs-folder: "docs/"
 
     - name: Build PDF docs
+      if: ${{ github.event_name == 'pull_request' }}
       uses: ammaraskar/sphinx-action@master
       with:
         docs-folder: "docs/"
@@ -21,6 +22,8 @@ jobs:
         build-command: "make latexpdf"
 
   docs-windows:
+    if: ${{ github.event_name == 'pull_request' }}
+
     runs-on: windows-latest
 
     steps:

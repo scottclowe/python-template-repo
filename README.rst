@@ -308,8 +308,8 @@ Or you can build pdf documentation::
 On Windows, this becomes::
 
     cd docs
-    make.bat html
-    make.bat latexpdf
+    make html
+    make latexpdf
     cd ..
 
 - Your README.rst will become part of the generated documentation (via the file ``docs/source/readme.rst``).

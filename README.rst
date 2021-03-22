@@ -95,6 +95,7 @@ When creating a new repository from this skeleton, these are the steps to follow
     - *No Documentation!* Delete these files and lines::
 
         rm -rf docs/
+        rm -f .github/workflows/docs.yml
         sed -i '70,74d' .github/workflows/test.yml
 
 #.  Delete the LICENSE file and replace it with a LICENSE file of your own choosing.
@@ -307,8 +308,8 @@ Or you can build pdf documentation::
 On Windows, this becomes::
 
     cd docs
-    make.bat html
-    make.bat latexpdf
+    make html
+    make latexpdf
     cd ..
 
 - Your README.rst will become part of the generated documentation (via the file ``docs/source/readme.rst``).
@@ -408,11 +409,14 @@ Three workflows are included:
 - lint
 - pre-commit
 - test
+- docs
 
 Both the lint and pre-commit workflows check for code style and formatting.
 If you are using the pre-commit hooks, the lint workflow is superfluous and can be deleted.
 
 The test workflow runs the unit tests.
+
+The docs workflow ensures the documentation builds correctly, and presents any errors and warnings very clearly.
 
 
 Other Continuous integration

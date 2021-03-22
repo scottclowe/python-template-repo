@@ -66,8 +66,8 @@ When creating a new repository from this skeleton, these are the steps to follow
 
         sed -i 's/"2\.7", //' .github/workflows/test.yml
         sed -i '/- "2\.7"/d' .travis.yml
-        sed -i '29,36d' .appveyor.yml
-        sed -i '16,23d' .appveyor.yml
+        sed -i '31,40d' .appveyor.yml
+        sed -i '16,24d' .appveyor.yml
 
     - *No GitHub Actions!* Delete this directory::
 

@@ -20,6 +20,7 @@ environment:
     - PYTHON_VERSION: "2.7"
       MINICONDA: C:\Miniconda-x64
       PYTHON_ARCH: "64"
+      SKIPPABLE: "false"
 
     # Versions listed below which are pre-installed on Appveyor will be
     # used when available.
@@ -30,55 +31,70 @@ environment:
     - PYTHON: C:\Python27
       PYTHON_VERSION: "2.7.x"
       PYTHON_ARCH: "32"
+      SKIPPABLE: "true"
 
     - PYTHON: C:\Python27-x64
       PYTHON_VERSION: "2.7.x"
       PYTHON_ARCH: "64"
+      SKIPPABLE: "false"
 
     - PYTHON: C:\Python35
       PYTHON_VERSION: "3.5.x"
       PYTHON_ARCH: "32"
+      SKIPPABLE: "false"
 
     - PYTHON: C:\Python35-x64
       PYTHON_VERSION: "3.5.x"
       PYTHON_ARCH: "64"
+      SKIPPABLE: "true"
 
     - PYTHON: C:\Python36
       PYTHON_VERSION: "3.6.x"
       PYTHON_ARCH: "32"
+      SKIPPABLE: "true"
 
     - PYTHON: C:\Python36-x64
       PYTHON_VERSION: "3.6.x"
       PYTHON_ARCH: "64"
+      SKIPPABLE: "true"
 
     - PYTHON: C:\Python37
       PYTHON_VERSION: "3.7.x"
       PYTHON_ARCH: "32"
+      SKIPPABLE: "true"
 
     - PYTHON: C:\Python37-x64
       PYTHON_VERSION: "3.7.x"
       PYTHON_ARCH: "64"
+      SKIPPABLE: "true"
 
     - PYTHON: C:\Python38
       PYTHON_VERSION: "3.8.x"
       PYTHON_ARCH: "32"
+      SKIPPABLE: "true"
 
     - PYTHON: C:\Python38-x64
       PYTHON_VERSION: "3.8.x"
       PYTHON_ARCH: "64"
+      SKIPPABLE: "true"
 
     - PYTHON: C:\Python39
       PYTHON_VERSION: "3.9.x"
       PYTHON_ARCH: "32"
+      SKIPPABLE: "true"
 
     - PYTHON: C:\Python39-x64
       PYTHON_VERSION: "3.9.x"
       PYTHON_ARCH: "64"
+      SKIPPABLE: "false"
 
 # Run jobs on Windows 32bit and 64bit
 platform:
   - x86
   - x64
+
+# Use two configurations to skip low priority architectures except on release
+configuration: Fast
 
 # Cancel pending jobs after first job failure
 # Only run Python 32bit on 32bit arch, and 64bit on 64bit
@@ -89,6 +105,8 @@ matrix:
       PYTHON_ARCH: "64"
     - platform: x64
       PYTHON_ARCH: "32"
+    - configuration: Fast
+      SKIPPABLE: "true"
 
 # Here we override common configuration
 for:

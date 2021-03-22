@@ -428,6 +428,8 @@ Alternative continuous integration services are also available:
 - `Circle CI <https://circleci.com>`_ (notes on `converting <https://circleci.com/docs/2.0/migrating-from-travis/>`_ from ``.travis.yml``) is another option with a limited `free option <https://circleci.com/pricing/#build-linux>`_.
 
 - `Appveyor <https://www.appveyor.com>`_ is particularly useful, as it provides a Windows-based test suite and can be used to `build Windows wheel files to submit to PyPI <https://github.com/ogrisel/python-appveyor-demo>`_.
+  On release branches and tags, our .appveyor.yml configuration will test on all supported Python versions on both 32-bit and 64-bit Windows, build wheels for each, and save the resulting wheels as artifacts in the Appveyor build report.
+  On other branches, only the oldest and newest Python versions are tested, to save on CI time.
 
 - `Jenkins <https://jenkins.io/>`_ is useful if you want to run your CI test suite locally or on your own private server instead of in the cloud.
 

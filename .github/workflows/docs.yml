@@ -7,6 +7,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: ammaraskar/sphinx-action@master
+
+    - name: Build HTML docs
+      uses: ammaraskar/sphinx-action@master
       with:
         docs-folder: "docs/"
+
+    - name: Build PDF docs
+      uses: ammaraskar/sphinx-action@master
+      with:
+        docs-folder: "docs/"
+        pre-build-command: "apt-get update -y && apt-get install -y latexmk texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended"
+        build-command: "make latexpdf"

@@ -96,11 +96,13 @@ When creating a new repository from this skeleton, these are the steps to follow
 
         rm -rf docs/
         rm -f .github/workflows/docs.yml
-        sed -i '70,74d' .github/workflows/test.yml
+        head -n -5 .github/workflows/test.yml > .github/workflows/test.yml
+        sed -i 's/BUILD_DOCS: "true"/BUILD_DOCS: "false"/' .appveyor.yml
+        sed -i 's/BUILD_DOCS="true"/BUILD_DOCS="false"/' .travis.yml
 
 #.  Delete the LICENSE file and replace it with a LICENSE file of your own choosing.
     If the code is intended to be freely available for anyone to use, use an `open source license <https://choosealicense.com/>`__, such as `MIT License <https://choosealicense.com/licenses/mit/>`__ or `GPLv3 <https://choosealicense.com/licenses/gpl-3.0/>`__.
-    If you don't want your code to be used by anyone else, add a LICENSE file which just says
+    If you don't want your code to be used by anyone else, add a LICENSE file which just says::
 
         Copyright (c) YEAR, YOUR NAME
 

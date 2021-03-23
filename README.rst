@@ -96,7 +96,7 @@ When creating a new repository from this skeleton, these are the steps to follow
 
         rm -rf docs/
         rm -f .github/workflows/docs.yml
-        sed -i '70,74d' .github/workflows/test.yml
+        head -n -5 .github/workflows/test.yml > .github/workflows/test.yml
         sed -i 's/BUILD_DOCS: "true"/BUILD_DOCS: "false"/' .appveyor.yml
         sed -i 's/BUILD_DOCS="true"/BUILD_DOCS="false"/' .travis.yml
 

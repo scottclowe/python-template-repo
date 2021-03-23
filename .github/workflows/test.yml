@@ -18,6 +18,8 @@ jobs:
         include:
           - os: macos-latest
             python-version: "3.9"
+          - os: windows-latest
+            python-version: "3.9"
     env:
       OS: ${{ matrix.os }}
       PYTHON: ${{ matrix.python-version }}
@@ -71,4 +73,6 @@ jobs:
     - name: Build HTML docs
       run: |
         python -m pip install .[docs]
-        make -C docs html
+        cd docs
+        make html
+        cd ..

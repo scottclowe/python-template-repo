@@ -7,6 +7,7 @@ Includes the numpy testing functions as methods.
 import contextlib
 import os.path
 import sys
+import unittest
 from inspect import getsourcefile
 
 import numpy as np
@@ -24,12 +25,6 @@ from numpy.testing import (
     assert_string_equal,
     assert_warns,
 )
-
-# For Python < 2.7, unittest2 is a backport of unittest
-if sys.version_info[:2] <= (2, 6):
-    import unittest2 as unittest
-else:
-    import unittest
 
 
 class BaseTestCase(unittest.TestCase):

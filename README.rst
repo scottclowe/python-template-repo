@@ -400,8 +400,6 @@ The file ``package_name/tests/base_test.py`` provides a class for unit testing w
 
 If you aren't using doing numeric tests, you can delete this from the ``package_name/tests/base_test.py`` file.
 
-There is also support for ``unittest`` on Python 2.6 (via ``unittest2``), in case you still need to support it.
-
 
 GitHub Actions Workflows
 ~~~~~~~~~~~~~~~~~~~~~~~~

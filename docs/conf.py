@@ -111,8 +111,13 @@ extensions = [
     "sphinx.ext.ifconfig",
     "sphinx.ext.viewcode",
     "sphinx.ext.napoleon",
-    "sphinx_search.extension",
 ]
+
+# Some extension features only available on later Python versions
+if sys.version_info >= (3, 6):
+    # Enables search as you type with Elasticsearch on readthedocs.com
+    # but only available on Python 3.6 and above.
+    extensions.append("sphinx_search.extension")
 
 # Napoleon settings
 napoleon_google_docstring = True

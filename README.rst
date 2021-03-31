@@ -404,7 +404,7 @@ If you aren't using doing numeric tests, you can delete this from the ``package_
 GitHub Actions Workflows
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Three workflows are included:
+Four workflows are included:
 
 - lint
 - pre-commit

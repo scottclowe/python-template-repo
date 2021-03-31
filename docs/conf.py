@@ -111,6 +111,7 @@ extensions = [
     "sphinx.ext.ifconfig",
     "sphinx.ext.viewcode",
     "sphinx.ext.napoleon",
+    "sphinx_search.extension",
 ]
 
 # Napoleon settings

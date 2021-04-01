@@ -25,7 +25,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ steps.pip-cache.outputs.dir }}
-          key: ${{ runner.os }}-pip-${{ hashFiles('.gitub/workflows/lint.yml') }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('.gitub/workflows/lint.yaml') }}
           restore-keys: ${{ runner.os }}-pip-
 
       - name: Install flake8

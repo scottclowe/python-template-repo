@@ -54,17 +54,17 @@ When creating a new repository from this skeleton, these are the steps to follow
 
     - *Yes to pre-commit!* You can delete the lint GitHub Action, as it is superfluous with the lint checks which are also in pre-commit::
 
-        rm -f .github/workflows/lint.yml
+        rm -f .github/workflows/lint.yaml
 
     - *No pre-commit!* Delete these files::
 
         rm -f .pre-commit-config.yaml
-        rm -f .github/workflows/pre-commit.yml
+        rm -f .github/workflows/pre-commit.yaml
         sed -i '/^pre-commit/d' requirements-dev.txt
 
     - *No Python 2.7 support!* Delete these items from the unit testing CI::
 
-        sed -i 's/"2\.7", //' .github/workflows/test.yml
+        sed -i 's/"2\.7", //' .github/workflows/test.yaml
         sed -i '/- "2\.7"/d' .travis.yml
         sed -i '31,40d' .appveyor.yml
         sed -i '16,24d' .appveyor.yml
@@ -77,7 +77,7 @@ When creating a new repository from this skeleton, these are the steps to follow
 
         rm -rf .ci/
         rm -rf package_name/tests/
-        rm -f .github/workflows/test.yml
+        rm -f .github/workflows/test.yaml
         rm -f .appveyor.yml
         rm -f .coveragerc
         rm -f .travis.yml
@@ -95,8 +95,8 @@ When creating a new repository from this skeleton, these are the steps to follow
     - *No Documentation!* Delete these files and lines::
 
         rm -rf docs/
-        rm -f .github/workflows/docs.yml
-        head -n -7 .github/workflows/test.yml > .github/workflows/test.yml
+        rm -f .github/workflows/docs.yaml
+        head -n -7 .github/workflows/test.yaml > .github/workflows/test.yaml
         sed -i 's/BUILD_DOCS: "true"/BUILD_DOCS: "false"/' .appveyor.yml
         sed -i 's/BUILD_DOCS="true"/BUILD_DOCS="false"/' .travis.yml
 
@@ -138,7 +138,7 @@ When creating a new repository from this skeleton, these are the steps to follow
         PACKAGE_NAME=your_actual_package_name
         sed -i "s/package_name/$PACKAGE_NAME/" setup.py \
             docs/conf.py docs/index.rst \
-            .github/workflows/test.yml .travis.yml .appveyor.yml
+            .github/workflows/test.yaml .travis.yml .appveyor.yml
 
     Which will make changes in the following places.
 
@@ -154,7 +154,7 @@ When creating a new repository from this skeleton, these are the steps to follow
 
         package_name documentation
 
-    - In ``.github/workflows/test.yml``, `L62 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/test.yml#L62>`_::
+    - In ``.github/workflows/test.yaml``, `L62 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/test.yaml#L62>`_::
 
         python -m pytest --cov=package_name --cov-report term --cov-report xml --cov-config .coveragerc --junitxml=testresults.xml
 
@@ -233,7 +233,7 @@ If you want to upgrade to a newer version of black, you must change the version 
 
 - requirements-dev.txt, `L1 <https://github.com/scottclowe/python-template-repo/blob/master/requirements-dev.txt#L1>`_
 - .pre-commit-config.yaml, `L14 <https://github.com/scottclowe/python-template-repo/blob/master/.pre-commit-config.yaml#L14>`_ and `L24 <https://github.com/scottclowe/python-template-repo/blob/master/.pre-commit-config.yaml#L24>`_
-- .github/workflows/lint.yml, `L11 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/lint.yml#L11>`_
+- .github/workflows/lint.yaml, `L11 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/lint.yaml#L11>`_
 
 .. _black: https://github.com/psf/black
 
@@ -404,7 +404,7 @@ If you aren't using doing numeric tests, you can delete this from the ``package_
 GitHub Actions Workflows
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Three workflows are included:
+Four workflows are included:
 
 - lint
 - pre-commit

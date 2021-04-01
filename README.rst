@@ -18,7 +18,7 @@ When creating a new repository from this skeleton, these are the steps to follow
 
     #.  Alternatively, if your new repository is not going to be on GitHub, you can `download this repo as a zip <https://github.com/scottclowe/python-template-repo/archive/master.zip>`_ and work from there.
         However, you should note that this zip does not include the .gitignore and .gitattributes files (because GitHub automatically ommits them, which use usually helpful but is not for our purposes).
-        Thus you will also need to download the `.gitignore <https://raw.githubusercontent.com/scottclowe/python-template-repo/master/.gitignore>`__ and `.gitattributes <https://raw.githubusercontent.com/scottclowe/python-template-repo/master/.gitattributes>`_ files.
+        Thus you will also need to download the `.gitignore <https://raw.githubusercontent.com/scottclowe/python-template-repo/master/.gitignore>`__ and `.gitattributes <https://raw.githubusercontent.com/scottclowe/python-template-repo/master/.gitattributes>`__ files.
 
         The following shell commands can be used for this purpose on \*nix systems::
 
@@ -85,7 +85,7 @@ When creating a new repository from this skeleton, these are the steps to follow
         head -n -7 .github/workflows/test.yaml > .github/workflows/test.yaml
 
 #.  Delete the LICENSE file and replace it with a LICENSE file of your own choosing.
-    If the code is intended to be freely available for anyone to use, use an `open source license <https://choosealicense.com/>`__, such as `MIT License <https://choosealicense.com/licenses/mit/>`__ or `GPLv3 <https://choosealicense.com/licenses/gpl-3.0/>`__.
+    If the code is intended to be freely available for anyone to use, use an `open source license <https://choosealicense.com/>`_, such as `MIT License <https://choosealicense.com/licenses/mit/>`__ or `GPLv3 <https://choosealicense.com/licenses/gpl-3.0/>`__.
     If you don't want your code to be used by anyone else, add a LICENSE file which just says::
 
         Copyright (c) YEAR, YOUR NAME
@@ -98,11 +98,11 @@ When creating a new repository from this skeleton, these are the steps to follow
 
     name
         The name as it will/would be on PyPI (users will do ``pip install new_name_here``).
-        It is `recommended <PEP-8_>`_ to use a name all lowercase, runtogetherwords but if separators are needed hyphens are preferred over underscores.
+        It is `recommended <PEP-8_>`__ to use a name all lowercase, runtogetherwords but if separators are needed hyphens are preferred over underscores.
 
     path
         The path to the package. What you will rename the directory ``package_name``.
-        `Should be <PEP-8_>`_ the same as ``name``, but now hyphens are disallowed and should be swapped for underscores.
+        `Should be <PEP-8_>`__ the same as ``name``, but now hyphens are disallowed and should be swapped for underscores.
         By default, this is automatically inferred from ``name``.
 
     license
@@ -126,19 +126,19 @@ When creating a new repository from this skeleton, these are the steps to follow
 
     Which will make changes in the following places.
 
-    - In ``setup.py``, `L69 <https://github.com/scottclowe/python-template-repo/blob/master/setup.py#L69>`_::
+    - In ``setup.py``, `L69 <https://github.com/scottclowe/python-template-repo/blob/master/setup.py#L69>`__::
 
         exec(read('package_name/__meta__.py'), meta)
 
-    - In ``docs/conf.py``, `L23 <https://github.com/scottclowe/python-template-repo/blob/master/docs/conf.py#L23>`_::
+    - In ``docs/conf.py``, `L23 <https://github.com/scottclowe/python-template-repo/blob/master/docs/conf.py#L23>`__::
 
         from package_name import __meta__ as meta  # noqa: E402
 
-    - In ``docs/index.rst``, `L1 <https://github.com/scottclowe/python-template-repo/blob/master/docs/index.rst#L1>`_::
+    - In ``docs/index.rst``, `L1 <https://github.com/scottclowe/python-template-repo/blob/master/docs/index.rst#L1>`__::
 
         package_name documentation
 
-    - In ``.github/workflows/test.yaml``, `L78 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/test.yaml#L78>`_, and ``.github/workflows/test-release-candidate.yaml``, `L90 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/test-release-candidate.yaml#L90>`_::
+    - In ``.github/workflows/test.yaml``, `L78 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/test.yaml#L78>`__, and ``.github/workflows/test-release-candidate.yaml``, `L90 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/test-release-candidate.yaml#L90>`__::
 
         python -m pytest --cov=package_name --cov-report term --cov-report xml --cov-config .coveragerc --junitxml=testresults.xml
 
@@ -163,39 +163,50 @@ Features
 
 A `.gitignore`_ file is used specify untracked files which Git should ignore and not try to commit.
 
-Our template's .gitignore file is based on the `GitHub defaults <https://github.com/github/gitignore>`_.
-We use the default `Python .gitignore <https://github.com/github/gitignore/blob/master/Python.gitignore>`_, `Windows .gitignore <https://github.com/github/gitignore/blob/master/Global/Windows.gitignore>`_, `Linux .gitignore <https://github.com/github/gitignore/blob/master/Global/Linux.gitignore>`_, and `Mac OSX .gitignore <https://github.com/github/gitignore/blob/master/Global/macOS.gitignore>`_ concatenated together.
-(Released under `CC0-1.0 <https://github.com/github/gitignore/blob/master/LICENSE>`_.)
+Our template's .gitignore file is based on the `GitHub defaults <default-gitignores_>`_.
+We use the default `Python .gitignore`_, `Windows .gitignore`_, `Linux .gitignore`_, and `Mac OSX .gitignore`_ concatenated together.
+(Released under `CC0-1.0 <https://github.com/github/gitignore/blob/master/LICENSE>`__.)
 
 The Python .gitignore specifications prevent compiled files, packaging and sphinx artifacts, test outputs, etc, from being accidentally committed.
 Even though you may develop on one OS, you might find a helpful contributor working on a different OS suddenly issues you a new PR, hence we include the gitignore for all OSes.
 This makes both their life and yours easier by ignoring their temporary files before they even start working on the project.
 
 .. _.gitignore: https://git-scm.com/docs/gitignore
+.. _default-gitignores: https://github.com/github/gitignore
+.. _Python .gitignore: https://github.com/github/gitignore/blob/master/Python.gitignore
+.. _Windows .gitignore: https://github.com/github/gitignore/blob/master/Global/Windows.gitignore
+.. _Linux .gitignore: https://github.com/github/gitignore/blob/master/Global/Linux.gitignore
+.. _Mac OSX .gitignore: https://github.com/github/gitignore/blob/master/Global/macOS.gitignore
 
 
 .gitattributes
 ~~~~~~~~~~~~~~
 
-The most important reason to include a `.gitattributes <https://git-scm.com/docs/gitattributes>`_ file is to ensure that line endings are normalised, no matter which OS the developer is using.
+The most important reason to include a `.gitattributes`_ file is to ensure that line endings are normalised, no matter which OS the developer is using.
 This is largely achieved by the line::
 
     * text=auto
 
-which `ensures <https://git-scm.com/docs/gitattributes#_text>`_ that all files Git decides contain text have their line endings normalized to LF on checkin.
+which `ensures <gitattributes-text_>`__ that all files Git decides contain text have their line endings normalized to LF on checkin.
 This can cause problems if Git misdiagnoses a file as text when it is not, so we overwrite automatic detection based on file endings for some several common file endings.
 
 Aside from this, we also gitattributes to tell git what kind of diff to generate.
 
-Our template .gitattributes file is based on the `defaults from Alexander Karatarakis <https://github.com/alexkaratarakis/gitattributes>`_.
-We use the `Common gitattributes <https://github.com/alexkaratarakis/gitattributes/blob/master/Common.gitattributes>`_ and `Python gitattributes <https://github.com/alexkaratarakis/gitattributes/blob/master/Python.gitattributes>`_ concatenated together.
-(Released under `MIT License <https://github.com/alexkaratarakis/gitattributes/blob/master/LICENSE.md>`_.)
+Our template .gitattributes file is based on the `defaults from Alexander Karatarakis <alexkaratarakis/gitattributes_>`__.
+We use the `Common .gitattributes`_ and `Python .gitattributes`_ concatenated together.
+(Released under `MIT License <https://github.com/alexkaratarakis/gitattributes/blob/master/LICENSE.md>`__.)
+
+.. _.gitattributes: https://git-scm.com/docs/gitattributes
+.. _gitattributes-text: https://git-scm.com/docs/gitattributes#_text
+.. _alexkaratarakis/gitattributes: https://github.com/alexkaratarakis/gitattributes
+.. _Common .gitattributes: https://github.com/alexkaratarakis/gitattributes/blob/master/Common.gitattributes
+.. _Python .gitattributes: https://github.com/alexkaratarakis/gitattributes/blob/master/Python.gitattributes
 
 
 Black
 ~~~~~
 
-`Black <Black_>`_ is an uncompromising Python code formatter.
+Black_ is an uncompromising Python code formatter.
 By using it, you cede control over minutiae of hand-formatting.
 But in return, you no longer have to worry about formatting your code correctly, since black will handle it.
 Blackened code looks the same for all authors, ensuring consistent code formatting within your project.
@@ -207,9 +218,9 @@ For a given block of code, a fixed version of black will always produce the same
 However, you should note that different versions of black will produce different outputs.
 If you want to upgrade to a newer version of black, you must change the version everywhere it is specified:
 
-- requirements-dev.txt, `L1 <https://github.com/scottclowe/python-template-repo/blob/master/requirements-dev.txt#L1>`_
-- .pre-commit-config.yaml, `L14 <https://github.com/scottclowe/python-template-repo/blob/master/.pre-commit-config.yaml#L14>`_ and `L24 <https://github.com/scottclowe/python-template-repo/blob/master/.pre-commit-config.yaml#L24>`_
-- .github/workflows/lint.yaml, `L19 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/lint.yaml#L19>`_
+- requirements-dev.txt, `L1 <https://github.com/scottclowe/python-template-repo/blob/master/requirements-dev.txt#L1>`__
+- .pre-commit-config.yaml, `L14 <https://github.com/scottclowe/python-template-repo/blob/master/.pre-commit-config.yaml#L14>`__ and `L24 <https://github.com/scottclowe/python-template-repo/blob/master/.pre-commit-config.yaml#L24>`__
+- .github/workflows/lint.yaml, `L19 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/lint.yaml#L19>`__
 
 .. _black: https://github.com/psf/black
 
@@ -297,7 +308,7 @@ On Windows, this becomes::
   Our ``docs/conf.py`` is also set up to automatically call autodoc whenever it is run, and the output files which it generates are on the gitignore list.
   This means you will automatically generate a fresh API description which exactly matches your current docstrings every time you generate the documentation.
 
-- Docstrings can be formatted in plain reST_, or using the `numpy format <https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_numpy.html#example-numpy-style-python-docstrings>`_ (recommended), or `Google format <https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html#example-google>`_.
+- Docstrings can be formatted in plain reST_, or using the `numpy format`_ (recommended), or `Google format`_.
   Support for numpy and Google formats is through the napoleon_ extension (which we have enabled by default).
 
 - You can reference functions in the python core and common packages and they will automatically be hyperlinked to the appropriate documentation in your own documentation.
@@ -308,8 +319,10 @@ On Windows, this becomes::
   Alternative themes can be found at writethedocs_, with further options at sphinx-themes_
 
 .. _autodoc: http://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html
+.. _Google format: https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html#example-google
 .. _intersphinx: http://www.sphinx-doc.org/en/master/usage/extensions/intersphinx.html
 .. _napoleon: https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html
+.. _numpy format: https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_numpy.html#example-numpy-style-python-docstrings
 .. _Sphinx: https://www.sphinx-doc.org/
 .. _sphinx-themes: https://sphinx-themes.org
 .. _readthedocs: https://readthedocs.org/
@@ -322,12 +335,13 @@ Consolidated metadata
 
 Package metadata is consolidated into one place, the file ``package_name/__meta__.py``.
 You only have to write the metadata once in this centralised location, and everything else (packaging, documentation, etc) picks it up from there.
-This is similar to `single-sourcing the package version <https://packaging.python.org/guides/single-sourcing-package-version/>`_, but for all metadata.
+This is similar to `single-sourcing the package version`_, but for all metadata.
 
 This information is available to end-users with ``import package_name; print(package_name.__meta__)``.
 The version information is also accessible at ``package_name.__version__``, as per PEP-396_.
 
 .. _PEP-396: https://www.python.org/dev/peps/pep-0396/#specification
+.. _single-sourcing the package version: https://packaging.python.org/guides/single-sourcing-package-version/
 
 
 setup.py
@@ -366,7 +380,10 @@ Another extra named ``all`` captures all of these dependencies.
 Your README file is automatically included in the metadata when you use setup.py build wheels for PyPI.
 The rest of the metadata comes from ``package_name/__meta__.py``.
 
-Our template setup.py file is based on the `example from setuptools documentation <https://setuptools.readthedocs.io/en/latest/setuptools.html#basic-use>`_, and the comprehensive example from `Kenneth Reitz <https://github.com/kennethreitz/setup.py>`_ (released under `MIT License <https://github.com/kennethreitz/setup.py/blob/master/LICENSE>`_), with further features added.
+Our template setup.py file is based on the `example from setuptools documentation <setuptools-setup.py_>`_, and the comprehensive example from `Kenneth Reitz <kennethreitz/setup.py_>`_ (released under `MIT License <https://github.com/kennethreitz/setup.py/blob/master/LICENSE>`__), with further features added.
+
+.. _kennethreitz/setup.py: https://github.com/kennethreitz/setup.py
+.. _setuptools-setup.py: https://setuptools.readthedocs.io/en/latest/setuptools.html#basic-use
 
 
 Unit tests

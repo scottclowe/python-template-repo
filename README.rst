@@ -233,7 +233,7 @@ If you want to upgrade to a newer version of black, you must change the version 
 
 - requirements-dev.txt, `L1 <https://github.com/scottclowe/python-template-repo/blob/master/requirements-dev.txt#L1>`_
 - .pre-commit-config.yaml, `L14 <https://github.com/scottclowe/python-template-repo/blob/master/.pre-commit-config.yaml#L14>`_ and `L24 <https://github.com/scottclowe/python-template-repo/blob/master/.pre-commit-config.yaml#L24>`_
-- .github/workflows/lint.yaml, `L11 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/lint.yaml#L11>`_
+- .github/workflows/lint.yaml, `L19 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/lint.yaml#L19>`_
 
 .. _black: https://github.com/psf/black
 

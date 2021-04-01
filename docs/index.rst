@@ -1,6 +1,3 @@
-package_name documentation
-==========================
-
 .. include:: ../README.rst
     :start-line: 2
 

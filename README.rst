@@ -64,7 +64,8 @@ When creating a new repository from this skeleton, these are the steps to follow
 
     - *No Python 2.7 support!* Delete these items from the unit testing CI::
 
-        sed -i 's/"2\.7", //' .github/workflows/test.yaml
+        sed -i 's/"2\.7", //' .github/workflows/test*.yaml
+        sed -i '"2\.7"/"3\.5"/' .github/workflows/test*.yaml
         sed -i '/- "2\.7"/d' .travis.yml
         sed -i '31,40d' .appveyor.yml
         sed -i '16,24d' .appveyor.yml
@@ -77,7 +78,7 @@ When creating a new repository from this skeleton, these are the steps to follow
 
         rm -rf .ci/
         rm -rf package_name/tests/
-        rm -f .github/workflows/test.yaml
+        rm -f .github/workflows/test*.yaml
         rm -f .appveyor.yml
         rm -f .coveragerc
         rm -f .travis.yml
@@ -97,6 +98,7 @@ When creating a new repository from this skeleton, these are the steps to follow
         rm -rf docs/
         rm -f .github/workflows/docs.yaml
         head -n -7 .github/workflows/test.yaml > .github/workflows/test.yaml
+        head -n -7 .github/workflows/test-release-candidate.yaml > .github/workflows/test-release-candidate.yaml
         sed -i 's/BUILD_DOCS: "true"/BUILD_DOCS: "false"/' .appveyor.yml
         sed -i 's/BUILD_DOCS="true"/BUILD_DOCS="false"/' .travis.yml
 
@@ -138,7 +140,7 @@ When creating a new repository from this skeleton, these are the steps to follow
         PACKAGE_NAME=your_actual_package_name
         sed -i "s/package_name/$PACKAGE_NAME/" setup.py \
             docs/conf.py docs/index.rst \
-            .github/workflows/test.yaml .travis.yml .appveyor.yml
+            .github/workflows/test*.yaml .travis.yml .appveyor.yml
 
     Which will make changes in the following places.
 
@@ -154,7 +156,7 @@ When creating a new repository from this skeleton, these are the steps to follow
 
         package_name documentation
 
-    - In ``.github/workflows/test.yaml``, `L78 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/test.yaml#L78>`_::
+    - In ``.github/workflows/test.yaml``, `L78 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/test.yaml#L78>`_, and ``.github/workflows/test-release-candidate.yaml``, `L89 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/test-release-candidate.yaml#L89>`_::
 
         python -m pytest --cov=package_name --cov-report term --cov-report xml --cov-config .coveragerc --junitxml=testresults.xml
 
@@ -404,19 +406,24 @@ If you aren't using doing numeric tests, you can delete this from the ``package_
 GitHub Actions Workflows
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Four workflows are included:
+Five workflows are included:
 
+- docs
 - lint
 - pre-commit
 - test
-- docs
+- release candidate tests
+
+The docs workflow ensures the documentation builds correctly, and presents any errors and warnings nicely as annotations.
 
 Both the lint and pre-commit workflows check for code style and formatting.
 If you are using the pre-commit hooks, the lint workflow is superfluous and can be deleted.
 
 The test workflow runs the unit tests.
 
-The docs workflow ensures the documentation builds correctly, and presents any errors and warnings very clearly.
+The release candidate tests workflow runs the unit tests on more Python versions and operating systems than the regular test workflow.
+This runs on all tags, plus pushes and PRs to branches named like "v1.2.x", etc.
+Wheels are built for all the tested systems, and stored as artifacts for your convenience when shipping a new distribution.
 
 
 Other Continuous integration

@@ -420,8 +420,6 @@ Alternative continuous integration services are also available:
 
 - `Travis CI <https://travis-ci.org/>`_ offers a free trial service.
 
-- Shippable offers a `limited free service for both open and private projects <http://docs.shippable.com/getting-started/billing-overview/>`_.
-
 - `Circle CI <https://circleci.com>`_ is another option with a limited `free option <https://circleci.com/pricing/#build-linux>`_.
 
 - `Appveyor <https://www.appveyor.com>`_ useful for testing on Windows.

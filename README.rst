@@ -1,4 +1,4 @@
-|GHA tests| |Travis build| |AppVeyor build| |Coveralls report| |Codecov report| |pre-commit| |black|
+|GHA tests| |Travis build| |AppVeyor build| |Codecov report| |pre-commit| |black|
 
 Python Template Repository
 ==========================
@@ -510,9 +510,6 @@ Or to report a bug or request something new, make an issue.
 .. |AppVeyor build| image:: https://ci.appveyor.com/api/projects/status/3r2wmghdv5vvcta4/branch/master?svg=true
    :target: https://ci.appveyor.com/project/scottclowe/python-template-repo/branch/master
    :alt: AppVeyor Status
-.. |Coveralls report| image:: https://coveralls.io/repos/scottclowe/python-template-repo/badge.svg?branch=master&service=github
-   :target: https://coveralls.io/github/scottclowe/python-template-repo?branch=master
-   :alt: Coverage
 .. |Codecov report| image:: https://codecov.io/github/scottclowe/python-template-repo/coverage.svg?branch=master
    :target: https://codecov.io/github/scottclowe/python-template-repo?branch=master
    :alt: Coverage

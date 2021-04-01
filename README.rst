@@ -154,7 +154,7 @@ When creating a new repository from this skeleton, these are the steps to follow
 
         package_name documentation
 
-    - In ``.github/workflows/test.yaml``, `L65 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/test.yaml#L65>`_::
+    - In ``.github/workflows/test.yaml``, `L78 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/test.yaml#L78>`_::
 
         python -m pytest --cov=package_name --cov-report term --cov-report xml --cov-config .coveragerc --junitxml=testresults.xml
 

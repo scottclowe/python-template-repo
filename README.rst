@@ -430,23 +430,6 @@ Alternative continuous integration services are also available:
 - `Jenkins <https://jenkins.io/>`_ is useful if you want to run your CI test suite locally or on your own private server instead of in the cloud.
 
 
-Coverage
-~~~~~~~~
-
-The configuration file ``.coveragerc`` will ensure the coverage report ignores the test directory.
-
-Coverage can also be continuously tracked with cloud services which are free for private repositories.
-
-One can also get continuous integration for code quality review:
-
-- `Codacy <https://www.codacy.com/>`_ (free for open source).
-- `CodeBeat <https://codebeat.co/>`_ (free for open source).
-- `SonarCloud <https://sonarcloud.io/>`_ (free for open source); `SonarQube <https://www.sonarqube.org/>`_ as a cloud service.
-- `Scrutinizer <https://scrutinizer-ci.com/>`_ (free for open source).
-- `GitPrime <https://www.gitprime.com/>`_ (free for open source).
-- `Code Climate <https://codeclimate.com/>`_ (no free option).
-
-
 Contributing
 ------------
 

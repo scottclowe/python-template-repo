@@ -436,10 +436,10 @@ With minimal tweaks, this job can be changed to push to PyPI for real, but be ca
 .. _testpypi: https://test.pypi.org/
 
 
-Other Continuous integration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Other CI/CD options
+~~~~~~~~~~~~~~~~~~~
 
-Alternative continuous integration services are also available:
+Alternative CI/CD services are also available for running tests.
 
 - `Travis CI <https://travis-ci.org/>`_ offers a free trial service.
 

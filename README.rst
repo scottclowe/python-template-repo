@@ -73,7 +73,6 @@ When creating a new repository from this skeleton, these are the steps to follow
 
     - *No unit testing!* Delete these files::
 
-        rm -rf .ci/
         rm -rf package_name/tests/
         rm -f .github/workflows/test*.yaml
         rm -f .coveragerc

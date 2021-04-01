@@ -59,6 +59,9 @@ jobs:
         # exit-zero treats all errors as warnings
         python -m flake8 . --count --exit-zero --statistics
 
+    - name: Debug environment
+      run: python -m pip freeze
+
     - name: Test with pytest
       run: |
         python -m pytest --cov=package_name --cov-report term --cov-report xml --cov-config .coveragerc --junitxml=testresults.xml

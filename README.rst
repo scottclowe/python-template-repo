@@ -397,27 +397,33 @@ If you aren't using doing numeric tests, you can delete this from the ``package_
 GitHub Actions Workflows
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
+GitHub features the ability to run various workflows whenever code is pushed to the repo or a pull request is opened.
+This is one service of several services that can be used to continually run the unit tests and ensure changes can be integrated together without issue.
+It is also useful to ensure that style guides are adhered to
+
 Five workflows are included:
 
-- docs
-- lint
-- pre-commit
-- test
-- release candidate tests
+docs
+    The docs workflow ensures the documentation builds correctly, and presents any errors and warnings nicely as annotations.
 
-The docs workflow ensures the documentation builds correctly, and presents any errors and warnings nicely as annotations.
+pre-commit
+    Runs the pre-commit stack.
+    Ensures all contributions are compliant, even if a contributor has not set up pre-commit on their local machine.
 
-Both the lint and pre-commit workflows check for code style and formatting.
-If you are using the pre-commit hooks, the lint workflow is superfluous and can be deleted.
+lint
+    Checks the code uses the black_ style and tests for flake8_ errors.
+    If you are using the pre-commit hooks, the lint workflow is superfluous and can be deleted.
 
-The test workflow runs the unit tests, and pushes coverage reports to Codecov_.
-You'll need to sign up at Codecov_ with your GitHub account in order for this integration to work.
+test
+    Runs the unit tests, and pushes coverage reports to Codecov_.
+    You'll need to sign up at Codecov_ with your GitHub account in order for this integration to work.
 
-The release candidate tests workflow runs the unit tests on more Python versions and operating systems than the regular test workflow.
-This runs on all tags, plus pushes and PRs to branches named like "v1.2.x", etc.
-Wheels are built for all the tested systems, and stored as artifacts for your convenience when shipping a new distribution.
+release candidate tests
+    The release candidate tests workflow runs the unit tests on more Python versions and operating systems than the regular test workflow.
+    This runs on all tags, plus pushes and PRs to branches named like "v1.2.x", etc.
+    Wheels are built for all the tested systems, and stored as artifacts for your convenience when shipping a new distribution.
 
-If you enable the ``publish`` job on the release candidate tests workflow, you can push built release candidates to the `Test PyPI <testpypi_>`_ server.
+If you enable the ``publish`` job on the release candidate tests workflow, you can also push built release candidates to the `Test PyPI <testpypi_>`_ server.
 For this to work, you'll also need to add your Test `PyPI API token <pypi-api-token_>`_ to your `GitHub secrets <github-secrets_>`_.
 Checkout the `pypa/gh-action-pypi-publish <pypi-publish_>`_ GitHub action, and `PyPI's guide on distributing from CI <ci-packaging_>`_ for more information on this.
 With minimal tweaks, this job can be changed to push to PyPI for real, but be careful with this since releases on PyPI can not easily be yanked.

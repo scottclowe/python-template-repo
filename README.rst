@@ -393,7 +393,8 @@ The docs workflow ensures the documentation builds correctly, and presents any e
 Both the lint and pre-commit workflows check for code style and formatting.
 If you are using the pre-commit hooks, the lint workflow is superfluous and can be deleted.
 
-The test workflow runs the unit tests.
+The test workflow runs the unit tests, and pushes coverage reports to Codecov_.
+You'll need to sign up at Codecov_ with your GitHub account in order for this integration to work.
 
 The release candidate tests workflow runs the unit tests on more Python versions and operating systems than the regular test workflow.
 This runs on all tags, plus pushes and PRs to branches named like "v1.2.x", etc.
@@ -404,6 +405,7 @@ For this to work, you'll also need to add your Test `PyPI API token <pypi-api-to
 Checkout the `pypa/gh-action-pypi-publish <pypi-publish_>`_ GitHub action, and `PyPI's guide on distributing from CI <ci-packaging_>`_ for more information on this.
 With minimal tweaks, this job can be changed to push to PyPI for real, but be careful with this since releases on PyPI can not easily be yanked.
 
+.. _Codecov: https://codecov.io/
 .. _ci-packaging: https://packaging.python.org/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/
 .. _github-secrets: https://docs.github.com/en/actions/reference/encrypted-secrets
 .. _pypi-api-token: https://pypi.org/help/#apitoken

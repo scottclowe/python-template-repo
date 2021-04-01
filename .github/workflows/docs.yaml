@@ -1,9 +1,15 @@
+# Docs workflow
+#
+# Ensures that the docs can be built with sphinx.
+# - On every push and PR, checks the HTML documentation builds on linux.
+# - On every PR and tag, checks the documentation builds as a PDF on linux.
+
 name: docs
 
 on: [push, pull_request]
 
 jobs:
-  docs-linux:
+  docs-html:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -13,46 +19,24 @@ jobs:
       with:
         docs-folder: "docs/"
 
+  docs-pdf:
+    if: |
+      github.event_name == 'pull_request' ||
+      startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
     - name: Build PDF docs
-      if: ${{ github.event_name == 'pull_request' }}
       uses: ammaraskar/sphinx-action@master
       with:
         docs-folder: "docs/"
         pre-build-command: "apt-get update -y && apt-get install -y latexmk texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended"
         build-command: "make latexpdf"
 
-  docs-windows:
-    if: ${{ github.event_name == 'pull_request' }}
-
-    runs-on: windows-latest
-
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Set up Python
-      uses: actions/setup-python@v2
-
-    - name: System information
-      run: python .github/workflows/system_info.py
-
-    - name: Get pip cache dir
-      id: pip-cache
-      run: echo "::set-output name=dir::$(pip cache dir)"
-
-    - name: pip cache
-      uses: actions/cache@v2
+    - uses: actions/upload-artifact@v2
+      if: startsWith(github.ref, 'refs/tags')
       with:
-        path: ${{ steps.pip-cache.outputs.dir }}
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements*.txt') }}
-        restore-keys: ${{ runner.os }}-pip-
-
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        python -m pip install .[docs]
-
-    - name: Build HTML docs
-      run: |
-        cd docs
-        make html
-        cd ..
+        name: Documentation
+        path: docs/_build/latex/*.pdf
+        retention-days: 7

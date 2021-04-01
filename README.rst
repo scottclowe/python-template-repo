@@ -64,7 +64,8 @@ When creating a new repository from this skeleton, these are the steps to follow
 
     - *No Python 2.7 support!* Delete these items from the unit testing CI::
 
-        sed -i 's/"2\.7", //' .github/workflows/test.yaml
+        sed -i 's/"2\.7", //' .github/workflows/test*.yaml
+        sed -i '"2\.7"/"3\.5"/' .github/workflows/test*.yaml
         sed -i '/- "2\.7"/d' .travis.yml
         sed -i '31,40d' .appveyor.yml
         sed -i '16,24d' .appveyor.yml
@@ -77,7 +78,7 @@ When creating a new repository from this skeleton, these are the steps to follow
 
         rm -rf .ci/
         rm -rf package_name/tests/
-        rm -f .github/workflows/test.yaml
+        rm -f .github/workflows/test*.yaml
         rm -f .appveyor.yml
         rm -f .coveragerc
         rm -f .travis.yml
@@ -138,7 +139,7 @@ When creating a new repository from this skeleton, these are the steps to follow
         PACKAGE_NAME=your_actual_package_name
         sed -i "s/package_name/$PACKAGE_NAME/" setup.py \
             docs/conf.py docs/index.rst \
-            .github/workflows/test.yaml .travis.yml .appveyor.yml
+            .github/workflows/test*.yaml .travis.yml .appveyor.yml
 
     Which will make changes in the following places.
 
@@ -154,7 +155,7 @@ When creating a new repository from this skeleton, these are the steps to follow
 
         package_name documentation
 
-    - In ``.github/workflows/test.yaml``, `L62 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/test.yaml#L62>`_::
+    - In ``.github/workflows/test.yaml``, `L78 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/test.yaml#L78>`_, and ``.github/workflows/test-release-candidate.yaml``, `L90 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/test-release-candidate.yaml#L90>`_::
 
         python -m pytest --cov=package_name --cov-report term --cov-report xml --cov-config .coveragerc --junitxml=testresults.xml
 
@@ -233,7 +234,7 @@ If you want to upgrade to a newer version of black, you must change the version 
 
 - requirements-dev.txt, `L1 <https://github.com/scottclowe/python-template-repo/blob/master/requirements-dev.txt#L1>`_
 - .pre-commit-config.yaml, `L14 <https://github.com/scottclowe/python-template-repo/blob/master/.pre-commit-config.yaml#L14>`_ and `L24 <https://github.com/scottclowe/python-template-repo/blob/master/.pre-commit-config.yaml#L24>`_
-- .github/workflows/lint.yaml, `L11 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/lint.yaml#L11>`_
+- .github/workflows/lint.yaml, `L19 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/lint.yaml#L19>`_
 
 .. _black: https://github.com/psf/black
 
@@ -404,19 +405,35 @@ If you aren't using doing numeric tests, you can delete this from the ``package_
 GitHub Actions Workflows
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Four workflows are included:
+Five workflows are included:
 
+- docs
 - lint
 - pre-commit
 - test
-- docs
+- release candidate tests
+
+The docs workflow ensures the documentation builds correctly, and presents any errors and warnings nicely as annotations.
 
 Both the lint and pre-commit workflows check for code style and formatting.
 If you are using the pre-commit hooks, the lint workflow is superfluous and can be deleted.
 
 The test workflow runs the unit tests.
 
-The docs workflow ensures the documentation builds correctly, and presents any errors and warnings very clearly.
+The release candidate tests workflow runs the unit tests on more Python versions and operating systems than the regular test workflow.
+This runs on all tags, plus pushes and PRs to branches named like "v1.2.x", etc.
+Wheels are built for all the tested systems, and stored as artifacts for your convenience when shipping a new distribution.
+
+If you enable the ``publish`` job on the release candidate tests workflow, you can push built release candidates to the `Test PyPI <testpypi_>`_ server.
+For this to work, you'll also need to add your Test `PyPI API token <pypi-api-token_>`_ to your `GitHub secrets <github-secrets_>`_.
+Checkout the `pypa/gh-action-pypi-publish <pypi-publish_>`_ GitHub action, and `PyPI's guide on distributing from CI <ci-packaging_>`_ for more information on this.
+With minimal tweaks, this job can be changed to push to PyPI for real, but be careful with this since releases on PyPI can not easily be yanked.
+
+.. _ci-packaging: https://packaging.python.org/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/
+.. _github-secrets: https://docs.github.com/en/actions/reference/encrypted-secrets
+.. _pypi-api-token: https://pypi.org/help/#apitoken
+.. _pypi-publish: https://github.com/pypa/gh-action-pypi-publish
+.. _testpypi: https://test.pypi.org/
 
 
 Other Continuous integration

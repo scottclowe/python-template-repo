@@ -1,3 +1,11 @@
+# Lint workflow
+#
+# Ensures the code is formatted correctly.
+# - On every push and PR, checks the code style conforms to the black format.
+# - On every push and PR, checks the code is both PEP8 compliant and passes the
+#   pyflakes error detector (both tests done with flake8). We use some flake8
+#   plugins to check some extra things, such as docstring formatting.
+
 name: lint
 
 on: [push, pull_request]

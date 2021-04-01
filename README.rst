@@ -1,4 +1,4 @@
-|GHA tests| |Travis build| |AppVeyor build| |Codecov report| |pre-commit| |black|
+|GHA tests| |AppVeyor build| |Codecov report| |pre-commit| |black|
 
 Python Template Repository
 ==========================
@@ -66,7 +66,6 @@ When creating a new repository from this skeleton, these are the steps to follow
 
         sed -i 's/"2\.7", //' .github/workflows/test*.yaml
         sed -i '"2\.7"/"3\.5"/' .github/workflows/test*.yaml
-        sed -i '/- "2\.7"/d' .travis.yml
         sed -i '31,40d' .appveyor.yml
         sed -i '16,24d' .appveyor.yml
 
@@ -81,12 +80,7 @@ When creating a new repository from this skeleton, these are the steps to follow
         rm -f .github/workflows/test*.yaml
         rm -f .appveyor.yml
         rm -f .coveragerc
-        rm -f .travis.yml
         rm -f requirements-test.txt
-
-    - *No Travis!* Delete this file::
-
-        rm -f .travis.yml
 
     - *No Appveyor!* Delete these files::
 
@@ -99,7 +93,6 @@ When creating a new repository from this skeleton, these are the steps to follow
         rm -f .github/workflows/docs.yaml
         head -n -7 .github/workflows/test.yaml > .github/workflows/test.yaml
         sed -i 's/BUILD_DOCS: "true"/BUILD_DOCS: "false"/' .appveyor.yml
-        sed -i 's/BUILD_DOCS="true"/BUILD_DOCS="false"/' .travis.yml
 
 #.  Delete the LICENSE file and replace it with a LICENSE file of your own choosing.
     If the code is intended to be freely available for anyone to use, use an `open source license <https://choosealicense.com/>`__, such as `MIT License <https://choosealicense.com/licenses/mit/>`__ or `GPLv3 <https://choosealicense.com/licenses/gpl-3.0/>`__.
@@ -139,7 +132,7 @@ When creating a new repository from this skeleton, these are the steps to follow
         PACKAGE_NAME=your_actual_package_name
         sed -i "s/package_name/$PACKAGE_NAME/" setup.py \
             docs/conf.py docs/index.rst \
-            .github/workflows/test*.yaml .travis.yml .appveyor.yml
+            .github/workflows/test*.yaml .appveyor.yml
 
     Which will make changes in the following places.
 
@@ -158,10 +151,6 @@ When creating a new repository from this skeleton, these are the steps to follow
     - In ``.github/workflows/test.yaml``, `L78 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/test.yaml#L78>`_, and ``.github/workflows/test-release-candidate.yaml``, `L90 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/test-release-candidate.yaml#L90>`_::
 
         python -m pytest --cov=package_name --cov-report term --cov-report xml --cov-config .coveragerc --junitxml=testresults.xml
-
-    - In ``.travis.yml``, `L240 <https://github.com/scottclowe/python-template-repo/blob/master/.travis.yml#L240>`_::
-
-        - py.test --flake8 --cov=package_name --cov-report term --cov-report xml --cov-config .coveragerc --junitxml=testresults.xml
 
     - In ``.appveyor.yml``, `L213 <https://github.com/scottclowe/python-template-repo/blob/master/.appveyor.yml#L213>`_::
 
@@ -439,34 +428,19 @@ With minimal tweaks, this job can be changed to push to PyPI for real, but be ca
 Other Continuous integration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The file ``.travis.yml`` provides configuration for continuous integration *both* on `Travis CI <https://travis-ci.org/>`_  (`documentation <https://docs.travis-ci.com/user/languages/python/>`_) and on `Shippable <https://shippable.com>`_ (`documentation <http://docs.shippable.com/ci/python-template-repo>`_)
-Note that Shippable has an API aligned with Travis and `operates from <https://docs.platformio.org/en/latest/ci/shippable.html>`_ the ``.travis.yml`` if there is no ``shippable.yml`` configuration file.
-
 Alternative continuous integration services are also available:
+
+- `Travis CI <https://travis-ci.org/>`_ offers a free trial service.
 
 - Shippable offers a `limited free service for both open and private projects <http://docs.shippable.com/getting-started/billing-overview/>`_.
 
-- `Circle CI <https://circleci.com>`_ (notes on `converting <https://circleci.com/docs/2.0/migrating-from-travis/>`_ from ``.travis.yml``) is another option with a limited `free option <https://circleci.com/pricing/#build-linux>`_.
+- `Circle CI <https://circleci.com>`_ is another option with a limited `free option <https://circleci.com/pricing/#build-linux>`_.
 
 - `Appveyor <https://www.appveyor.com>`_ is particularly useful, as it provides a Windows-based test suite and can be used to `build Windows wheel files to submit to PyPI <https://github.com/ogrisel/python-appveyor-demo>`_.
   On release branches and tags, our .appveyor.yml configuration will test on all supported Python versions on both 32-bit and 64-bit Windows, build wheels for each, and save the resulting wheels as artifacts in the Appveyor build report.
   On other branches, only the oldest and newest Python versions are tested, to save on CI time.
 
 - `Jenkins <https://jenkins.io/>`_ is useful if you want to run your CI test suite locally or on your own private server instead of in the cloud.
-
-Our ``.travis.yml`` file is configured to run flake8_ as part of the tests.
-If you prefer to split the unit tests from code style, automated code style review can alternatively be performed with `Stickler <https://stickler-ci.com>`_ (free for open source) instead.
-
-As part of the CI test suite, the documentation will also be generated, so tests will fail if there is a problem with the documentation generation.
-
-Also, we include the option to test the dependencies at their *oldest* version, in addition to the newest version (which is the default and is normally run).
-This is done by setting all entries in ``requirements*.txt`` which are ``>=x.y.z`` to be ``~=x.y.z``.
-This option is enabled by setting the environment variable ``USE_OLDEST_DEPENDENCIES=false``.
-By default, jobs are spawned both with ``USE_OLDEST_DEPENDENCIES=false`` and ``USE_OLDEST_DEPENDENCIES=true``, for each Python version.
-
-For scientific packages, installing numpy and scipy through pip can be much slower than installing them through conda.
-Consequently, we use a miniconda environment and conda-install numpy and scipy before pip-installing the other packages.
-To set other packages to prefer conda over pip, add them to the space-delimited variable ``PACKAGES_TO_CONDA``.
 
 
 Coverage
@@ -475,7 +449,6 @@ Coverage
 The configuration file ``.coveragerc`` will ensure the coverage report ignores the test directory.
 
 Coverage can also be continuously tracked with cloud services which are free for private repositories.
-Our ``.travis.yml`` file is configured to push coverage to `CodeCov <https://codecov.io/>`_ and `Coveralls <https://coveralls.io/>`_.
 
 One can also get continuous integration for code quality review:
 
@@ -501,9 +474,6 @@ Or to report a bug or request something new, make an issue.
 .. |GHA tests| image:: https://github.com/scottclowe/python-template-repo/workflows/tests/badge.svg
    :target: https://github.com/scottclowe/python-template-repo/actions?query=workflow%3Atests
    :alt: GHA Status
-.. |Travis build| image:: https://travis-ci.org/scottclowe/python-template-repo.svg?branch=master
-   :target: https://travis-ci.org/scottclowe/python-template-repo
-   :alt: Travis Status
 .. |Shippable build| image:: https://img.shields.io/shippable/5674d4821895ca447466a204/master.svg?label=shippable
    :target: https://app.shippable.com/projects/5674d4821895ca447466a204
    :alt: Shippable Status

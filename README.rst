@@ -98,7 +98,6 @@ When creating a new repository from this skeleton, these are the steps to follow
         rm -rf docs/
         rm -f .github/workflows/docs.yaml
         head -n -7 .github/workflows/test.yaml > .github/workflows/test.yaml
-        head -n -7 .github/workflows/test-release-candidate.yaml > .github/workflows/test-release-candidate.yaml
         sed -i 's/BUILD_DOCS: "true"/BUILD_DOCS: "false"/' .appveyor.yml
         sed -i 's/BUILD_DOCS="true"/BUILD_DOCS="false"/' .travis.yml
 
@@ -156,7 +155,7 @@ When creating a new repository from this skeleton, these are the steps to follow
 
         package_name documentation
 
-    - In ``.github/workflows/test.yaml``, `L78 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/test.yaml#L78>`_, and ``.github/workflows/test-release-candidate.yaml``, `L89 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/test-release-candidate.yaml#L89>`_::
+    - In ``.github/workflows/test.yaml``, `L78 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/test.yaml#L78>`_, and ``.github/workflows/test-release-candidate.yaml``, `L90 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/test-release-candidate.yaml#L90>`_::
 
         python -m pytest --cov=package_name --cov-report term --cov-report xml --cov-config .coveragerc --junitxml=testresults.xml
 
@@ -424,6 +423,17 @@ The test workflow runs the unit tests.
 The release candidate tests workflow runs the unit tests on more Python versions and operating systems than the regular test workflow.
 This runs on all tags, plus pushes and PRs to branches named like "v1.2.x", etc.
 Wheels are built for all the tested systems, and stored as artifacts for your convenience when shipping a new distribution.
+
+If you enable the ``publish`` job on the release candidate tests workflow, you can push built release candidates to the `Test PyPI <testpypi_>`_ server.
+For this to work, you'll also need to add your Test `PyPI API token <pypi-api-token_>`_ to your `GitHub secrets <github-secrets_>`_.
+Checkout the `pypa/gh-action-pypi-publish <pypi-publish_>`_ GitHub action, and `PyPI's guide on distributing from CI <ci-packaging_>`_ for more information on this.
+With minimal tweaks, this job can be changed to push to PyPI for real, but be careful with this since releases on PyPI can not easily be yanked.
+
+.. _ci-packaging: https://packaging.python.org/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/
+.. _github-secrets: https://docs.github.com/en/actions/reference/encrypted-secrets
+.. _pypi-api-token: https://pypi.org/help/#apitoken
+.. _pypi-publish: https://github.com/pypa/gh-action-pypi-publish
+.. _testpypi: https://test.pypi.org/
 
 
 Other Continuous integration

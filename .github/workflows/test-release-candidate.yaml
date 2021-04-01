@@ -10,7 +10,8 @@
 #   very latest versions of dependencies, even if this workflow ran recently.
 #
 # In addition, the package is built as a wheel on each OS/Python job, and these
-# are stored as artifacts to use for your distribution process.
+# are stored as artifacts to use for your distribution process. There is an
+# extra job (disabled by default) which can be enabled to push to Test PyPI.
 
 name: release candidate tests
 
@@ -113,3 +114,34 @@ jobs:
         cd docs
         make html
         cd ..
+
+  publish:
+    # Disabled by default
+    if: |
+      false &&
+      startsWith(github.ref, 'refs/tags/')
+    needs: test-build
+
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Download wheel artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: wheel-*
+        path: dist/
+
+    - name: Store aggregated wheel artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: wheels
+        path: dist/*
+        retention-days: 7
+
+    - name: Publish package to Test PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        user: __token__
+        password: ${{ secrets.TEST_PYPI_API_TOKEN }}
+        repository_url: https://test.pypi.org/legacy/

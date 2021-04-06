@@ -470,9 +470,6 @@ Or to report a bug or request something new, make an issue.
 .. |GHA tests| image:: https://github.com/scottclowe/python-template-repo/workflows/tests/badge.svg
    :target: https://github.com/scottclowe/python-template-repo/actions?query=workflow%3Atests
    :alt: GHA Status
-.. |Shippable build| image:: https://img.shields.io/shippable/5674d4821895ca447466a204/master.svg?label=shippable
-   :target: https://app.shippable.com/projects/5674d4821895ca447466a204
-   :alt: Shippable Status
 .. |Codecov report| image:: https://codecov.io/github/scottclowe/python-template-repo/coverage.svg?branch=master
    :target: https://codecov.io/github/scottclowe/python-template-repo?branch=master
    :alt: Coverage

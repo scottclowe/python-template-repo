@@ -17,7 +17,7 @@ When creating a new repository from this skeleton, these are the steps to follow
     #.  You can create a new repository on GitHub from this template by clicking the `Use this template <https://github.com/scottclowe/python-template-repo/generate>`_ button.
 
     #.  Alternatively, if your new repository is not going to be on GitHub, you can `download this repo as a zip <https://github.com/scottclowe/python-template-repo/archive/master.zip>`_ and work from there.
-        However, you should note that this zip does not include the .gitignore and .gitattributes files (because GitHub automatically ommits them, which use usually helpful but is not for our purposes).
+        However, you should note that this zip does not include the .gitignore and .gitattributes files (because GitHub automatically omits them, which is usually helpful but is not for our purposes).
         Thus you will also need to download the `.gitignore <https://raw.githubusercontent.com/scottclowe/python-template-repo/master/.gitignore>`__ and `.gitattributes <https://raw.githubusercontent.com/scottclowe/python-template-repo/master/.gitattributes>`__ files.
 
         The following shell commands can be used for this purpose on \*nix systems::

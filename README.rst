@@ -17,7 +17,7 @@ When creating a new repository from this skeleton, these are the steps to follow
     #.  You can create a new repository on GitHub from this template by clicking the `Use this template <https://github.com/scottclowe/python-template-repo/generate>`_ button.
 
     #.  Alternatively, if your new repository is not going to be on GitHub, you can `download this repo as a zip <https://github.com/scottclowe/python-template-repo/archive/master.zip>`_ and work from there.
-        However, you should note that this zip does not include the .gitignore and .gitattributes files (because GitHub automatically ommits them, which use usually helpful but is not for our purposes).
+        However, you should note that this zip does not include the .gitignore and .gitattributes files (because GitHub automatically omits them, which is usually helpful but is not for our purposes).
         Thus you will also need to download the `.gitignore <https://raw.githubusercontent.com/scottclowe/python-template-repo/master/.gitignore>`__ and `.gitattributes <https://raw.githubusercontent.com/scottclowe/python-template-repo/master/.gitattributes>`__ files.
 
         The following shell commands can be used for this purpose on \*nix systems::
@@ -35,7 +35,7 @@ When creating a new repository from this skeleton, these are the steps to follow
           git commit -m "Initial commit"
           git rm LICENSE
 
-        Note that we are doing the move with ``-n`` argument, which will prevent the template repository from clobbering your own files (in case you already made a README.rst file, for instance).
+        Note that we are doing the move with ``mv -n``, which will prevent the template repository from clobbering your own files (in case you already made a README.rst file, for instance).
 
         You'll need to instruct your new local repository to synchronise with the remote ``your_repo_url``::
 
@@ -49,36 +49,42 @@ When creating a new repository from this skeleton, these are the steps to follow
 
     If you prefer, you can keep them around as samples, but should note that they require numpy.
 
-#.  Depending on your needs, some of the files may be superflous to you.
-    You can remove any superflous files, as follows.
+#.  Depending on your needs, some of the files may be superfluous to you.
+    You can remove any superfluous files, as follows.
 
-    - *Yes to pre-commit!* You can delete the lint GitHub Action, as it is superfluous with the lint checks which are also in pre-commit::
+    - *Yes to pre-commit!*
+      You can delete the lint GitHub Action, as it is superfluous with the lint checks which are also in pre-commit::
 
         rm -f .github/workflows/lint.yaml
 
-    - *No pre-commit!* Delete these files::
+    - *No pre-commit!*
+      Run the following commands to remove references to pre-commit::
 
         rm -f .pre-commit-config.yaml
         rm -f .github/workflows/pre-commit.yaml
         sed -i '/^pre-commit/d' requirements-dev.txt
 
-    - *No Python 2.7 support!* Delete these items from the unit testing CI::
+    - *No Python 2.7 support!*
+      Run the following commands to delete references to Python 2.7 from the unit testing CI::
 
         sed -i 's/"2\.7", //' .github/workflows/test*.yaml
         sed -i '"2\.7"/"3\.5"/' .github/workflows/test*.yaml
 
-    - *No GitHub Actions!* Delete this directory::
+    - *No GitHub Actions!*
+      Delete the .github directory::
 
         rm -r .github/
 
-    - *No unit testing!* Delete these files::
+    - *No unit testing!*
+      Run the following commands to delete unit testing files::
 
         rm -rf package_name/tests/
         rm -f .github/workflows/test*.yaml
         rm -f .coveragerc
         rm -f requirements-test.txt
 
-    - *No Documentation!* Delete these files and lines::
+    - *No Documentation!*
+      Run the following commands to delete the documentation and its tests::
 
         rm -rf docs/
         rm -f .github/workflows/docs.yaml

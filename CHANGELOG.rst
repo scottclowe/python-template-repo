@@ -15,4 +15,4 @@ Version `0.1.0 <https://github.com/your_organisation/package_name/tree/0.1.0>`__
 --------------------------------------------------------------------------------
 
 Release date: YYYY-MM-DD.
-Initial release.
+Initial release (to be released).

@@ -79,13 +79,10 @@ class BaseTestCase(unittest.TestCase):
     # test resources - files which are needed to run tests.
     test_directory = TEST_DIRECTORY
 
-    def __init__(self, *args, **kw):
+    def __init__(self, *args, **kwargs):
         """Instance initialisation."""
-        # First to the __init__ associated with parent class
-        # NB: The new method is like so, but this only works on Python3
-        # super(self).__init__(*args, **kw)
-        # So we have to do this for Python2 to be supported
-        super(BaseTestCase, self).__init__(*args, **kw)
+        # First do the __init__ associated with parent class
+        super().__init__(*args, **kwargs)
         # Add a test to automatically use when comparing objects of
         # type numpy ndarray. This will be used for self.assertEqual().
         self.addTypeEqualityFunc(np.ndarray, self.assert_allclose)

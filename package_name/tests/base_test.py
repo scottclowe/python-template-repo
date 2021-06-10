@@ -11,6 +11,7 @@ import unittest
 from inspect import getsourcefile
 
 import numpy as np
+import pytest
 from numpy.testing import (
     assert_allclose,
     assert_almost_equal,
@@ -58,6 +59,40 @@ class BaseTestCase(unittest.TestCase):
             yield super(BaseTestCase, self).subTest(*args, **kwargs)
         else:
             yield None
+
+    @pytest.fixture(autouse=True)
+    def capsys(self, capsys):
+        r"""
+        Pass-through for accessing pytest.capsys fixture with class methods.
+
+        Returns
+        -------
+        capture : pytest.CaptureFixture[str]
+
+        Example
+        -------
+        To use this fixture with your own subclass of ``BaseTestCase``::
+
+            class TestVerbose(BaseTestCase):
+                def test_output(self):
+                    print("hello")
+                    captured = self.capsys.readouterr()
+                    self.assert_string_equal(captured.out, "hello\n")
+
+        Note
+        ----
+        capsys will capture all messages sent to stdout and stderr since the
+        last call to capsys (or since execution began on the test). To test the
+        output of a particular command, you may want to do a capture before the
+        command to clear stdout/stderr before running the command and then
+        capturing its output.
+
+        See Also
+        --------
+        - https://docs.pytest.org/en/stable/reference.html#capsys
+        - https://docs.pytest.org/en/stable/capture.html
+        """
+        self.capsys = capsys
 
     # Add assertions provided by numpy to this class, so they will be
     # available as methods to all subclasses when we do our tests.

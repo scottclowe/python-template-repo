@@ -102,9 +102,9 @@
 *.db        binary
 *.p         binary
 *.pkl       binary
-*.pyc       binary
+*.pyc       binary export-ignore
+*.pyo       binary export-ignore
 *.pyd       binary
-*.pyo       binary
 
 # Note: .db, .p, and .pkl files are associated
 # with the python modules ``pickle``, ``dbm.*``,

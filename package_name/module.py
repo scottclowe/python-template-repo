@@ -21,7 +21,7 @@ def cubic_rectification(x):
 
     Note
     ----
-    This is a sample function, using a Google docstring format.
+    This is a sample function, using a numpy docstring format.
 
     Note
     ----

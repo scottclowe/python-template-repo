@@ -39,4 +39,3 @@ jobs:
       with:
         name: Documentation
         path: docs/_build/latex/*.pdf
-        retention-days: 7

@@ -106,7 +106,6 @@ jobs:
       with:
         name: wheel-${{ matrix.os }}-${{ matrix.python-version }}
         path: dist/*
-        retention-days: 7
 
     - name: Build HTML docs
       run: |
@@ -137,7 +136,6 @@ jobs:
       with:
         name: wheels
         path: dist/*
-        retention-days: 7
 
     - name: Publish package to Test PyPI
       uses: pypa/gh-action-pypi-publish@release/v1

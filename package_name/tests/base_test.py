@@ -4,7 +4,6 @@ Provides a base test class for other test classes to inherit from.
 Includes the numpy testing functions as methods.
 """
 
-import contextlib
 import os.path
 import sys
 import unittest
@@ -86,15 +85,6 @@ class BaseTestCase(unittest.TestCase):
         # Add a test to automatically use when comparing objects of
         # type numpy ndarray. This will be used for self.assertEqual().
         self.addTypeEqualityFunc(np.ndarray, self.assert_allclose)
-
-    @contextlib.contextmanager
-    def subTest(self, *args, **kwargs):
-        # For backwards compatability with Python < 3.4
-        # Gracefully degrades into no-op.
-        if hasattr(super(BaseTestCase, self), "subTest"):
-            yield super(BaseTestCase, self).subTest(*args, **kwargs)
-        else:
-            yield None
 
     @pytest.fixture(autouse=True)
     def capsys(self, capsys):

@@ -31,9 +31,7 @@ class TestVerbose(BaseTestCase):
         capture_pre = self.capsys.readouterr()  # Clear stdout
         print(message)  # Execute method (verbose)
         capture_post = self.recapsys(capture_pre)  # Capture and then re-output
-        # Can't use numpy.testing.assert_string_equal on Python 2.7 due to
-        # string type errors
-        self.assert_equal(capture_post.out.strip(), message)
+        self.assert_string_equal(capture_post.out.strip(), message)
 
     def test_shakespeare(self):
         # Clear stdout (in this case, an empty capture)

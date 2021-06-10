@@ -64,12 +64,6 @@ When creating a new repository from this skeleton, these are the steps to follow
         rm -f .github/workflows/pre-commit.yaml
         sed -i '/^pre-commit/d' requirements-dev.txt
 
-    - *No Python 2.7 support!*
-      Run the following commands to delete references to Python 2.7 from the unit testing CI::
-
-        sed -i 's/"2\.7", //' .github/workflows/test*.yaml
-        sed -i '"2\.7"/"3\.5"/' .github/workflows/test*.yaml
-
     - *No GitHub Actions!*
       Delete the .github directory::
 

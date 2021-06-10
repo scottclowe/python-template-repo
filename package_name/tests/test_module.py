@@ -20,6 +20,42 @@ class NumbersTest(BaseTestCase):
                 self.assertEqual(i % 2, 0)
 
 
+class TestVerbose(BaseTestCase):
+    """
+    Test that things are printed to stdout correctly.
+    """
+
+    def test_hello_world(self):
+        """Test printing to stdout."""
+        message = "Hello world!"
+        capture_pre = self.capsys.readouterr()  # Clear stdout
+        print(message)  # Execute method (verbose)
+        capture_post = self.recapsys(capture_pre)  # Capture and then re-output
+        # Can't use numpy.testing.assert_string_equal on Python 2.7 due to
+        # string type errors
+        self.assert_equal(capture_post.out.strip(), message)
+
+    def test_shakespeare(self):
+        # Clear stdout (in this case, an empty capture)
+        capture_pre = self.capsys.readouterr()
+        # Execute method (verbose)
+        print("To be, or not to be, that is the question:")
+        # Capture the output to stdout, then re-output
+        capture_post = self.recapsys(capture_pre)
+        # Compare output to target
+        self.assert_starts_with(capture_post.out, "To be, or not")
+        # Clear stdout (in this case, capturing the re-output first print statement)
+        capture_pre = self.capsys.readouterr()
+        # Execute method (verbose)
+        print("Whether 'tis nobler in the mind to suffer")
+        # Capture the output to stdout, then re-output. This now prints both
+        # lines to stdout at once, which otherwise would not appear due to our
+        # captures.
+        capture_post = self.recapsys(capture_pre)
+        # Compare output to target
+        self.assert_starts_with(capture_post.out.lower(), "whether 'tis nobler")
+
+
 class TestCubicRectification(BaseTestCase):
     """
     Tests for the cubic_rectification function.
@@ -74,3 +110,15 @@ class TestCubicRectification(BaseTestCase):
         # Or we can use an isnan function from either math or numpy
         self.assertTrue(math.isnan(cubic_rectification(float("nan"))))
         self.assertTrue(np.isnan(cubic_rectification(np.nan)))
+
+    def test_quiet(self):
+        capture_pre = self.capsys.readouterr()  # Clear stdout
+        cubic_rectification(2)
+        capture_post = self.recapsys(capture_pre)  # Capture and then re-output
+        self.assert_equal(capture_post.out, "")
+
+    def test_verbose(self):
+        capture_pre = self.capsys.readouterr()  # Clear stdout
+        cubic_rectification(2, verbose=True)  # Execute method (verbose)
+        capture_post = self.recapsys(capture_pre)  # Capture and then re-output
+        self.assert_starts_with(capture_post.out, "Cubing")  # Test

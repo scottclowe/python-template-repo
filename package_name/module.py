@@ -5,7 +5,7 @@ Module provides a simple cubic_rectification function.
 import numpy as np
 
 
-def cubic_rectification(x):
+def cubic_rectification(x, verbose=False):
     """
     Rectified cube of an array.
 
@@ -13,6 +13,8 @@ def cubic_rectification(x):
     ----------
     x : numpy.ndarray
         Input array.
+    verbose : bool, optional
+        Whether to print out details. Default is ``False``.
 
     Returns
     -------
@@ -28,4 +30,6 @@ def cubic_rectification(x):
     The use of intersphinx will cause :class:`numpy.ndarray` to link to
     the numpy documentation page.
     """
+    if verbose:
+        print("Cubing and then rectifying {}".format(x))
     return np.maximum(0, x ** 3)

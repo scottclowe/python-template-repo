@@ -108,3 +108,15 @@ class TestCubicRectification(BaseTestCase):
         # Or we can use an isnan function from either math or numpy
         self.assertTrue(math.isnan(cubic_rectification(float("nan"))))
         self.assertTrue(np.isnan(cubic_rectification(np.nan)))
+
+    def test_quiet(self):
+        capture_pre = self.capsys.readouterr()  # Clear stdout
+        cubic_rectification(2)
+        capture_post = self.recapsys(capture_pre)  # Capture and then re-output
+        self.assert_equal(capture_post.out, "")
+
+    def test_verbose(self):
+        capture_pre = self.capsys.readouterr()  # Clear stdout
+        cubic_rectification(2, verbose=True)  # Execute method (verbose)
+        capture_post = self.recapsys(capture_pre)  # Capture and then re-output
+        self.assert_starts_with(capture_post.out, "Cubing")  # Test

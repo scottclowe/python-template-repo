@@ -52,7 +52,9 @@ def assert_starts_with(actual, desired):
         print("ACTUAL: {}".format(actual))
         raise
     try:
-        return assert_string_equal(str(actual)[: len(desired)], desired)
+        # Can't use numpy.testing.assert_string_equal on Python 2.7 due to
+        # string type errors
+        return assert_equal(str(actual)[: len(desired)], desired)
     except BaseException as err:
         msg = "ACTUAL: {}".format(actual)
         if isinstance(getattr(err, "args", None), str):

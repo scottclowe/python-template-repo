@@ -30,6 +30,43 @@ from numpy.testing import (
 TEST_DIRECTORY = os.path.dirname(os.path.abspath(getsourcefile(lambda: 0)))
 
 
+def assert_starts_with(actual, desired):
+    """
+    Check that a string starts with a certain substring.
+
+    Parameters
+    ----------
+    actual : str-like
+        Actual string or string-like object.
+    desired : str
+        Desired initial string.
+    """
+    try:
+        assert len(actual) >= len(desired)
+    except BaseException:
+        print(
+            "Actual string too short ({} < {} characters)".format(
+                len(actual), len(desired)
+            )
+        )
+        print("ACTUAL: {}".format(actual))
+        raise
+    try:
+        return assert_string_equal(str(actual)[: len(desired)], desired)
+    except BaseException as err:
+        msg = "ACTUAL: {}".format(actual)
+        if isinstance(getattr(err, "args", None), str):
+            err.args += "\n" + msg
+        elif isinstance(getattr(err, "args", None), tuple):
+            if len(err.args) == 1:
+                err.args = (err.args[0] + "\n" + msg,)
+            else:
+                err.args += (msg,)
+        else:
+            print(msg)
+        raise
+
+
 class BaseTestCase(unittest.TestCase):
     """
     Superclass for test cases, including support for numpy.
@@ -214,3 +251,6 @@ class BaseTestCase(unittest.TestCase):
         Test if two strings are equal.
         """
         return assert_string_equal(*args, **kwargs)
+
+    def assert_starts_with(self, *args, **kwargs):
+        return assert_starts_with(*args, **kwargs)

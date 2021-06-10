@@ -25,7 +25,7 @@ def cubic_rectification(x):
 
     Note
     ----
-    The use of intersphinx will cause numpy.ndarray above to link to its
-    documentation, but not inside this Note.
+    The use of intersphinx will cause :class:`numpy.ndarray` to link to
+    the numpy documentation page.
     """
     return np.maximum(0, x ** 3)

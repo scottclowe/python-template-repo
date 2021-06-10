@@ -94,6 +94,53 @@ class BaseTestCase(unittest.TestCase):
         """
         self.capsys = capsys
 
+    def recapsys(self, *captures):
+        r"""
+        Capture stdout and stderr, then write them back to stdout and stderr.
+
+        Capture is done using the :func:`pytest.capsys` fixture. Used on its
+        own, :func:`~pytest.capsys` captures outputs to stdout and stderr,
+        which prevents the output from appearing in the usual way when an
+        error occurs during testing.
+
+        By chaining series of calls to ``capsys`` and ``recapsys`` around
+        commands whose outputs must be inspected, all output directed to stdout
+        and stderr will end up there and appear in the "Captured stdout call"
+        block in the event of a test failure, as well as being captured here
+        for the test.
+
+        Parameters
+        ----------
+        *captures : pytest.CaptureResult, optional
+            A series of extra captures to output. For each `capture` in
+            `captures`, `capture.out` and `capture.err` are written to stdout
+            and stderr, respectively.
+
+        Returns
+        -------
+        capture : NamedTuple
+            `capture.out` and `capture.err` contain all the outputs to stdout
+            and stderr since the previous capture with :func:`~pytest.capsys`.
+
+        Example
+        -------
+        To use this fixture with your own subclass of ``BaseTestCase``::
+
+            class TestVerbose(BaseTestCase):
+                def test_hello_world(self):
+                    print("previous message here")
+                    message = "Hello world!"
+                    capture_pre = self.capsys.readouterr()  # Clear stdout
+                    print(message)
+                    capture_post = self.recapsys(capture_pre)  # Capture & output
+                    self.assert_string_equal(capture_post.out, message + "\n")
+        """
+        capture_now = self.capsys.readouterr()
+        for capture in captures + (capture_now,):
+            sys.stdout.write(capture.out)
+            sys.stderr.write(capture.err)
+        return capture_now
+
     # Add assertions provided by numpy to this class, so they will be
     # available as methods to all subclasses when we do our tests.
     def assert_almost_equal(self, *args, **kwargs):

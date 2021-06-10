@@ -17,7 +17,7 @@ def cubic_rectification(x):
     Returns
     -------
     numpy.ndarray
-        Elementwise, the cube of `x` where it is positive and `0` otherwise.
+        Elementwise, the cube of `x` where it is positive and ``0`` otherwise.
 
     Note
     ----

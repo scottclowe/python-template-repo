@@ -26,6 +26,8 @@ from numpy.testing import (
     assert_warns,
 )
 
+TEST_DIRECTORY = os.path.dirname(os.path.abspath(getsourcefile(lambda: 0)))
+
 
 class BaseTestCase(unittest.TestCase):
     """
@@ -35,7 +37,7 @@ class BaseTestCase(unittest.TestCase):
     # The attribute `test_directory` provides the path to the directory
     # containing the file `base_test.py`, which is useful to obtain
     # test resources - files which are needed to run tests.
-    test_directory = os.path.dirname(os.path.abspath(getsourcefile(lambda: 0)))
+    test_directory = TEST_DIRECTORY
 
     def __init__(self, *args, **kw):
         """Instance initialisation."""

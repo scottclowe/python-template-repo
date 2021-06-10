@@ -11,13 +11,13 @@ def cubic_rectification(x):
 
     Parameters
     ----------
-    X : numpy.ndarray
+    x : numpy.ndarray
         Input array.
 
     Returns
     -------
     numpy.ndarray
-        Elementwise, the cube of `X` where it is positive and `0` otherwise.
+        Elementwise, the cube of `x` where it is positive and `0` otherwise.
 
     Note
     ----

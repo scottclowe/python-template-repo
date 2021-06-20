@@ -52,18 +52,6 @@ When creating a new repository from this skeleton, these are the steps to follow
 #.  Depending on your needs, some of the files may be superfluous to you.
     You can remove any superfluous files, as follows.
 
-    - *Yes to pre-commit!*
-      You can delete the lint GitHub Action, as it is superfluous with the lint checks which are also in pre-commit::
-
-        rm -f .github/workflows/lint.yaml
-
-    - *No pre-commit!*
-      Run the following commands to remove references to pre-commit::
-
-        rm -f .pre-commit-config.yaml
-        rm -f .github/workflows/pre-commit.yaml
-        sed -i '/^pre-commit/d' requirements-dev.txt
-
     - *No GitHub Actions!*
       Delete the .github directory::
 
@@ -76,13 +64,6 @@ When creating a new repository from this skeleton, these are the steps to follow
         rm -f .github/workflows/test*.yaml
         rm -f .coveragerc
         rm -f requirements-test.txt
-
-    - *No Documentation!*
-      Run the following commands to delete the documentation and its tests::
-
-        rm -rf docs/
-        rm -f .github/workflows/docs.yaml
-        head -n -7 .github/workflows/test.yaml > .github/workflows/test.yaml
 
 #.  Delete the LICENSE file and replace it with a LICENSE file of your own choosing.
     If the code is intended to be freely available for anyone to use, use an `open source license <https://choosealicense.com/>`_, such as `MIT License <https://choosealicense.com/licenses/mit/>`__ or `GPLv3 <https://choosealicense.com/licenses/gpl-3.0/>`__.
@@ -225,7 +206,6 @@ If you want to upgrade to a newer version of black, you must change the version 
 
 - requirements-dev.txt, `L1 <https://github.com/scottclowe/python-template-repo/blob/master/requirements-dev.txt#L1>`__
 - .pre-commit-config.yaml, `L14 <https://github.com/scottclowe/python-template-repo/blob/master/.pre-commit-config.yaml#L14>`__ and `L24 <https://github.com/scottclowe/python-template-repo/blob/master/.pre-commit-config.yaml#L24>`__
-- .github/workflows/lint.yaml, `L19 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/lint.yaml#L19>`__
 
 .. _black: https://github.com/psf/black
 

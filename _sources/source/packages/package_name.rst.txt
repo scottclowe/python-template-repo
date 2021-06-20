@@ -1,0 +1,14 @@
+package\_name package
+=====================
+
+.. automodule:: package_name
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+.. toctree::
+
+   package_name.module

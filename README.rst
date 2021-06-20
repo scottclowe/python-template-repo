@@ -65,13 +65,6 @@ When creating a new repository from this skeleton, these are the steps to follow
         rm -f .coveragerc
         rm -f requirements-test.txt
 
-    - *No Documentation!*
-      Run the following commands to delete the documentation and its tests::
-
-        rm -rf docs/
-        rm -f .github/workflows/docs.yaml
-        head -n -7 .github/workflows/test.yaml > .github/workflows/test.yaml
-
 #.  Delete the LICENSE file and replace it with a LICENSE file of your own choosing.
     If the code is intended to be freely available for anyone to use, use an `open source license <https://choosealicense.com/>`_, such as `MIT License <https://choosealicense.com/licenses/mit/>`__ or `GPLv3 <https://choosealicense.com/licenses/gpl-3.0/>`__.
     If you don't want your code to be used by anyone else, add a LICENSE file which just says::

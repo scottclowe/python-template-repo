@@ -231,6 +231,10 @@ You can also manually run the pre-commit stack on all the files at any time::
 
     pre-commit run --all-files
 
+To force a commit to go through without passing the pre-commit hooks use the ``--no-verify`` flag::
+
+    git commit --no-verify
+
 The pre-commit stack which comes with the template is highly opinionated, and includes the following operations:
 
 - Code is reformatted to use the black_ style.

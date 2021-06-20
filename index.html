@@ -327,20 +327,6 @@ git rm LICENSE
 <li><p>Depending on your needs, some of the files may be superfluous to you.
 You can remove any superfluous files, as follows.</p>
 <ul>
-<li><p><em>Yes to pre-commit!</em>
-You can delete the lint GitHub Action, as it is superfluous with the lint checks which are also in pre-commit:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rm</span> <span class="o">-</span><span class="n">f</span> <span class="o">.</span><span class="n">github</span><span class="o">/</span><span class="n">workflows</span><span class="o">/</span><span class="n">lint</span><span class="o">.</span><span class="n">yaml</span>
-</pre></div>
-</div>
-</li>
-<li><p><em>No pre-commit!</em>
-Run the following commands to remove references to pre-commit:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rm</span> <span class="o">-</span><span class="n">f</span> <span class="o">.</span><span class="n">pre</span><span class="o">-</span><span class="n">commit</span><span class="o">-</span><span class="n">config</span><span class="o">.</span><span class="n">yaml</span>
-<span class="n">rm</span> <span class="o">-</span><span class="n">f</span> <span class="o">.</span><span class="n">github</span><span class="o">/</span><span class="n">workflows</span><span class="o">/</span><span class="n">pre</span><span class="o">-</span><span class="n">commit</span><span class="o">.</span><span class="n">yaml</span>
-<span class="n">sed</span> <span class="o">-</span><span class="n">i</span> <span class="s1">&#39;/^pre-commit/d&#39;</span> <span class="n">requirements</span><span class="o">-</span><span class="n">dev</span><span class="o">.</span><span class="n">txt</span>
-</pre></div>
-</div>
-</li>
 <li><p><em>No GitHub Actions!</em>
 Delete the .github directory:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rm</span> <span class="o">-</span><span class="n">r</span> <span class="o">.</span><span class="n">github</span><span class="o">/</span>
@@ -353,14 +339,6 @@ Run the following commands to delete unit testing files:</p>
 <span class="n">rm</span> <span class="o">-</span><span class="n">f</span> <span class="o">.</span><span class="n">github</span><span class="o">/</span><span class="n">workflows</span><span class="o">/</span><span class="n">test</span><span class="o">*.</span><span class="n">yaml</span>
 <span class="n">rm</span> <span class="o">-</span><span class="n">f</span> <span class="o">.</span><span class="n">coveragerc</span>
 <span class="n">rm</span> <span class="o">-</span><span class="n">f</span> <span class="n">requirements</span><span class="o">-</span><span class="n">test</span><span class="o">.</span><span class="n">txt</span>
-</pre></div>
-</div>
-</li>
-<li><p><em>No Documentation!</em>
-Run the following commands to delete the documentation and its tests:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="n">docs</span><span class="o">/</span>
-<span class="n">rm</span> <span class="o">-</span><span class="n">f</span> <span class="o">.</span><span class="n">github</span><span class="o">/</span><span class="n">workflows</span><span class="o">/</span><span class="n">docs</span><span class="o">.</span><span class="n">yaml</span>
-<span class="n">head</span> <span class="o">-</span><span class="n">n</span> <span class="o">-</span><span class="mi">7</span> <span class="o">.</span><span class="n">github</span><span class="o">/</span><span class="n">workflows</span><span class="o">/</span><span class="n">test</span><span class="o">.</span><span class="n">yaml</span> <span class="o">&gt;</span> <span class="o">.</span><span class="n">github</span><span class="o">/</span><span class="n">workflows</span><span class="o">/</span><span class="n">test</span><span class="o">.</span><span class="n">yaml</span>
 </pre></div>
 </div>
 </li>
@@ -485,7 +463,6 @@ If you want to upgrade to a newer version of black, you must change the version 
 <ul class="simple">
 <li><p>requirements-dev.txt, <a class="reference external" href="https://github.com/scottclowe/python-template-repo/blob/master/requirements-dev.txt#L1">L1</a></p></li>
 <li><p>.pre-commit-config.yaml, <a class="reference external" href="https://github.com/scottclowe/python-template-repo/blob/master/.pre-commit-config.yaml#L14">L14</a> and <a class="reference external" href="https://github.com/scottclowe/python-template-repo/blob/master/.pre-commit-config.yaml#L24">L24</a></p></li>
-<li><p>.github/workflows/lint.yaml, <a class="reference external" href="https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/lint.yaml#L19">L19</a></p></li>
 </ul>
 </div>
 <div class="section" id="pre-commit">

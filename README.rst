@@ -302,6 +302,7 @@ Note that only one copy of the documentation is served (the latest version).
 For more mature projects, you may wish to host the documentation readthedocs_ instead, which supports hosting documentation for multiple package versions simultaneously.
 
 .. _GitHub Pages: https://pages.github.com/
+.. _readthedocs: https://readthedocs.org/
 
 Building locally
 ^^^^^^^^^^^^^^^^
@@ -341,9 +342,8 @@ Other documentation features
 - You can reference functions in the python core and common packages and they will automatically be hyperlinked to the appropriate documentation in your own documentation.
   This is done using intersphinx_ mappings, which you can see (and can add to) at the bottom of the ``docs/conf.py`` file.
 
-- The documentation theme is the one provided by readthedocs_.
-  You can host the documentation for free on readthedocs_, and it will fit right in.
-  Alternative themes can be found at writethedocs_, with further options at sphinx-themes_
+- The documentation theme is sphinx-book-theme_.
+  Alternative themes can be found at sphinx-themes.org_, sphinxthemes.com_, and writethedocs_.
 
 .. _autodoc: http://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html
 .. _Google format: https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html#example-google
@@ -351,8 +351,9 @@ Other documentation features
 .. _napoleon: https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html
 .. _numpy format: https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_numpy.html#example-numpy-style-python-docstrings
 .. _Sphinx: https://www.sphinx-doc.org/
-.. _sphinx-themes: https://sphinx-themes.org
-.. _readthedocs: https://readthedocs.org/
+.. _spinx-book-theme: https://sphinx-book-theme.readthedocs.io/
+.. _sphinx-themes.org: https://sphinx-themes.org
+.. _sphinxthemes.com: https://sphinxthemes.com/
 .. _reST: http://docutils.sourceforge.net/rst.html
 .. _writethedocs: https://www.writethedocs.org/guide/tools/sphinx-themes/
 

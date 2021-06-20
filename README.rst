@@ -234,7 +234,7 @@ pre-commit
 ~~~~~~~~~~
 
 The template repository comes with a pre-commit_ stack.
-This is a set of git hooks which are executed everytime you make a commit.
+This is a set of git hooks which are executed every time you make a commit.
 The hooks catch errors as they occur, and will automatically fix some of these errors.
 
 To set up the pre-commit hooks, run the following code from within the repo directory::
@@ -251,10 +251,13 @@ You can also manually run the pre-commit stack on all the files at any time::
 
     pre-commit run --all-files
 
-The pre-commit stack includes the following operations:
+The pre-commit stack which comes with the template is highly opinionated, and includes the following operations:
 
-- Reformats code to use the black_ style.
-  Any code `inside docstrings <blackendocs_>`_ will also be formatted to the black style.
+- Code is reformatted to use the black_ style.
+  Any code inside docstrings will be formatted to black using blackendocs_.
+  All code cells in Jupyter notebooks are also formatted to black using black_nbconvert_.
+
+- All Jupyter notebooks are cleared using nbstripout_.
 
 - Imports are automatically sorted using isort_.
 
@@ -271,9 +274,11 @@ The pre-commit stack includes the following operations:
 Once it is set up, the pre-commit stack will run locally on every commit.
 The pre-commit stack will also run on github with one of the action workflows, which ensures PRs are checked without having to rely on contributors to enable the pre-commit locally.
 
+.. _black_nbconvert: https://github.com/dfm/black_nbconvert
 .. _blackendocs: https://github.com/asottile/blacken-docs
 .. _flake8: https://gitlab.com/pycqa/flake8
 .. _isort: https://github.com/timothycrosley/isort
+.. _nbstripout: https://github.com/kynan/nbstripout
 .. _PEP-8: https://www.python.org/dev/peps/pep-0008/
 .. _pre-commit: https://pre-commit.com/
 .. _pre-commit-hooks: https://github.com/pre-commit/pre-commit-hooks

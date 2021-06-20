@@ -231,6 +231,10 @@ You can also manually run the pre-commit stack on all the files at any time::
 
     pre-commit run --all-files
 
+To force a commit to go through without passing the pre-commit hooks use the ``--no-verify`` flag::
+
+    git commit --no-verify
+
 The pre-commit stack which comes with the template is highly opinionated, and includes the following operations:
 
 - Code is reformatted to use the black_ style.
@@ -277,7 +281,7 @@ GitHub Pages
 
 If your repository is publicly available, the docs workflow will automatically deploy your documentation to `GitHub Pages`_.
 To enable the documentation, go to the ``Settings > Pages`` pane for your repository and set Source to be the ``gh-pages`` branch (root directory).
-Your automatically compiled documentation will then be publicly available at https://your-org.github.io/your-repo/.
+Your automatically compiled documentation will then be publicly available at https://USER.github.io/PACKAGE/.
 
 Since GitHub pages are always publicly available, the workflow will check whether your repository is public or private, and will not deploy the documentation to gh-pages if your repository is private.
 
@@ -336,7 +340,7 @@ Other documentation features
 .. _napoleon: https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html
 .. _numpy format: https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_numpy.html#example-numpy-style-python-docstrings
 .. _Sphinx: https://www.sphinx-doc.org/
-.. _spinx-book-theme: https://sphinx-book-theme.readthedocs.io/
+.. _sphinx-book-theme: https://sphinx-book-theme.readthedocs.io/
 .. _sphinx-themes.org: https://sphinx-themes.org
 .. _sphinxthemes.com: https://sphinxthemes.com/
 .. _reST: http://docutils.sourceforge.net/rst.html
@@ -418,7 +422,7 @@ Five workflows are included:
 
 docs
     The docs workflow ensures the documentation builds correctly, and presents any errors and warnings nicely as annotations.
-    If your repository is public, publicly available html documentation is automatically deployed to the gh-pages branch and https://your-org.github.io/your-repo/.
+    If your repository is public, publicly available html documentation is automatically deployed to the gh-pages branch and https://USER.github.io/PACKAGE/.
 
 pre-commit
     Runs the pre-commit stack.

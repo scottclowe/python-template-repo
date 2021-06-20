@@ -52,11 +52,6 @@ When creating a new repository from this skeleton, these are the steps to follow
 #.  Depending on your needs, some of the files may be superfluous to you.
     You can remove any superfluous files, as follows.
 
-    - *Yes to pre-commit!*
-      You can delete the lint GitHub Action, as it is superfluous with the lint checks which are also in pre-commit::
-
-        rm -f .github/workflows/lint.yaml
-
     - *No pre-commit!*
       Run the following commands to remove references to pre-commit::
 
@@ -225,7 +220,6 @@ If you want to upgrade to a newer version of black, you must change the version 
 
 - requirements-dev.txt, `L1 <https://github.com/scottclowe/python-template-repo/blob/master/requirements-dev.txt#L1>`__
 - .pre-commit-config.yaml, `L14 <https://github.com/scottclowe/python-template-repo/blob/master/.pre-commit-config.yaml#L14>`__ and `L24 <https://github.com/scottclowe/python-template-repo/blob/master/.pre-commit-config.yaml#L24>`__
-- .github/workflows/lint.yaml, `L19 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/lint.yaml#L19>`__
 
 .. _black: https://github.com/psf/black
 

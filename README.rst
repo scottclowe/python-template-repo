@@ -52,13 +52,6 @@ When creating a new repository from this skeleton, these are the steps to follow
 #.  Depending on your needs, some of the files may be superfluous to you.
     You can remove any superfluous files, as follows.
 
-    - *No pre-commit!*
-      Run the following commands to remove references to pre-commit::
-
-        rm -f .pre-commit-config.yaml
-        rm -f .github/workflows/pre-commit.yaml
-        sed -i '/^pre-commit/d' requirements-dev.txt
-
     - *No GitHub Actions!*
       Delete the .github directory::
 

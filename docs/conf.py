@@ -273,7 +273,7 @@ epub_exclude_files = ["search.html"]
 # Common intersphinx mappings can be found here:
 # https://gist.github.com/bskinn/0e164963428d4b51017cebdb6cda5209
 intersphinx_mapping = {
-    "python": ("https://docs.python.org/3/", None),
+    "python": ("https://docs.python.org/{.major}".format(sys.version_info), None),
     "attrs": ("https://www.attrs.org/en/stable/", None),
     "numpy": ("https://numpy.org/doc/stable/", None),
     "scipy": ("https://docs.scipy.org/doc/scipy/reference/", None),

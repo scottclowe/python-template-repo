@@ -491,7 +491,7 @@ If you want to upgrade to a newer version of black, you must change the version 
 <div class="section" id="pre-commit">
 <h3>pre-commit<a class="headerlink" href="#pre-commit" title="Permalink to this headline">¶</a></h3>
 <p>The template repository comes with a <a class="reference external" href="https://pre-commit.com/">pre-commit</a> stack.
-This is a set of git hooks which are executed everytime you make a commit.
+This is a set of git hooks which are executed every time you make a commit.
 The hooks catch errors as they occur, and will automatically fix some of these errors.</p>
 <p>To set up the pre-commit hooks, run the following code from within the repo directory:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">-</span><span class="n">dev</span><span class="o">.</span><span class="n">txt</span>
@@ -506,10 +506,12 @@ Other pre-commit hooks will not modify your code and will just tell you about is
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pre</span><span class="o">-</span><span class="n">commit</span> <span class="n">run</span> <span class="o">--</span><span class="nb">all</span><span class="o">-</span><span class="n">files</span>
 </pre></div>
 </div>
-<p>The pre-commit stack includes the following operations:</p>
+<p>The pre-commit stack which comes with the template is highly opinionated, and includes the following operations:</p>
 <ul class="simple">
-<li><p>Reformats code to use the <a class="reference external" href="https://github.com/psf/black">black</a> style.
-Any code <a class="reference external" href="https://github.com/asottile/blacken-docs">inside docstrings</a> will also be formatted to the black style.</p></li>
+<li><p>Code is reformatted to use the <a class="reference external" href="https://github.com/psf/black">black</a> style.
+Any code inside docstrings will be formatted to black using <a class="reference external" href="https://github.com/asottile/blacken-docs">blackendocs</a>.
+All code cells in Jupyter notebooks are also formatted to black using <a class="reference external" href="https://github.com/dfm/black_nbconvert">black_nbconvert</a>.</p></li>
+<li><p>All Jupyter notebooks are cleared using <a class="reference external" href="https://github.com/kynan/nbstripout">nbstripout</a>.</p></li>
 <li><p>Imports are automatically sorted using <a class="reference external" href="https://github.com/timothycrosley/isort">isort</a>.</p></li>
 <li><p><a class="reference external" href="https://gitlab.com/pycqa/flake8">flake8</a> is run to check for conformity to the python style guide <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP-8</a>, along with several other formatting issues.</p></li>
 <li><p><a class="reference external" href="https://github.com/asottile/setup-cfg-fmt">setup-cfg-fmt</a> is used to format any setup.cfg files.</p></li>

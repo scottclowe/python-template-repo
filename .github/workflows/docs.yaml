@@ -6,7 +6,7 @@
 # - If your repository is public, on pushes to the default branch (i.e. either
 #   master or main), the HTML documentation is pushed to the gh-pages branch,
 #   which is automatically rendered at the publicly accessible url
-#   https://your-org.github.io/your-repo/
+#   https://USER.github.io/PACKAGE/
 
 name: docs
 

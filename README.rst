@@ -287,7 +287,26 @@ Automated documentation
 The script ``docs/conf.py`` is based on the Sphinx_ default configuration.
 It is set up to work well out of the box, with several features added in.
 
-You can build the web documentation with::
+GitHub Pages
+^^^^^^^^^^^^
+
+If your repository is publicly available, the docs workflow will automatically deploy your documentation to `GitHub Pages`_.
+To enable the documentation, go to the ``Settings > Pages`` pane for your repository and set Source to be the ``gh-pages`` branch (root directory).
+Your automatically compiled documentation will then be publicly available at https://your-org.github.io/your-repo/.
+
+Since GitHub pages are always publicly available, the workflow will check whether your repository is public or private, and will not deploy the documentation to gh-pages if your repository is private.
+
+The gh-pages documentation is refreshed every time there is a push to your default branch.
+
+Note that only one copy of the documentation is served (the latest version).
+For more mature projects, you may wish to host the documentation readthedocs_ instead, which supports hosting documentation for multiple package versions simultaneously.
+
+.. _GitHub Pages: https://pages.github.com/
+
+Building locally
+^^^^^^^^^^^^^^^^
+
+You can build the web documentation locally with::
 
    make -C docs html
 
@@ -305,6 +324,9 @@ On Windows, this becomes::
     make html
     make latexpdf
     cd ..
+
+Other documentation features
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - Your README.rst will become part of the generated documentation (via the file ``docs/source/readme.rst``).
   Note that the first line of README.rst is not included in the documentation, since this is expected to contain badges which you want to render on GitHub, but not include in your documentation pages.
@@ -410,6 +432,7 @@ Five workflows are included:
 
 docs
     The docs workflow ensures the documentation builds correctly, and presents any errors and warnings nicely as annotations.
+    If your repository is public, publicly available html documentation is automatically deployed to the gh-pages branch and https://your-org.github.io/your-repo/.
 
 pre-commit
     Runs the pre-commit stack.

@@ -234,7 +234,7 @@ pre-commit
 ~~~~~~~~~~
 
 The template repository comes with a pre-commit_ stack.
-This is a set of git hooks which are executed everytime you make a commit.
+This is a set of git hooks which are executed every time you make a commit.
 The hooks catch errors as they occur, and will automatically fix some of these errors.
 
 To set up the pre-commit hooks, run the following code from within the repo directory::

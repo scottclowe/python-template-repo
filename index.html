@@ -483,6 +483,10 @@ Other pre-commit hooks will not modify your code and will just tell you about is
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pre</span><span class="o">-</span><span class="n">commit</span> <span class="n">run</span> <span class="o">--</span><span class="nb">all</span><span class="o">-</span><span class="n">files</span>
 </pre></div>
 </div>
+<p>To force a commit to go through without passing the pre-commit hooks use the <code class="docutils literal notranslate"><span class="pre">--no-verify</span></code> flag:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">commit</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">verify</span>
+</pre></div>
+</div>
 <p>The pre-commit stack which comes with the template is highly opinionated, and includes the following operations:</p>
 <ul class="simple">
 <li><p>Code is reformatted to use the <a class="reference external" href="https://github.com/psf/black">black</a> style.
@@ -508,7 +512,7 @@ It is set up to work well out of the box, with several features added in.</p>
 <h4>GitHub Pages<a class="headerlink" href="#github-pages" title="Permalink to this headline">¶</a></h4>
 <p>If your repository is publicly available, the docs workflow will automatically deploy your documentation to <a class="reference external" href="https://pages.github.com/">GitHub Pages</a>.
 To enable the documentation, go to the <code class="docutils literal notranslate"><span class="pre">Settings</span> <span class="pre">&gt;</span> <span class="pre">Pages</span></code> pane for your repository and set Source to be the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch (root directory).
-Your automatically compiled documentation will then be publicly available at <a class="reference external" href="https://your-org.github.io/your-repo/">https://your-org.github.io/your-repo/</a>.</p>
+Your automatically compiled documentation will then be publicly available at <a class="reference external" href="https://USER.github.io/PACKAGE/">https://USER.github.io/PACKAGE/</a>.</p>
 <p>Since GitHub pages are always publicly available, the workflow will check whether your repository is public or private, and will not deploy the documentation to gh-pages if your repository is private.</p>
 <p>The gh-pages documentation is refreshed every time there is a push to your default branch.</p>
 <p>Note that only one copy of the documentation is served (the latest version).
@@ -548,7 +552,7 @@ This means you will automatically generate a fresh API description which exactly
 Support for numpy and Google formats is through the <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html">napoleon</a> extension (which we have enabled by default).</p></li>
 <li><p>You can reference functions in the python core and common packages and they will automatically be hyperlinked to the appropriate documentation in your own documentation.
 This is done using <a class="reference external" href="http://www.sphinx-doc.org/en/master/usage/extensions/intersphinx.html">intersphinx</a> mappings, which you can see (and can add to) at the bottom of the <code class="docutils literal notranslate"><span class="pre">docs/conf.py</span></code> file.</p></li>
-<li><p>The documentation theme is <a href="#id6"><span class="problematic" id="id7">sphinx-book-theme_</span></a>.
+<li><p>The documentation theme is <a class="reference external" href="https://sphinx-book-theme.readthedocs.io/">sphinx-book-theme</a>.
 Alternative themes can be found at <a class="reference external" href="https://sphinx-themes.org">sphinx-themes.org</a>, <a class="reference external" href="https://sphinxthemes.com/">sphinxthemes.com</a>, and <a class="reference external" href="https://www.writethedocs.org/guide/tools/sphinx-themes/">writethedocs</a>.</p></li>
 </ul>
 </div>
@@ -607,7 +611,7 @@ It is also useful to ensure that style guides are adhered to</p>
 <p>Five workflows are included:</p>
 <dl class="simple">
 <dt>docs</dt><dd><p>The docs workflow ensures the documentation builds correctly, and presents any errors and warnings nicely as annotations.
-If your repository is public, publicly available html documentation is automatically deployed to the gh-pages branch and <a class="reference external" href="https://your-org.github.io/your-repo/">https://your-org.github.io/your-repo/</a>.</p>
+If your repository is public, publicly available html documentation is automatically deployed to the gh-pages branch and <a class="reference external" href="https://USER.github.io/PACKAGE/">https://USER.github.io/PACKAGE/</a>.</p>
 </dd>
 <dt>pre-commit</dt><dd><p>Runs the pre-commit stack.
 Ensures all contributions are compliant, even if a contributor has not set up pre-commit on their local machine.</p>

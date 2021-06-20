@@ -336,7 +336,7 @@ Other documentation features
 .. _napoleon: https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html
 .. _numpy format: https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_numpy.html#example-numpy-style-python-docstrings
 .. _Sphinx: https://www.sphinx-doc.org/
-.. _spinx-book-theme: https://sphinx-book-theme.readthedocs.io/
+.. _sphinx-book-theme: https://sphinx-book-theme.readthedocs.io/
 .. _sphinx-themes.org: https://sphinx-themes.org
 .. _sphinxthemes.com: https://sphinxthemes.com/
 .. _reST: http://docutils.sourceforge.net/rst.html

@@ -37,7 +37,8 @@ for extra_req_file in extra_req_files:
     extras_require[name] = read(extra_req_file).splitlines()
 
 # If there are any extras, add a catch-all case that includes everything.
-# This assumes that entries in extras_require are lists (not single strings).
+# This assumes that entries in extras_require are lists (not single strings),
+# and that there are no duplicated packages across the extras.
 if extras_require:
     extras_require["all"] = sorted({x for v in extras_require.values() for x in v})
 

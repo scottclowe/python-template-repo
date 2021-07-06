@@ -4,11 +4,11 @@ repos:
     hooks:
       - id: isort
         name: isort
-        args: ["--profile", "black"]
+        args: ["--profile=black"]
       - id: isort
         name: isort (cython)
         types: [cython]
-        args: ["--profile", "black"]
+        args: ["--profile=black"]
 
   - repo: https://github.com/psf/black
     rev: 21.6b0
@@ -32,10 +32,14 @@ repos:
     hooks:
       - id: nbstripout
 
-  - repo: https://github.com/dfm/black_nbconvert
-    rev: dcd7789
+  - repo: https://github.com/nbQA-dev/nbQA
+    rev: 0.13.1
     hooks:
-      - id: black_nbconvert
+       - id: nbqa-black
+         args: [--nbqa-mutate]
+         additional_dependencies: [black==21.6b0]
+       - id: nbqa-isort
+         args: ["--nbqa-mutate", "--profile=black"]
 
   - repo: https://github.com/pre-commit/pygrep-hooks
     rev: v1.9.0

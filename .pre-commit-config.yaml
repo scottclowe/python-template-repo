@@ -58,14 +58,20 @@ repos:
     rev: v4.0.1
     hooks:
       - id: check-added-large-files
+      - id: check-ast
       - id: check-builtin-literals
       - id: check-case-conflict
       - id: check-docstring-first
+      - id: check-executables-have-shebangs
+      - id: check-shebang-scripts-are-executable
       - id: check-merge-conflict
       - id: check-json
       - id: check-toml
+      - id: check-xml
       - id: check-yaml
       - id: debug-statements
+      - id: destroyed-symlinks
+      - id: detect-private-key
       - id: end-of-file-fixer
         exclude: ^LICENSE|\.(html|csv|txt|svg|py)$
       - id: pretty-format-json

@@ -1,5 +1,6 @@
 include CHANGELOG.rst
 include LICEN[CS]E*
+include pyproject.toml
 include README.rst
 include requirements*.txt
 

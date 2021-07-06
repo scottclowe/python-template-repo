@@ -74,6 +74,7 @@ repos:
       - id: detect-private-key
       - id: end-of-file-fixer
         exclude: ^LICENSE|\.(html|csv|txt|svg|py)$
+      - id: fix-encoding-pragma
       - id: pretty-format-json
         args: ["--autofix", "--no-ensure-ascii", "--no-sort-keys"]
       - id: requirements-txt-fixer

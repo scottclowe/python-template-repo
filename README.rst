@@ -62,6 +62,7 @@ When creating a new repository from this skeleton, these are the steps to follow
 
         rm -rf package_name/tests/
         rm -f .github/workflows/test*.yaml
+        rm -f .codecov.yml
         rm -f .coveragerc
         rm -f requirements-test.txt
 

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # `name` is the name of the package as used for `pip install package`
 name = "package-name"
 # `path` is the name of the package for `import package`

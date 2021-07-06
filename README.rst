@@ -205,7 +205,9 @@ However, you should note that different versions of black will produce different
 If you want to upgrade to a newer version of black, you must change the version everywhere it is specified:
 
 - requirements-dev.txt, `L1 <https://github.com/scottclowe/python-template-repo/blob/master/requirements-dev.txt#L1>`__
-- .pre-commit-config.yaml, `L14 <https://github.com/scottclowe/python-template-repo/blob/master/.pre-commit-config.yaml#L14>`__ and `L24 <https://github.com/scottclowe/python-template-repo/blob/master/.pre-commit-config.yaml#L24>`__
+- .pre-commit-config.yaml, `L14 <https://github.com/scottclowe/python-template-repo/blob/master/.pre-commit-config.yaml#L14>`__,
+  `L28 <https://github.com/scottclowe/python-template-repo/blob/master/.pre-commit-config.yaml#L28>`__, and
+  `L39 <https://github.com/scottclowe/python-template-repo/blob/master/.pre-commit-config.yaml#L39>`__
 
 .. _black: https://github.com/psf/black
 

@@ -52,24 +52,6 @@ When creating a new repository from this skeleton, these are the steps to follow
 #.  Depending on your needs, some of the files may be superfluous to you.
     You can remove any superfluous files, as follows.
 
-    - *Yes to pre-commit!*
-      You can delete the lint GitHub Action, as it is superfluous with the lint checks which are also in pre-commit::
-
-        rm -f .github/workflows/lint.yaml
-
-    - *No pre-commit!*
-      Run the following commands to remove references to pre-commit::
-
-        rm -f .pre-commit-config.yaml
-        rm -f .github/workflows/pre-commit.yaml
-        sed -i '/^pre-commit/d' requirements-dev.txt
-
-    - *No Python 2.7 support!*
-      Run the following commands to delete references to Python 2.7 from the unit testing CI::
-
-        sed -i 's/"2\.7", //' .github/workflows/test*.yaml
-        sed -i '"2\.7"/"3\.5"/' .github/workflows/test*.yaml
-
     - *No GitHub Actions!*
       Delete the .github directory::
 
@@ -82,13 +64,6 @@ When creating a new repository from this skeleton, these are the steps to follow
         rm -f .github/workflows/test*.yaml
         rm -f .coveragerc
         rm -f requirements-test.txt
-
-    - *No Documentation!*
-      Run the following commands to delete the documentation and its tests::
-
-        rm -rf docs/
-        rm -f .github/workflows/docs.yaml
-        head -n -7 .github/workflows/test.yaml > .github/workflows/test.yaml
 
 #.  Delete the LICENSE file and replace it with a LICENSE file of your own choosing.
     If the code is intended to be freely available for anyone to use, use an `open source license <https://choosealicense.com/>`_, such as `MIT License <https://choosealicense.com/licenses/mit/>`__ or `GPLv3 <https://choosealicense.com/licenses/gpl-3.0/>`__.
@@ -230,8 +205,9 @@ However, you should note that different versions of black will produce different
 If you want to upgrade to a newer version of black, you must change the version everywhere it is specified:
 
 - requirements-dev.txt, `L1 <https://github.com/scottclowe/python-template-repo/blob/master/requirements-dev.txt#L1>`__
-- .pre-commit-config.yaml, `L14 <https://github.com/scottclowe/python-template-repo/blob/master/.pre-commit-config.yaml#L14>`__ and `L24 <https://github.com/scottclowe/python-template-repo/blob/master/.pre-commit-config.yaml#L24>`__
-- .github/workflows/lint.yaml, `L19 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/lint.yaml#L19>`__
+- .pre-commit-config.yaml, `L14 <https://github.com/scottclowe/python-template-repo/blob/master/.pre-commit-config.yaml#L14>`__,
+  `L28 <https://github.com/scottclowe/python-template-repo/blob/master/.pre-commit-config.yaml#L28>`__, and
+  `L39 <https://github.com/scottclowe/python-template-repo/blob/master/.pre-commit-config.yaml#L39>`__
 
 .. _black: https://github.com/psf/black
 
@@ -240,7 +216,7 @@ pre-commit
 ~~~~~~~~~~
 
 The template repository comes with a pre-commit_ stack.
-This is a set of git hooks which are executed everytime you make a commit.
+This is a set of git hooks which are executed every time you make a commit.
 The hooks catch errors as they occur, and will automatically fix some of these errors.
 
 To set up the pre-commit hooks, run the following code from within the repo directory::
@@ -257,10 +233,17 @@ You can also manually run the pre-commit stack on all the files at any time::
 
     pre-commit run --all-files
 
-The pre-commit stack includes the following operations:
+To force a commit to go through without passing the pre-commit hooks use the ``--no-verify`` flag::
 
-- Reformats code to use the black_ style.
-  Any code `inside docstrings <blackendocs_>`_ will also be formatted to the black style.
+    git commit --no-verify
+
+The pre-commit stack which comes with the template is highly opinionated, and includes the following operations:
+
+- Code is reformatted to use the black_ style.
+  Any code inside docstrings will be formatted to black using blackendocs_.
+  All code cells in Jupyter notebooks are also formatted to black using black_nbconvert_.
+
+- All Jupyter notebooks are cleared using nbstripout_.
 
 - Imports are automatically sorted using isort_.
 
@@ -277,9 +260,11 @@ The pre-commit stack includes the following operations:
 Once it is set up, the pre-commit stack will run locally on every commit.
 The pre-commit stack will also run on github with one of the action workflows, which ensures PRs are checked without having to rely on contributors to enable the pre-commit locally.
 
+.. _black_nbconvert: https://github.com/dfm/black_nbconvert
 .. _blackendocs: https://github.com/asottile/blacken-docs
 .. _flake8: https://gitlab.com/pycqa/flake8
 .. _isort: https://github.com/timothycrosley/isort
+.. _nbstripout: https://github.com/kynan/nbstripout
 .. _PEP-8: https://www.python.org/dev/peps/pep-0008/
 .. _pre-commit: https://pre-commit.com/
 .. _pre-commit-hooks: https://github.com/pre-commit/pre-commit-hooks
@@ -293,7 +278,26 @@ Automated documentation
 The script ``docs/conf.py`` is based on the Sphinx_ default configuration.
 It is set up to work well out of the box, with several features added in.
 
-You can build the web documentation with::
+GitHub Pages
+^^^^^^^^^^^^
+
+If your repository is publicly available, the docs workflow will automatically deploy your documentation to `GitHub Pages`_.
+To enable the documentation, go to the ``Settings > Pages`` pane for your repository and set Source to be the ``gh-pages`` branch (root directory).
+Your automatically compiled documentation will then be publicly available at https://USER.github.io/PACKAGE/.
+
+Since GitHub pages are always publicly available, the workflow will check whether your repository is public or private, and will not deploy the documentation to gh-pages if your repository is private.
+
+The gh-pages documentation is refreshed every time there is a push to your default branch.
+
+Note that only one copy of the documentation is served (the latest version).
+For more mature projects, you may wish to host the documentation readthedocs_ instead, which supports hosting documentation for multiple package versions simultaneously.
+
+.. _GitHub Pages: https://pages.github.com/
+
+Building locally
+^^^^^^^^^^^^^^^^
+
+You can build the web documentation locally with::
 
    make -C docs html
 
@@ -311,6 +315,9 @@ On Windows, this becomes::
     make html
     make latexpdf
     cd ..
+
+Other documentation features
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - Your README.rst will become part of the generated documentation (via the file ``docs/source/readme.rst``).
   Note that the first line of README.rst is not included in the documentation, since this is expected to contain badges which you want to render on GitHub, but not include in your documentation pages.
@@ -416,6 +423,7 @@ Five workflows are included:
 
 docs
     The docs workflow ensures the documentation builds correctly, and presents any errors and warnings nicely as annotations.
+    If your repository is public, publicly available html documentation is automatically deployed to the gh-pages branch and https://USER.github.io/PACKAGE/.
 
 pre-commit
     Runs the pre-commit stack.

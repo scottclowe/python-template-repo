@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import glob
 import os
 import sys
 from shutil import rmtree
@@ -28,32 +29,16 @@ def read(fname):
 
 install_requires = read("requirements.txt").splitlines()
 
+# Dynamically determine extra dependencies
 extras_require = {}
-
-# Dev dependencies
-try:
-    extras_require["dev"] = read("requirements-dev.txt").splitlines()
-except IOError:
-    # doesn't exist
-    pass
-
-# Documentation dependencies
-try:
-    extras_require["docs"] = read("requirements-docs.txt").splitlines()
-except IOError:
-    # doesn't exist
-    pass
-
-# Test dependencies
-try:
-    extras_require["test"] = read("requirements-test.txt").splitlines()
-except IOError:
-    # doesn't exist
-    pass
-
+extra_req_files = glob.glob("requirements-*.txt")
+for extra_req_file in extra_req_files:
+    name = os.path.splitext(extra_req_file)[0].replace("requirements-", "", 1)
+    extras_require[name] = read(extra_req_file).splitlines()
 
 # If there are any extras, add a catch-all case that includes everything.
-# This assumes that entries in extras_require are lists (not single strings).
+# This assumes that entries in extras_require are lists (not single strings),
+# and that there are no duplicated packages across the extras.
 if extras_require:
     extras_require["all"] = sorted({x for v in extras_require.values() for x in v})
 

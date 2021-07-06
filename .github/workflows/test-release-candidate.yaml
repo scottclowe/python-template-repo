@@ -73,7 +73,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         python -m pip install flake8
-        python -m pip install .[test]
+        python -m pip install --editable .[test]
 
     - name: Sanity check with flake8
       run: |
@@ -109,7 +109,7 @@ jobs:
 
     - name: Build HTML docs
       run: |
-        python -m pip install .[docs]
+        python -m pip install --editable .[docs]
         cd docs
         make html
         cd ..

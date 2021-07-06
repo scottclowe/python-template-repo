@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Provides a base test class for other test classes to inherit from.
 

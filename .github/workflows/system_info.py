@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Print out some handy system info.
 """

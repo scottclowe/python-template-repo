@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Module provides a simple cubic_rectification function.
 """

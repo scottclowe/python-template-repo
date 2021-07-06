@@ -14,10 +14,33 @@ When creating a new repository from this skeleton, these are the steps to follow
 #. **Don't click the fork button**
 
 #.
-    #.  You can create a new repository on GitHub from this template by clicking the `Use this template <https://github.com/scottclowe/python-template-repo/generate>`_ button.
+    #.  **New GitHub repository**.
 
-    #.  Alternatively, if your new repository is not going to be on GitHub, you can `download this repo as a zip <https://github.com/scottclowe/python-template-repo/archive/master.zip>`_ and work from there.
-        However, you should note that this zip does not include the .gitignore and .gitattributes files (because GitHub automatically omits them, which is usually helpful but is not for our purposes).
+        You can create a new repository on GitHub from this template by clicking the `Use this template <https://github.com/scottclowe/python-template-repo/generate>`_ button.
+
+        *Need to support Python 2.7?*
+        Make sure to check the "Include all branches" option while creating the new repository.
+
+        Then clone your new repository to your local system [pseudocode]::
+
+          git clone git@github.com:your-org/your-repo.git
+          cd your-repo
+
+        *If you need to support Python 2.7*, now move the reference for your default branch (master/main) to point to the python2.7 branch head::
+
+          git reset --hard origin/python2.7
+          git push -f
+
+        You can now delete the python2.7 branch from your remote.
+
+    #.  **New repository not on GitHub**.
+
+        Alternatively, if your new repository is not going to be on GitHub, you can download `this repo as a zip <https://github.com/scottclowe/python-template-repo/archive/master.zip>`_ and work from there.
+
+        *Need to support Python 2.7?*
+        Download the `python2.7 branch as a zip <https://github.com/scottclowe/python-template-repo/archive/refs/heads/python2.7.zip>`_ instead.
+
+        Either way, you should note that this zip does not include the .gitignore and .gitattributes files (because GitHub automatically omits them, which is usually helpful but is not for our purposes).
         Thus you will also need to download the `.gitignore <https://raw.githubusercontent.com/scottclowe/python-template-repo/master/.gitignore>`__ and `.gitattributes <https://raw.githubusercontent.com/scottclowe/python-template-repo/master/.gitattributes>`__ files.
 
         The following shell commands can be used for this purpose on \*nix systems::

@@ -395,7 +395,8 @@ They can be installed along with::
     pip install .[dev]
 
 etc.
-Another extra named ``all`` captures all of these dependencies.
+Any additional files named ``requirements-EXTRANAME.txt`` will also be collected automatically and made available with the corresponding name ``EXTRANAME``.
+Another extra named ``all`` captures all of these optional dependencies.
 
 Your README file is automatically included in the metadata when you use setup.py build wheels for PyPI.
 The rest of the metadata comes from ``package_name/__meta__.py``.

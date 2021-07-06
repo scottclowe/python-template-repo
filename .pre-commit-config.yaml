@@ -15,6 +15,8 @@ repos:
     hooks:
       - id: black
         args:
+            - "--target-version=py27"
+            - "--target-version=py35"
             - "--target-version=py36"
             - "--target-version=py37"
             - "--target-version=py38"

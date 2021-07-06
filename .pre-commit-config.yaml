@@ -67,7 +67,7 @@ repos:
       - id: end-of-file-fixer
         exclude: ^LICENSE|\.(html|csv|txt|svg|py)$
       - id: pretty-format-json
-        args: ["--autofix", "--no-sort-keys"]
+        args: ["--autofix", "--no-ensure-ascii", "--no-sort-keys"]
       - id: requirements-txt-fixer
       - id: trailing-whitespace
         args: [--markdown-linebreak-ext=md]

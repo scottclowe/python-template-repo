@@ -285,13 +285,32 @@
 <p>This repository gives a fully-featured template or skeleton for new Python repositories.</p>
 <div class="section" id="quick-start">
 <h2>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h2>
-<p>When creating a new repository from this skeleton, these are the steps to follow:</p>
+<p>When creating a new repository from this template, these are the steps to follow:</p>
 <ol class="arabic">
-<li><p><strong>Don’t click the fork button</strong></p></li>
+<li><p><em>Don’t click the fork button.</em>
+The fork button is for making a new template based in this one, not for using the template to make a new repository.</p></li>
 <li><ol class="arabic">
-<li><p>You can create a new repository on GitHub from this template by clicking the <a class="reference external" href="https://github.com/scottclowe/python-template-repo/generate">Use this template</a> button.</p></li>
-<li><p>Alternatively, if your new repository is not going to be on GitHub, you can <a class="reference external" href="https://github.com/scottclowe/python-template-repo/archive/master.zip">download this repo as a zip</a> and work from there.
-However, you should note that this zip does not include the .gitignore and .gitattributes files (because GitHub automatically omits them, which is usually helpful but is not for our purposes).
+<li><p><strong>New GitHub repository</strong>.</p>
+<p>You can create a new repository on GitHub from this template by clicking the <a class="reference external" href="https://github.com/scottclowe/python-template-repo/generate">Use this template</a> button.</p>
+<p><em>Need to support Python 2.7?</em>
+Make sure to check the “Include all branches” option while creating the new repository.</p>
+<p>Then clone your new repository to your local system [pseudocode]:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">your</span><span class="o">-</span><span class="n">org</span><span class="o">/</span><span class="n">your</span><span class="o">-</span><span class="n">repo</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">your</span><span class="o">-</span><span class="n">repo</span>
+</pre></div>
+</div>
+<p><em>If you need to support Python 2.7</em>, now move the reference for your default branch (master/main) to point to the python2.7 branch head:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">reset</span> <span class="o">--</span><span class="n">hard</span> <span class="n">origin</span><span class="o">/</span><span class="n">python2</span><span class="o">.</span><span class="mi">7</span>
+<span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">f</span>
+</pre></div>
+</div>
+<p>You can now delete the python2.7 branch from your remote.</p>
+</li>
+<li><p><strong>New repository not on GitHub</strong>.</p>
+<p>Alternatively, if your new repository is not going to be on GitHub, you can download <a class="reference external" href="https://github.com/scottclowe/python-template-repo/archive/master.zip">this repo as a zip</a> and work from there.</p>
+<p><em>Need to support Python 2.7?</em>
+Download the <a class="reference external" href="https://github.com/scottclowe/python-template-repo/archive/refs/heads/python2.7.zip">python2.7 branch as a zip</a> instead.</p>
+<p>Either way, you should note that this zip does not include the .gitignore and .gitattributes files (because GitHub automatically omits them, which is usually helpful but is not for our purposes).
 Thus you will also need to download the <a class="reference external" href="https://raw.githubusercontent.com/scottclowe/python-template-repo/master/.gitignore">.gitignore</a> and <a class="reference external" href="https://raw.githubusercontent.com/scottclowe/python-template-repo/master/.gitattributes">.gitattributes</a> files.</p>
 <p>The following shell commands can be used for this purpose on *nix systems:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>git init your_repo_name

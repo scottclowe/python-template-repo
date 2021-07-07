@@ -596,7 +596,8 @@ They can be installed along with:</p>
 </pre></div>
 </div>
 <p>etc.
-Another extra named <code class="docutils literal notranslate"><span class="pre">all</span></code> captures all of these dependencies.</p>
+Any additional files named <code class="docutils literal notranslate"><span class="pre">requirements-EXTRANAME.txt</span></code> will also be collected automatically and made available with the corresponding name <code class="docutils literal notranslate"><span class="pre">EXTRANAME</span></code>.
+Another extra named <code class="docutils literal notranslate"><span class="pre">all</span></code> captures all of these optional dependencies.</p>
 <p>Your README file is automatically included in the metadata when you use setup.py build wheels for PyPI.
 The rest of the metadata comes from <code class="docutils literal notranslate"><span class="pre">package_name/__meta__.py</span></code>.</p>
 <p>Our template setup.py file is based on the <a class="reference external" href="https://setuptools.readthedocs.io/en/latest/setuptools.html#basic-use">example from setuptools documentation</a>, and the comprehensive example from <a class="reference external" href="https://github.com/kennethreitz/setup.py">Kenneth Reitz</a> (released under <a class="reference external" href="https://github.com/kennethreitz/setup.py/blob/master/LICENSE">MIT License</a>), with further features added.</p>

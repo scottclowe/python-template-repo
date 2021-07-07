@@ -9,9 +9,10 @@ This repository gives a fully-featured template or skeleton for new Python repos
 Quick start
 -----------
 
-When creating a new repository from this skeleton, these are the steps to follow:
+When creating a new repository from this template, these are the steps to follow:
 
-#. **Don't click the fork button**
+#. *Don't click the fork button.*
+   The fork button is for making a new template based in this one, not for using the template to make a new repository.
 
 #.
     #.  **New GitHub repository**.

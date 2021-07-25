@@ -15,10 +15,15 @@
 import datetime
 import os
 import sys
+from inspect import getsourcefile
 
-sys.path.insert(0, os.path.abspath("."))
-sys.path.insert(0, os.path.abspath("../"))
+DOCS_DIRECTORY = os.path.abspath(
+    os.path.dirname(os.path.abspath(getsourcefile(lambda: 0)))
+)
+REPO_DIRECTORY = os.path.dirname(DOCS_DIRECTORY)
 
+sys.path.insert(0, DOCS_DIRECTORY)
+sys.path.insert(0, REPO_DIRECTORY)
 
 from package_name import __meta__ as meta  # noqa: E402 isort:skip
 

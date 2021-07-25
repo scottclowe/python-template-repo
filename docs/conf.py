@@ -15,6 +15,7 @@
 import datetime
 import os
 import sys
+import tempfile
 from inspect import getsourcefile
 
 DOCS_DIRECTORY = os.path.abspath(
@@ -90,10 +91,68 @@ def retitle_modules(_):
     open(pth, "w").write("\n".join(lines))
 
 
+def auto_convert_readme(_):
+    """
+    Handle README.rst or README.md as available.
+
+    If it exists, makes a symbolic link to README.rst at docs/source/readme.rst.
+    Otherwise, and if it exists, converts README.md to to rST format, the
+    output of which is docs/source/readme.rst.
+    """
+    readme_path_md = os.path.join(REPO_DIRECTORY, "README.md")
+    readme_path_rst = os.path.splitext(readme_path_md)[0] + ".rst"
+    readme_path_output = os.path.join(DOCS_DIRECTORY, "source", "readme.rst")
+    # Ensure output directory exists
+    output_dir = os.path.dirname(readme_path_output)
+    os.makedirs(output_dir, exist_ok=True)
+
+    if os.path.isfile(readme_path_rst):
+        # Make docs/source/readme.rst be a symbolic link to README.rst
+        #
+        # We can't overwrite an existing file when calling os.symlink, so
+        # we write to a temporary file and copy that over instead.
+        tmp_path = tempfile.mktemp(dir=output_dir)
+        try:
+            os.symlink(readme_path_rst, tmp_path)
+            os.replace(tmp_path, readme_path_output)
+        finally:
+            if os.path.islink(tmp_path):
+                os.remove(tmp_path)
+
+    elif os.path.isfile(readme_path_md):
+        # Otherwise, if README.md exists convert it to markdown using pandoc
+        import pypandoc
+
+        # Download pandoc if necessary. If pandoc is already installed and on
+        # the PATH, the installed version will be used. Otherwise, we will
+        # download a copy of pandoc into docs/bin/ and add that to our PATH.
+        pandoc_dir = os.path.join(DOCS_DIRECTORY, "bin")
+        os.environ["PATH"] += os.pathsep + pandoc_dir
+        pypandoc.ensure_pandoc_installed(
+            quiet=True,
+            targetfolder=pandoc_dir,
+            delete_installer=True,
+        )
+        # Call pandoc using the pypandoc wrapper
+        tmp_path = tempfile.mktemp(dir=output_dir)
+        try:
+            pypandoc.convert_file(
+                readme_path_md,  # Source file
+                "rst",  # to rST
+                format="gfm",  # from GitHub-Flavored Markdown
+                outputfile=tmp_path,  # Output file
+            )
+            os.replace(tmp_path, readme_path_output)
+        finally:
+            if os.path.islink(tmp_path):
+                os.remove(tmp_path)
+
+
 def setup(app):
     """
     Set up our apidoc commands to run whenever sphinx is built.
     """
+    app.connect("builder-inited", auto_convert_readme)
     app.connect("builder-inited", run_apidoc)
     app.connect("builder-inited", retitle_modules)
 

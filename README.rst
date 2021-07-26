@@ -9,6 +9,8 @@ This repository gives a fully-featured template or skeleton for new Python repos
 Quick start
 -----------
 
+.. highlight:: bash
+
 When creating a new repository from this template, these are the steps to follow:
 
 #. *Don't click the fork button.*
@@ -92,7 +94,9 @@ When creating a new repository from this template, these are the steps to follow
 
 #.  Delete the LICENSE file and replace it with a LICENSE file of your own choosing.
     If the code is intended to be freely available for anyone to use, use an `open source license <https://choosealicense.com/>`_, such as `MIT License <https://choosealicense.com/licenses/mit/>`__ or `GPLv3 <https://choosealicense.com/licenses/gpl-3.0/>`__.
-    If you don't want your code to be used by anyone else, add a LICENSE file which just says::
+    If you don't want your code to be used by anyone else, add a LICENSE file which just says:
+
+    .. code-block:: none
 
         Copyright (c) YEAR, YOUR NAME
 
@@ -134,6 +138,8 @@ When creating a new repository from this template, these are the steps to follow
 
     Which will make changes in the following places.
 
+    .. highlight:: python
+
     - In ``setup.py``, `L69 <https://github.com/scottclowe/python-template-repo/blob/master/setup.py#L69>`__::
 
         exec(read('package_name/__meta__.py'), meta)
@@ -149,6 +155,8 @@ When creating a new repository from this template, these are the steps to follow
     - In ``.github/workflows/test.yaml``, `L78 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/test.yaml#L78>`__, and ``.github/workflows/test-release-candidate.yaml``, `L90 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/test-release-candidate.yaml#L90>`__::
 
         python -m pytest --cov=package_name --cov-report term --cov-report xml --cov-config .coveragerc --junitxml=testresults.xml
+
+    .. highlight:: bash
 
 #.  Swap out the contents of ``requirements.txt`` for your project's current requirements.
     If you don't have any requirements yet, delete the contents of ``requirements.txt``.
@@ -510,6 +518,9 @@ Contributions are welcome! If you can see a way to improve this template:
 - Make your changes and make a pull request.
 
 Or to report a bug or request something new, make an issue.
+
+
+.. highlight:: python
 
 
 .. |GHA tests| image:: https://github.com/scottclowe/python-template-repo/workflows/tests/badge.svg

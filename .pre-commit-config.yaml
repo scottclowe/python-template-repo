@@ -38,7 +38,12 @@ repos:
       - id: nbqa-isort
         args: ["--nbqa-mutate", "--profile=black"]
       - id: nbqa-black
-        args: [--nbqa-mutate]
+        args:
+            - "--nbqa-mutate"
+            - "--target-version=py36"
+            - "--target-version=py37"
+            - "--target-version=py38"
+            - "--target-version=py39"
         additional_dependencies: [black==21.7b0]
 
   - repo: https://github.com/pre-commit/pygrep-hooks

@@ -295,13 +295,13 @@ The fork button is for making a new template based in this one, not for using th
 <p><em>Need to support Python 2.7?</em>
 Make sure to check the “Include all branches” option while creating the new repository.</p>
 <p>Then clone your new repository to your local system [pseudocode]:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">your</span><span class="o">-</span><span class="n">org</span><span class="o">/</span><span class="n">your</span><span class="o">-</span><span class="n">repo</span><span class="o">.</span><span class="n">git</span>
-<span class="n">cd</span> <span class="n">your</span><span class="o">-</span><span class="n">repo</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone git@github.com:your-org/your-repo.git
+<span class="nb">cd</span> your-repo
 </pre></div>
 </div>
 <p><em>If you need to support Python 2.7</em>, now move the reference for your default branch (master/main) to point to the python2.7 branch head:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">reset</span> <span class="o">--</span><span class="n">hard</span> <span class="n">origin</span><span class="o">/</span><span class="n">python2</span><span class="o">.</span><span class="mi">7</span>
-<span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">f</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git reset --hard origin/python2.7
+git push -f
 </pre></div>
 </div>
 <p>You can now delete the python2.7 branch from your remote.</p>
@@ -313,32 +313,32 @@ Download the <a class="reference external" href="https://github.com/scottclowe/p
 <p>Either way, you should note that this zip does not include the .gitignore and .gitattributes files (because GitHub automatically omits them, which is usually helpful but is not for our purposes).
 Thus you will also need to download the <a class="reference external" href="https://raw.githubusercontent.com/scottclowe/python-template-repo/master/.gitignore">.gitignore</a> and <a class="reference external" href="https://raw.githubusercontent.com/scottclowe/python-template-repo/master/.gitattributes">.gitattributes</a> files.</p>
 <p>The following shell commands can be used for this purpose on *nix systems:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>git init your_repo_name
-cd your_repo_name
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git init your_repo_name
+<span class="nb">cd</span> your_repo_name
 wget https://github.com/scottclowe/python-template-repo/archive/master.zip
 unzip master.zip
-mv -n python-template-repo-master/* python-template-repo-master/.[!.]* .
+mv -n python-template-repo-master/* python-template-repo-master/.<span class="o">[</span>!.<span class="o">]</span>* .
 rm -r python-template-repo-master/
 rm master.zip
 wget https://raw.githubusercontent.com/scottclowe/python-template-repo/master/.gitignore
 wget https://raw.githubusercontent.com/scottclowe/python-template-repo/master/.gitattributes
 git add .
-git commit -m &quot;Initial commit&quot;
+git commit -m <span class="s2">&quot;Initial commit&quot;</span>
 git rm LICENSE
 </pre></div>
 </div>
 <p>Note that we are doing the move with <code class="docutils literal notranslate"><span class="pre">mv</span> <span class="pre">-n</span></code>, which will prevent the template repository from clobbering your own files (in case you already made a README.rst file, for instance).</p>
 <p>You’ll need to instruct your new local repository to synchronise with the remote <code class="docutils literal notranslate"><span class="pre">your_repo_url</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">remote</span> <span class="nb">set</span><span class="o">-</span><span class="n">url</span> <span class="n">origin</span> <span class="n">your_repo_url</span>
-<span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">u</span> <span class="n">origin</span> <span class="n">master</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git remote set-url origin your_repo_url
+git push -u origin master
 </pre></div>
 </div>
 </li>
 </ol>
 </li>
 <li><p>Remove the dummy files <code class="docutils literal notranslate"><span class="pre">package_name/module.py</span></code> and <code class="docutils literal notranslate"><span class="pre">package_name/tests/test_module.py</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rm</span> <span class="n">package_name</span><span class="o">/</span><span class="n">module</span><span class="o">.</span><span class="n">py</span>
-<span class="n">rm</span> <span class="n">package_name</span><span class="o">/</span><span class="n">tests</span><span class="o">/</span><span class="n">test_module</span><span class="o">.</span><span class="n">py</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm package_name/module.py
+rm package_name/tests/test_module.py
 </pre></div>
 </div>
 <p>If you prefer, you can keep them around as samples, but should note that they require numpy.</p>
@@ -348,17 +348,17 @@ You can remove any superfluous files, as follows.</p>
 <ul>
 <li><p><em>No GitHub Actions!</em>
 Delete the .github directory:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rm</span> <span class="o">-</span><span class="n">r</span> <span class="o">.</span><span class="n">github</span><span class="o">/</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm -r .github/
 </pre></div>
 </div>
 </li>
 <li><p><em>No unit testing!</em>
 Run the following commands to delete unit testing files:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="n">package_name</span><span class="o">/</span><span class="n">tests</span><span class="o">/</span>
-<span class="n">rm</span> <span class="o">-</span><span class="n">f</span> <span class="o">.</span><span class="n">github</span><span class="o">/</span><span class="n">workflows</span><span class="o">/</span><span class="n">test</span><span class="o">*.</span><span class="n">yaml</span>
-<span class="n">rm</span> <span class="o">-</span><span class="n">f</span> <span class="o">.</span><span class="n">codecov</span><span class="o">.</span><span class="n">yml</span>
-<span class="n">rm</span> <span class="o">-</span><span class="n">f</span> <span class="o">.</span><span class="n">coveragerc</span>
-<span class="n">rm</span> <span class="o">-</span><span class="n">f</span> <span class="n">requirements</span><span class="o">-</span><span class="n">test</span><span class="o">.</span><span class="n">txt</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm -rf package_name/tests/
+rm -f .github/workflows/test*.yaml
+rm -f .codecov.yml
+rm -f .coveragerc
+rm -f requirements-test.txt
 </pre></div>
 </div>
 </li>
@@ -367,9 +367,9 @@ Run the following commands to delete unit testing files:</p>
 <li><p>Delete the LICENSE file and replace it with a LICENSE file of your own choosing.
 If the code is intended to be freely available for anyone to use, use an <a class="reference external" href="https://choosealicense.com/">open source license</a>, such as <a class="reference external" href="https://choosealicense.com/licenses/mit/">MIT License</a> or <a class="reference external" href="https://choosealicense.com/licenses/gpl-3.0/">GPLv3</a>.
 If you don’t want your code to be used by anyone else, add a LICENSE file which just says:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Copyright</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="n">YEAR</span><span class="p">,</span> <span class="n">YOUR</span> <span class="n">NAME</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Copyright (c) YEAR, YOUR NAME
 
-<span class="n">All</span> <span class="n">right</span> <span class="n">reserved</span><span class="o">.</span>
+All right reserved.
 </pre></div>
 </div>
 <p>Note that if you don’t include a LICENSE file, you will still have copyright over your own code (this copyright is automatically granted), and your code will be private source (technically nobody else will be permitted to use it, even if you make your code publicly available).</p>
@@ -389,40 +389,40 @@ By default, this is automatically inferred from <code class="docutils literal no
 <p>Other fields to enter should be self-explanatory.</p>
 </li>
 <li><p>Rename the directory <code class="docutils literal notranslate"><span class="pre">package_name</span></code> to be the <code class="docutils literal notranslate"><span class="pre">path</span></code> variable you just added to <code class="docutils literal notranslate"><span class="pre">__meta__.py</span></code>.:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PACKAGE_NAME</span><span class="o">=</span><span class="n">your_actual_package_name</span>
-<span class="n">mv</span> <span class="n">package_name</span> <span class="s2">&quot;$PACKAGE_NAME&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">PACKAGE_NAME</span><span class="o">=</span>your_actual_package_name
+mv package_name <span class="s2">&quot;</span><span class="nv">$PACKAGE_NAME</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
 </li>
 <li><p>Change references to <code class="docutils literal notranslate"><span class="pre">package_name</span></code> to your path variable:</p>
 <p>This can be done with the sed command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PACKAGE_NAME</span><span class="o">=</span><span class="n">your_actual_package_name</span>
-<span class="n">sed</span> <span class="o">-</span><span class="n">i</span> <span class="s2">&quot;s/package_name/$PACKAGE_NAME/&quot;</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> \
-    <span class="n">docs</span><span class="o">/</span><span class="n">conf</span><span class="o">.</span><span class="n">py</span> \
-    <span class="n">docs</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">rst</span> \
-    <span class="n">CHANGELOG</span><span class="o">.</span><span class="n">rst</span> \
-    <span class="o">.</span><span class="n">github</span><span class="o">/</span><span class="n">workflows</span><span class="o">/</span><span class="n">test</span><span class="o">*.</span><span class="n">yaml</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">PACKAGE_NAME</span><span class="o">=</span>your_actual_package_name
+sed -i <span class="s2">&quot;s/package_name/</span><span class="nv">$PACKAGE_NAME</span><span class="s2">/&quot;</span> setup.py <span class="se">\</span>
+    docs/conf.py <span class="se">\</span>
+    docs/index.rst <span class="se">\</span>
+    CHANGELOG.rst <span class="se">\</span>
+    .github/workflows/test*.yaml
 </pre></div>
 </div>
 <p>Which will make changes in the following places.</p>
 <ul>
 <li><p>In <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>, <a class="reference external" href="https://github.com/scottclowe/python-template-repo/blob/master/setup.py#L69">L69</a>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">exec</span><span class="p">(</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;package_name/__meta__.py&#39;</span><span class="p">),</span> <span class="n">meta</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">exec</span><span class="p">(</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;package_name/__meta__.py&#39;</span><span class="p">),</span> <span class="n">meta</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p>In <code class="docutils literal notranslate"><span class="pre">docs/conf.py</span></code>, <a class="reference external" href="https://github.com/scottclowe/python-template-repo/blob/master/docs/conf.py#L23">L23</a>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">package_name</span> <span class="kn">import</span> <span class="n">__meta__</span> <span class="k">as</span> <span class="n">meta</span>  <span class="c1"># noqa: E402</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">package_name</span> <span class="kn">import</span> <span class="n">__meta__</span> <span class="k">as</span> <span class="n">meta</span>  <span class="c1"># noqa: E402</span>
 </pre></div>
 </div>
 </li>
 <li><p>In <code class="docutils literal notranslate"><span class="pre">docs/index.rst</span></code>, <a class="reference external" href="https://github.com/scottclowe/python-template-repo/blob/master/docs/index.rst#L1">L1</a>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">package_name</span> <span class="n">documentation</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">package_name</span> <span class="n">documentation</span>
 </pre></div>
 </div>
 </li>
 <li><p>In <code class="docutils literal notranslate"><span class="pre">.github/workflows/test.yaml</span></code>, <a class="reference external" href="https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/test.yaml#L78">L78</a>, and <code class="docutils literal notranslate"><span class="pre">.github/workflows/test-release-candidate.yaml</span></code>, <a class="reference external" href="https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/test-release-candidate.yaml#L90">L90</a>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pytest</span> <span class="o">--</span><span class="n">cov</span><span class="o">=</span><span class="n">package_name</span> <span class="o">--</span><span class="n">cov</span><span class="o">-</span><span class="n">report</span> <span class="n">term</span> <span class="o">--</span><span class="n">cov</span><span class="o">-</span><span class="n">report</span> <span class="n">xml</span> <span class="o">--</span><span class="n">cov</span><span class="o">-</span><span class="n">config</span> <span class="o">.</span><span class="n">coveragerc</span> <span class="o">--</span><span class="n">junitxml</span><span class="o">=</span><span class="n">testresults</span><span class="o">.</span><span class="n">xml</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pytest</span> <span class="o">--</span><span class="n">cov</span><span class="o">=</span><span class="n">package_name</span> <span class="o">--</span><span class="n">cov</span><span class="o">-</span><span class="n">report</span> <span class="n">term</span> <span class="o">--</span><span class="n">cov</span><span class="o">-</span><span class="n">report</span> <span class="n">xml</span> <span class="o">--</span><span class="n">cov</span><span class="o">-</span><span class="n">config</span> <span class="o">.</span><span class="n">coveragerc</span> <span class="o">--</span><span class="n">junitxml</span><span class="o">=</span><span class="n">testresults</span><span class="o">.</span><span class="n">xml</span>
 </pre></div>
 </div>
 </li>
@@ -434,8 +434,8 @@ If you don’t have any requirements yet, delete the contents of <code class="do
 If you are keeping all the badges, make sure to change the URLs from <code class="docutils literal notranslate"><span class="pre">scottclowe/python-template-repo</span></code> to <code class="docutils literal notranslate"><span class="pre">your_username/your_repo</span></code>.
 If you prefer, you can use markdown instead of rST.</p></li>
 <li><p>Commit and push your changes:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">am</span> <span class="s2">&quot;Initialise project from template repository&quot;</span>
-<span class="n">git</span> <span class="n">push</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git commit -am <span class="s2">&quot;Initialise project from template repository&quot;</span>
+git push
 </pre></div>
 </div>
 </li>
@@ -459,7 +459,7 @@ This makes both their life and yours easier by ignoring their temporary files be
 <h3>.gitattributes<a class="headerlink" href="#gitattributes" title="Permalink to this headline">¶</a></h3>
 <p>The most important reason to include a <a class="reference external" href="https://git-scm.com/docs/gitattributes">.gitattributes</a> file is to ensure that line endings are normalised, no matter which OS the developer is using.
 This is largely achieved by the line:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">text</span><span class="o">=</span><span class="n">auto</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>* <span class="nv">text</span><span class="o">=</span>auto
 </pre></div>
 </div>
 <p>which <a class="reference external" href="https://git-scm.com/docs/gitattributes#_text">ensures</a> that all files Git decides contain text have their line endings normalized to LF on checkin.
@@ -493,8 +493,8 @@ If you want to upgrade to a newer version of black, you must change the version 
 This is a set of git hooks which are executed every time you make a commit.
 The hooks catch errors as they occur, and will automatically fix some of these errors.</p>
 <p>To set up the pre-commit hooks, run the following code from within the repo directory:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">-</span><span class="n">dev</span><span class="o">.</span><span class="n">txt</span>
-<span class="n">pre</span><span class="o">-</span><span class="n">commit</span> <span class="n">install</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install -r requirements-dev.txt
+pre-commit install
 </pre></div>
 </div>
 <p>Whenever you try to commit code which is flagged by the pre-commit hooks, the commit will not go through.
@@ -502,11 +502,11 @@ Some of the pre-commit hooks (such as <a class="reference external" href="https:
 When this happens, you’ll have to stage the changes made by the commit hooks and then try your commit again.
 Other pre-commit hooks will not modify your code and will just tell you about issues which you’ll then have to manually fix.</p>
 <p>You can also manually run the pre-commit stack on all the files at any time:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pre</span><span class="o">-</span><span class="n">commit</span> <span class="n">run</span> <span class="o">--</span><span class="nb">all</span><span class="o">-</span><span class="n">files</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pre-commit run --all-files
 </pre></div>
 </div>
 <p>To force a commit to go through without passing the pre-commit hooks use the <code class="docutils literal notranslate"><span class="pre">--no-verify</span></code> flag:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">commit</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">verify</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git commit --no-verify
 </pre></div>
 </div>
 <p>The pre-commit stack which comes with the template is highly opinionated, and includes the following operations:</p>
@@ -543,22 +543,22 @@ For more mature projects, you may wish to host the documentation <a class="refer
 <div class="section" id="building-locally">
 <h4>Building locally<a class="headerlink" href="#building-locally" title="Permalink to this headline">¶</a></h4>
 <p>You can build the web documentation locally with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="o">-</span><span class="n">C</span> <span class="n">docs</span> <span class="n">html</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make -C docs html
 </pre></div>
 </div>
 <p>And view the documentation like so:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sensible</span><span class="o">-</span><span class="n">browser</span> <span class="n">docs</span><span class="o">/</span><span class="n">_build</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">html</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sensible-browser docs/_build/html/index.html
 </pre></div>
 </div>
 <p>Or you can build pdf documentation:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="o">-</span><span class="n">C</span> <span class="n">docs</span> <span class="n">latexpdf</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make -C docs latexpdf
 </pre></div>
 </div>
 <p>On Windows, this becomes:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">docs</span>
-<span class="n">make</span> <span class="n">html</span>
-<span class="n">make</span> <span class="n">latexpdf</span>
-<span class="n">cd</span> <span class="o">..</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> docs
+make html
+make latexpdf
+<span class="nb">cd</span> ..
 </pre></div>
 </div>
 </div>
@@ -594,19 +594,19 @@ The version information is also accessible at <code class="docutils literal notr
 <h3>setup.py<a class="headerlink" href="#setup-py" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> script is used to build and install your package.</p>
 <p>Your package can be installed from source with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">.</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install .
 </pre></div>
 </div>
 <p>or alternatively with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python setup.py install
 </pre></div>
 </div>
 <p>But do remember that as a developer, you should install your package in editable mode, using either:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">editable</span> <span class="o">.</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install --editable .
 </pre></div>
 </div>
 <p>or:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">develop</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python setup.py develop
 </pre></div>
 </div>
 <p>which will mean changes to the source will affect your installed package immediately without you having to reinstall it.</p>
@@ -614,7 +614,7 @@ The version information is also accessible at <code class="docutils literal notr
 Requirements listed in <code class="docutils literal notranslate"><span class="pre">requirements-dev.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">requirements-docs.txt</span></code>, and <code class="docutils literal notranslate"><span class="pre">requirements-test.txt</span></code> are optional extras.
 The <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> script is configured to include these as extras named <code class="docutils literal notranslate"><span class="pre">dev</span></code>, <code class="docutils literal notranslate"><span class="pre">docs</span></code>, and <code class="docutils literal notranslate"><span class="pre">test</span></code>.
 They can be installed along with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">.</span><span class="p">[</span><span class="n">dev</span><span class="p">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install .<span class="o">[</span>dev<span class="o">]</span>
 </pre></div>
 </div>
 <p>etc.

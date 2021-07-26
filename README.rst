@@ -345,8 +345,12 @@ On Windows, this becomes::
 Other documentation features
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-- Your README.rst will become part of the generated documentation (via the file ``docs/source/readme.rst``).
+- Your README.rst will become part of the generated documentation (via a link file ``docs/source/readme.rst``).
   Note that the first line of README.rst is not included in the documentation, since this is expected to contain badges which you want to render on GitHub, but not include in your documentation pages.
+
+- If you prefer, you can use a README.md file written in GitHub-Flavored Markdown instead of README.rst.
+  This will automatically be handled and incorporate into the generated documentation (via a generated file ``docs/source/readme.rst``).
+  As with a README.rst file, the first line of README.md is not included in the documentation, since this is expected to contain badges which you want to render on GitHub, but not include in your documentation pages.
 
 - Your docstrings to your modules, functions, classes and methods will be used to build a set of API documentation using autodoc_.
   Our ``docs/conf.py`` is also set up to automatically call autodoc whenever it is run, and the output files which it generates are on the gitignore list.

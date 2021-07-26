@@ -18,6 +18,22 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Check if README.md needs to be converted
+      id: check_readme
+      run: |
+        if [ ! -f "README.rst" ] && [ -f "README.md" ]; then
+            echo '::set-output name=convert::true';
+        fi
+
+    - name: Convert README.md to README.rst
+      if: steps.check_readme.outputs.convert == 'true'
+      uses: docker://pandoc/core:2.9
+      with:
+        args: >-
+            README.md
+            --from=gfm
+            --output=README.rst
+
     - name: Build HTML docs
       uses: ammaraskar/sphinx-action@master
       with:
@@ -51,6 +67,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+
+    - name: Check if README.md needs to be converted
+      id: check_readme
+      run: |
+        if [ ! -f "README.rst" ] && [ -f "README.md" ]; then
+            echo '::set-output name=convert::true';
+        fi
+
+    - name: Convert README.md to README.rst
+      if: steps.check_readme.outputs.convert == 'true'
+      uses: docker://pandoc/core:2.9
+      with:
+        args: >-
+            README.md
+            --from=gfm
+            --output=README.rst
 
     - name: Build PDF docs
       uses: ammaraskar/sphinx-action@master

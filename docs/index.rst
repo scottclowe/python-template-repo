@@ -1,4 +1,4 @@
-.. include:: ../README.rst
+.. include:: source/readme.rst
     :start-line: 2
 
 .. toctree::

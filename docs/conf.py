@@ -18,9 +18,7 @@ import sys
 import tempfile
 from inspect import getsourcefile
 
-DOCS_DIRECTORY = os.path.abspath(
-    os.path.dirname(os.path.abspath(getsourcefile(lambda: 0)))
-)
+DOCS_DIRECTORY = os.path.dirname(os.path.abspath(getsourcefile(lambda: 0)))
 REPO_DIRECTORY = os.path.dirname(DOCS_DIRECTORY)
 
 sys.path.insert(0, DOCS_DIRECTORY)

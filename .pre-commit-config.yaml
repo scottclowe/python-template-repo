@@ -36,10 +36,9 @@ repos:
     rev: 1.1.0
     hooks:
       - id: nbqa-isort
-        args: ["--nbqa-mutate", "--profile=black"]
+        args: ["--profile=black"]
       - id: nbqa-black
         args:
-            - "--nbqa-mutate"
             - "--target-version=py36"
             - "--target-version=py37"
             - "--target-version=py38"

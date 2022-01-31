@@ -32,4 +32,4 @@ def cubic_rectification(x, verbose=False):
     """
     if verbose:
         print("Cubing and then rectifying {}".format(x))
-    return np.maximum(0, x ** 3)
+    return np.maximum(0, x**3)

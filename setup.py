@@ -119,7 +119,7 @@ class UploadCommand(Command):
         try:
             self.status("Removing previous builds...")
             here = os.path.abspath(os.path.dirname(__file__))
-            rmtree(here, "dist")
+            rmtree(os.path.join(here, "dist"))
         except OSError:
             pass
 
@@ -130,7 +130,7 @@ class UploadCommand(Command):
         os.system("twine upload dist/*")
 
         self.status("Pushing git tags...")
-        os.system("git tag v{0}".format(meta["__version__"]))
+        os.system("git tag v{0}".format(meta["version"]))
         os.system("git push --tags")
 
         sys.exit()

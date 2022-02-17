@@ -165,6 +165,7 @@ setup(
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
     ],
     # Could also include keywords, download_url, project_urls, etc.
     # Custom commands

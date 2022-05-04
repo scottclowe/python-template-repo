@@ -1,13 +1,15 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Python Template Repository &#8212; package-name 0.1.dev0 documentation</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -17,23 +19,19 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=84ace793992934648b4de8eed757e5a2" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/css/rtd_sphinx_search.min.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script src="_static/js/rtd_sphinx_search.min.js"></script>
-    <script src="_static/sphinx-book-theme.9d8b4a8b9bb19db25eeaddc40d639ba2.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="API Reference" href="source/packages/modules.html" />
@@ -44,7 +42,21 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -53,14 +65,10 @@
     <div class="container-xl">
       <div class="row">
           
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<div class="col-12 col-md-3 bd-sidebar site-navigation " id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="#">
       
       
@@ -73,7 +81,7 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <p class="caption">
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Contents:
  </span>
@@ -126,74 +134,135 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<!-- This is an invisible pixel that we watch to see if we've scrolled. -->
-<div class="sbt-scroll-pixel-helper"></div>
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            <div class="topbar-left">
-                
-                <label class="nav-toggle-button" for="__navigation">
-                    <div class="visually-hidden">Toggle navigation</div>
-                    <i class="fas fa-bars"></i>
-                </label>
-                
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
             </div>
             
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
 
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
         
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/index.rst.txt"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.rst</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/index.rst.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.rst</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
     </div>
 </div>
 
-            <!-- Source interaction buttons -->
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#quick-start">
    Quick start
@@ -280,12 +349,11 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Python Template Repository</h1>
@@ -388,14 +456,15 @@
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
   <div class="section" id="python-template-repository">
-<h1>Python Template Repository<a class="headerlink" href="#python-template-repository" title="Permalink to this headline">¶</a></h1>
+<h1>Python Template Repository<a class="headerlink" href="#python-template-repository" title="Permalink to this headline">#</a></h1>
 <p>This repository gives a fully-featured template or skeleton for new Python repositories.</p>
 <div class="section" id="quick-start">
-<h2>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h2>
+<h2>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline">#</a></h2>
 <p>When creating a new repository from this template, these are the steps to follow:</p>
 <ol class="arabic">
 <li><p><em>Don’t click the fork button.</em>
@@ -555,9 +624,9 @@ git push
 You’ll need to change <code class="docutils literal notranslate"><span class="pre">YYYY-MM-DD</span></code> to the actual release date, and change the URL to point to your release.</p>
 </div>
 <div class="section" id="features">
-<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">#</a></h2>
 <div class="section" id="gitignore">
-<h3>.gitignore<a class="headerlink" href="#gitignore" title="Permalink to this headline">¶</a></h3>
+<h3>.gitignore<a class="headerlink" href="#gitignore" title="Permalink to this headline">#</a></h3>
 <p>A <a class="reference external" href="https://git-scm.com/docs/gitignore">.gitignore</a> file is used specify untracked files which Git should ignore and not try to commit.</p>
 <p>Our template’s .gitignore file is based on the <a class="reference external" href="https://github.com/github/gitignore">GitHub defaults</a>.
 We use the default <a class="reference external" href="https://github.com/github/gitignore/blob/master/Python.gitignore">Python .gitignore</a>, <a class="reference external" href="https://github.com/github/gitignore/blob/master/Global/Windows.gitignore">Windows .gitignore</a>, <a class="reference external" href="https://github.com/github/gitignore/blob/master/Global/Linux.gitignore">Linux .gitignore</a>, and <a class="reference external" href="https://github.com/github/gitignore/blob/master/Global/macOS.gitignore">Mac OSX .gitignore</a> concatenated together.
@@ -567,7 +636,7 @@ Even though you may develop on one OS, you might find a helpful contributor work
 This makes both their life and yours easier by ignoring their temporary files before they even start working on the project.</p>
 </div>
 <div class="section" id="gitattributes">
-<h3>.gitattributes<a class="headerlink" href="#gitattributes" title="Permalink to this headline">¶</a></h3>
+<h3>.gitattributes<a class="headerlink" href="#gitattributes" title="Permalink to this headline">#</a></h3>
 <p>The most important reason to include a <a class="reference external" href="https://git-scm.com/docs/gitattributes">.gitattributes</a> file is to ensure that line endings are normalised, no matter which OS the developer is using.
 This is largely achieved by the line:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>* <span class="nv">text</span><span class="o">=</span>auto
@@ -581,7 +650,7 @@ We use the <a class="reference external" href="https://github.com/alexkarataraki
 (Released under <a class="reference external" href="https://github.com/alexkaratarakis/gitattributes/blob/master/LICENSE.md">MIT License</a>.)</p>
 </div>
 <div class="section" id="black">
-<h3>Black<a class="headerlink" href="#black" title="Permalink to this headline">¶</a></h3>
+<h3>Black<a class="headerlink" href="#black" title="Permalink to this headline">#</a></h3>
 <p><a class="reference external" href="https://github.com/psf/black">Black</a> is an uncompromising Python code formatter.
 By using it, you cede control over minutiae of hand-formatting.
 But in return, you no longer have to worry about formatting your code correctly, since black will handle it.
@@ -599,7 +668,7 @@ If you want to upgrade to a newer version of black, you must change the version 
 </ul>
 </div>
 <div class="section" id="pre-commit">
-<h3>pre-commit<a class="headerlink" href="#pre-commit" title="Permalink to this headline">¶</a></h3>
+<h3>pre-commit<a class="headerlink" href="#pre-commit" title="Permalink to this headline">#</a></h3>
 <p>The template repository comes with a <a class="reference external" href="https://pre-commit.com/">pre-commit</a> stack.
 This is a set of git hooks which are executed every time you make a commit.
 The hooks catch errors as they occur, and will automatically fix some of these errors.</p>
@@ -638,11 +707,11 @@ Entries in requirements.txt files are automatically sorted alphabetically.</p></
 The pre-commit stack will also run on github with one of the action workflows, which ensures PRs are checked without having to rely on contributors to enable the pre-commit locally.</p>
 </div>
 <div class="section" id="automated-documentation">
-<h3>Automated documentation<a class="headerlink" href="#automated-documentation" title="Permalink to this headline">¶</a></h3>
+<h3>Automated documentation<a class="headerlink" href="#automated-documentation" title="Permalink to this headline">#</a></h3>
 <p>The script <code class="docutils literal notranslate"><span class="pre">docs/conf.py</span></code> is based on the <a class="reference external" href="https://www.sphinx-doc.org/">Sphinx</a> default configuration.
 It is set up to work well out of the box, with several features added in.</p>
 <div class="section" id="github-pages">
-<h4>GitHub Pages<a class="headerlink" href="#github-pages" title="Permalink to this headline">¶</a></h4>
+<h4>GitHub Pages<a class="headerlink" href="#github-pages" title="Permalink to this headline">#</a></h4>
 <p>If your repository is publicly available, the docs workflow will automatically deploy your documentation to <a class="reference external" href="https://pages.github.com/">GitHub Pages</a>.
 To enable the documentation, go to the <code class="docutils literal notranslate"><span class="pre">Settings</span> <span class="pre">&gt;</span> <span class="pre">Pages</span></code> pane for your repository and set Source to be the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch (root directory).
 Your automatically compiled documentation will then be publicly available at <a class="reference external" href="https://USER.github.io/PACKAGE/">https://USER.github.io/PACKAGE/</a>.</p>
@@ -652,7 +721,7 @@ Your automatically compiled documentation will then be publicly available at <a 
 For more mature projects, you may wish to host the documentation <a class="reference external" href="https://readthedocs.org/">readthedocs</a> instead, which supports hosting documentation for multiple package versions simultaneously.</p>
 </div>
 <div class="section" id="building-locally">
-<h4>Building locally<a class="headerlink" href="#building-locally" title="Permalink to this headline">¶</a></h4>
+<h4>Building locally<a class="headerlink" href="#building-locally" title="Permalink to this headline">#</a></h4>
 <p>You can build the web documentation locally with:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make -C docs html
 </pre></div>
@@ -674,7 +743,7 @@ make latexpdf
 </div>
 </div>
 <div class="section" id="other-documentation-features">
-<h4>Other documentation features<a class="headerlink" href="#other-documentation-features" title="Permalink to this headline">¶</a></h4>
+<h4>Other documentation features<a class="headerlink" href="#other-documentation-features" title="Permalink to this headline">#</a></h4>
 <ul class="simple">
 <li><p>Your README.rst will become part of the generated documentation (via a link file <code class="docutils literal notranslate"><span class="pre">docs/source/readme.rst</span></code>).
 Note that the first line of README.rst is not included in the documentation, since this is expected to contain badges which you want to render on GitHub, but not include in your documentation pages.</p></li>
@@ -694,7 +763,7 @@ Alternative themes can be found at <a class="reference external" href="https://s
 </div>
 </div>
 <div class="section" id="consolidated-metadata">
-<h3>Consolidated metadata<a class="headerlink" href="#consolidated-metadata" title="Permalink to this headline">¶</a></h3>
+<h3>Consolidated metadata<a class="headerlink" href="#consolidated-metadata" title="Permalink to this headline">#</a></h3>
 <p>Package metadata is consolidated into one place, the file <code class="docutils literal notranslate"><span class="pre">package_name/__meta__.py</span></code>.
 You only have to write the metadata once in this centralised location, and everything else (packaging, documentation, etc) picks it up from there.
 This is similar to <a class="reference external" href="https://packaging.python.org/guides/single-sourcing-package-version/">single-sourcing the package version</a>, but for all metadata.</p>
@@ -702,7 +771,7 @@ This is similar to <a class="reference external" href="https://packaging.python.
 The version information is also accessible at <code class="docutils literal notranslate"><span class="pre">package_name.__version__</span></code>, as per <a class="reference external" href="https://www.python.org/dev/peps/pep-0396/#specification">PEP-396</a>.</p>
 </div>
 <div class="section" id="setup-py">
-<h3>setup.py<a class="headerlink" href="#setup-py" title="Permalink to this headline">¶</a></h3>
+<h3>setup.py<a class="headerlink" href="#setup-py" title="Permalink to this headline">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> script is used to build and install your package.</p>
 <p>Your package can be installed from source with:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install .
@@ -736,12 +805,12 @@ The rest of the metadata comes from <code class="docutils literal notranslate"><
 <p>Our template setup.py file is based on the <a class="reference external" href="https://setuptools.readthedocs.io/en/latest/setuptools.html#basic-use">example from setuptools documentation</a>, and the comprehensive example from <a class="reference external" href="https://github.com/kennethreitz/setup.py">Kenneth Reitz</a> (released under <a class="reference external" href="https://github.com/kennethreitz/setup.py/blob/master/LICENSE">MIT License</a>), with further features added.</p>
 </div>
 <div class="section" id="unit-tests">
-<h3>Unit tests<a class="headerlink" href="#unit-tests" title="Permalink to this headline">¶</a></h3>
+<h3>Unit tests<a class="headerlink" href="#unit-tests" title="Permalink to this headline">#</a></h3>
 <p>The file <code class="docutils literal notranslate"><span class="pre">package_name/tests/base_test.py</span></code> provides a class for unit testing which provides easy access to all the numpy testing in one place (so you don’t need to import a stack of testing functions in every test file, just import the <code class="docutils literal notranslate"><span class="pre">BaseTestClass</span></code> instead).</p>
 <p>If you aren’t using doing numeric tests, you can delete this from the <code class="docutils literal notranslate"><span class="pre">package_name/tests/base_test.py</span></code> file.</p>
 </div>
 <div class="section" id="github-actions-workflows">
-<h3>GitHub Actions Workflows<a class="headerlink" href="#github-actions-workflows" title="Permalink to this headline">¶</a></h3>
+<h3>GitHub Actions Workflows<a class="headerlink" href="#github-actions-workflows" title="Permalink to this headline">#</a></h3>
 <p>GitHub features the ability to run various workflows whenever code is pushed to the repo or a pull request is opened.
 This is one service of several services that can be used to continually run the unit tests and ensure changes can be integrated together without issue.
 It is also useful to ensure that style guides are adhered to</p>
@@ -770,7 +839,7 @@ Checkout the <a class="reference external" href="https://github.com/pypa/gh-acti
 With minimal tweaks, this job can be changed to push to PyPI for real, but be careful with this since releases on PyPI can not easily be yanked.</p>
 </div>
 <div class="section" id="other-ci-cd-options">
-<h3>Other CI/CD options<a class="headerlink" href="#other-ci-cd-options" title="Permalink to this headline">¶</a></h3>
+<h3>Other CI/CD options<a class="headerlink" href="#other-ci-cd-options" title="Permalink to this headline">#</a></h3>
 <p>Alternative CI/CD services are also available for running tests.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://travis-ci.org/">Travis CI</a> offers a free trial service.</p></li>
@@ -782,7 +851,7 @@ This offers an alternative to GitHub Actions if you need to <a class="reference 
 </div>
 </div>
 <div class="section" id="contributing">
-<h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h2>
+<h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">#</a></h2>
 <p>Contributions are welcome! If you can see a way to improve this template:</p>
 <ul class="simple">
 <li><p>Do click the fork button</p></li>
@@ -790,7 +859,7 @@ This offers an alternative to GitHub Actions if you need to <a class="reference 
 </ul>
 <p>Or to report a bug or request something new, make an issue.</p>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Contents:</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="source/packages/modules.html">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="source/packages/package_name.html">package_name package</a></li>
@@ -810,8 +879,10 @@ This offers an alternative to GitHub Actions if you need to <a class="reference 
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
 <div class='prev-next-area'>
     <a class='right-next' id="next-link" href="source/packages/modules.html" title="next page">
     <div class="prev-next-info">
@@ -821,24 +892,28 @@ This offers an alternative to GitHub Actions if you need to <a class="reference 
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Author Name<br/>
+  
+      &copy; Copyright 2022, Author Name.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Author Name<br/>
-    
-        &copy; Copyright 2022, Author Name.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

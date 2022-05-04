@@ -1,3 +1,4 @@
 black==22.1.0; python_version>='3.6'
+click<=8.0.4
 identify>=1.4.20
 pre-commit

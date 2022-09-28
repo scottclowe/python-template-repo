@@ -9,4 +9,4 @@ author = "Author Name"
 author_email = ""
 description = ""  # One-liner
 url = ""  # your project homepage
-license = "MIT"  # See https://choosealicense.com
+license = "Unlicense"  # See https://choosealicense.com

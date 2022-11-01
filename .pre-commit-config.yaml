@@ -11,7 +11,7 @@ repos:
         args: ["--profile=black"]
 
   - repo: https://github.com/psf/black
-    rev: 22.8.0
+    rev: 22.10.0
     hooks:
       - id: black
         args:
@@ -34,7 +34,7 @@ repos:
       - id: nbstripout
 
   - repo: https://github.com/nbQA-dev/nbQA
-    rev: 1.5.2
+    rev: 1.5.3
     hooks:
       - id: nbqa-isort
         args: ["--profile=black"]
@@ -88,7 +88,7 @@ repos:
         exclude: \.(html|svg)$
 
   - repo: https://github.com/asottile/setup-cfg-fmt
-    rev: v2.0.0
+    rev: v2.2.0
     hooks:
       - id: setup-cfg-fmt
 

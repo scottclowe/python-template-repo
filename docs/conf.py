@@ -18,7 +18,8 @@ import sys
 import tempfile
 from inspect import getsourcefile
 
-DOCS_DIR = os.path.dirname(os.path.abspath(getsourcefile(lambda: 0)))
+DOCS_SOURCE_DIR = os.path.dirname(os.path.abspath(getsourcefile(lambda: 0)))
+DOCS_DIR = DOCS_SOURCE_DIR
 REPO_DIR = os.path.dirname(DOCS_DIR)
 
 sys.path.insert(0, DOCS_DIR)
@@ -60,7 +61,7 @@ def run_apidoc(_):
         "--separate",  # Put each module file in its own page
         "--module-first",  # Put module documentation before submodule
         "-o",
-        "source/packages",  # Output path
+        os.path.join(DOCS_SOURCE_DIR, "packages"),  # Output path
         os.path.join("..", project_path),
     ] + ignore_paths
 
@@ -81,7 +82,7 @@ def retitle_modules(_):
     """
     Overwrite the title of the modules.rst file.
     """
-    pth = "source/packages/modules.rst"
+    pth = os.path.join(DOCS_SOURCE_DIR, "packages", "modules.rst")
     lines = open(pth).read().splitlines()
     # Overwrite the junk in the first two lines with a better title
     lines[0] = "API Reference"
@@ -99,7 +100,7 @@ def auto_convert_readme(_):
     """
     readme_path_md = os.path.join(REPO_DIR, "README.md")
     readme_path_rst = os.path.splitext(readme_path_md)[0] + ".rst"
-    readme_path_output = os.path.join(DOCS_DIR, "source", "readme.rst")
+    readme_path_output = os.path.join(DOCS_SOURCE_DIR, "readme.rst")
     # Ensure output directory exists
     output_dir = os.path.dirname(readme_path_output)
     os.makedirs(output_dir, exist_ok=True)

@@ -477,13 +477,13 @@ The fork button is for making a new template based in this one, not for using th
 <p><em>Need to support Python 2.7?</em>
 Make sure to check the “Include all branches” option while creating the new repository.</p>
 <p>Then clone your new repository to your local system [pseudocode]:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone git@github.com:your-org/your-repo.git
-<span class="nb">cd</span> your-repo
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:your-org/your-repo.git
+<span class="nb">cd</span><span class="w"> </span>your-repo
 </pre></div>
 </div>
 <p><em>If you need to support Python 2.7</em>, now move the reference for your default branch (master/main) to point to the python2.7 branch head:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git reset --hard origin/python2.7
-git push -f
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w"> </span>origin/python2.7
+git<span class="w"> </span>push<span class="w"> </span>-f
 </pre></div>
 </div>
 <p>You can now delete the python2.7 branch from your remote.</p>
@@ -495,32 +495,32 @@ Download the <a class="reference external" href="https://github.com/scottclowe/p
 <p>Either way, you should note that this zip does not include the .gitignore and .gitattributes files (because GitHub automatically omits them, which is usually helpful but is not for our purposes).
 Thus you will also need to download the <a class="reference external" href="https://raw.githubusercontent.com/scottclowe/python-template-repo/master/.gitignore">.gitignore</a> and <a class="reference external" href="https://raw.githubusercontent.com/scottclowe/python-template-repo/master/.gitattributes">.gitattributes</a> files.</p>
 <p>The following shell commands can be used for this purpose on *nix systems:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git init your_repo_name
-<span class="nb">cd</span> your_repo_name
-wget https://github.com/scottclowe/python-template-repo/archive/master.zip
-unzip master.zip
-mv -n python-template-repo-master/* python-template-repo-master/.<span class="o">[</span>!.<span class="o">]</span>* .
-rm -r python-template-repo-master/
-rm master.zip
-wget https://raw.githubusercontent.com/scottclowe/python-template-repo/master/.gitignore
-wget https://raw.githubusercontent.com/scottclowe/python-template-repo/master/.gitattributes
-git add .
-git commit -m <span class="s2">&quot;Initial commit&quot;</span>
-git rm LICENSE
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>init<span class="w"> </span>your_repo_name
+<span class="nb">cd</span><span class="w"> </span>your_repo_name
+wget<span class="w"> </span>https://github.com/scottclowe/python-template-repo/archive/master.zip
+unzip<span class="w"> </span>master.zip
+mv<span class="w"> </span>-n<span class="w"> </span>python-template-repo-master/*<span class="w"> </span>python-template-repo-master/.<span class="o">[</span>!.<span class="o">]</span>*<span class="w"> </span>.
+rm<span class="w"> </span>-r<span class="w"> </span>python-template-repo-master/
+rm<span class="w"> </span>master.zip
+wget<span class="w"> </span>https://raw.githubusercontent.com/scottclowe/python-template-repo/master/.gitignore
+wget<span class="w"> </span>https://raw.githubusercontent.com/scottclowe/python-template-repo/master/.gitattributes
+git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Initial commit&quot;</span>
+git<span class="w"> </span>rm<span class="w"> </span>LICENSE
 </pre></div>
 </div>
 <p>Note that we are doing the move with <code class="docutils literal notranslate"><span class="pre">mv</span> <span class="pre">-n</span></code>, which will prevent the template repository from clobbering your own files (in case you already made a README.rst file, for instance).</p>
 <p>You’ll need to instruct your new local repository to synchronise with the remote <code class="docutils literal notranslate"><span class="pre">your_repo_url</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git remote set-url origin your_repo_url
-git push -u origin master
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>remote<span class="w"> </span>set-url<span class="w"> </span>origin<span class="w"> </span>your_repo_url
+git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>master
 </pre></div>
 </div>
 </li>
 </ol>
 </li>
 <li><p>Remove the dummy files <code class="docutils literal notranslate"><span class="pre">package_name/module.py</span></code> and <code class="docutils literal notranslate"><span class="pre">package_name/tests/test_module.py</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm package_name/module.py
-rm package_name/tests/test_module.py
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>package_name/module.py
+rm<span class="w"> </span>package_name/tests/test_module.py
 </pre></div>
 </div>
 <p>If you prefer, you can keep them around as samples, but should note that they require numpy.</p>
@@ -530,17 +530,17 @@ You can remove any superfluous files, as follows.</p>
 <ul>
 <li><p><em>No GitHub Actions!</em>
 Delete the .github directory:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm -r .github/
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>-r<span class="w"> </span>.github/
 </pre></div>
 </div>
 </li>
 <li><p><em>No unit testing!</em>
 Run the following commands to delete unit testing files:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm -rf package_name/tests/
-rm -f .github/workflows/test*.yaml
-rm -f .codecov.yml
-rm -f .coveragerc
-rm -f requirements-test.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>-rf<span class="w"> </span>package_name/tests/
+rm<span class="w"> </span>-f<span class="w"> </span>.github/workflows/test*.yaml
+rm<span class="w"> </span>-f<span class="w"> </span>.codecov.yml
+rm<span class="w"> </span>-f<span class="w"> </span>.coveragerc
+rm<span class="w"> </span>-f<span class="w"> </span>requirements-test.txt
 </pre></div>
 </div>
 </li>
@@ -572,18 +572,18 @@ By default, this is automatically inferred from <code class="docutils literal no
 </li>
 <li><p>Rename the directory <code class="docutils literal notranslate"><span class="pre">package_name</span></code> to be the <code class="docutils literal notranslate"><span class="pre">path</span></code> variable you just added to <code class="docutils literal notranslate"><span class="pre">__meta__.py</span></code>.:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">PACKAGE_NAME</span><span class="o">=</span>your_actual_package_name
-mv package_name <span class="s2">&quot;</span><span class="nv">$PACKAGE_NAME</span><span class="s2">&quot;</span>
+mv<span class="w"> </span>package_name<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PACKAGE_NAME</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
 </li>
 <li><p>Change references to <code class="docutils literal notranslate"><span class="pre">package_name</span></code> to your path variable:</p>
 <p>This can be done with the sed command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">PACKAGE_NAME</span><span class="o">=</span>your_actual_package_name
-sed -i <span class="s2">&quot;s/package_name/</span><span class="nv">$PACKAGE_NAME</span><span class="s2">/&quot;</span> setup.py <span class="se">\</span>
-    docs/conf.py <span class="se">\</span>
-    docs/index.rst <span class="se">\</span>
-    CHANGELOG.rst <span class="se">\</span>
-    .github/workflows/test*.yaml
+sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;s/package_name/</span><span class="nv">$PACKAGE_NAME</span><span class="s2">/&quot;</span><span class="w"> </span>setup.py<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>docs/conf.py<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>docs/index.rst<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>CHANGELOG.rst<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>.github/workflows/test*.yaml
 </pre></div>
 </div>
 <p>Which will make changes in the following places.</p>
@@ -616,8 +616,8 @@ If you don’t have any requirements yet, delete the contents of <code class="do
 If you are keeping all the badges, make sure to change the URLs from <code class="docutils literal notranslate"><span class="pre">scottclowe/python-template-repo</span></code> to <code class="docutils literal notranslate"><span class="pre">your_username/your_repo</span></code>.
 If you prefer, you can use markdown instead of rST.</p></li>
 <li><p>Commit and push your changes:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git commit -am <span class="s2">&quot;Initialise project from template repository&quot;</span>
-git push
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-am<span class="w"> </span><span class="s2">&quot;Initialise project from template repository&quot;</span>
+git<span class="w"> </span>push
 </pre></div>
 </div>
 </li>
@@ -641,7 +641,7 @@ This makes both their life and yours easier by ignoring their temporary files be
 <h3>.gitattributes<a class="headerlink" href="#gitattributes" title="Permalink to this heading">#</a></h3>
 <p>The most important reason to include a <a class="reference external" href="https://git-scm.com/docs/gitattributes">.gitattributes</a> file is to ensure that line endings are normalised, no matter which OS the developer is using.
 This is largely achieved by the line:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>* <span class="nv">text</span><span class="o">=</span>auto
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>*<span class="w"> </span><span class="nv">text</span><span class="o">=</span>auto
 </pre></div>
 </div>
 <p>which <a class="reference external" href="https://git-scm.com/docs/gitattributes#_text">ensures</a> that all files Git decides contain text have their line endings normalized to LF on checkin.
@@ -675,8 +675,8 @@ If you want to upgrade to a newer version of black, you must change the version 
 This is a set of git hooks which are executed every time you make a commit.
 The hooks catch errors as they occur, and will automatically fix some of these errors.</p>
 <p>To set up the pre-commit hooks, run the following code from within the repo directory:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install -r requirements-dev.txt
-pre-commit install
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements-dev.txt
+pre-commit<span class="w"> </span>install
 </pre></div>
 </div>
 <p>Whenever you try to commit code which is flagged by the pre-commit hooks, the commit will not go through.
@@ -684,11 +684,11 @@ Some of the pre-commit hooks (such as <a class="reference external" href="https:
 When this happens, you’ll have to stage the changes made by the commit hooks and then try your commit again.
 Other pre-commit hooks will not modify your code and will just tell you about issues which you’ll then have to manually fix.</p>
 <p>You can also manually run the pre-commit stack on all the files at any time:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pre-commit run --all-files
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pre-commit<span class="w"> </span>run<span class="w"> </span>--all-files
 </pre></div>
 </div>
 <p>To force a commit to go through without passing the pre-commit hooks use the <code class="docutils literal notranslate"><span class="pre">--no-verify</span></code> flag:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git commit --no-verify
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>--no-verify
 </pre></div>
 </div>
 <p>The pre-commit stack which comes with the template is highly opinionated, and includes the following operations:</p>
@@ -725,22 +725,22 @@ For more mature projects, you may wish to host the documentation <a class="refer
 <div class="section" id="building-locally">
 <h4>Building locally<a class="headerlink" href="#building-locally" title="Permalink to this heading">#</a></h4>
 <p>You can build the web documentation locally with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make -C docs html
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>-C<span class="w"> </span>docs<span class="w"> </span>html
 </pre></div>
 </div>
 <p>And view the documentation like so:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sensible-browser docs/_build/html/index.html
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sensible-browser<span class="w"> </span>docs/_build/html/index.html
 </pre></div>
 </div>
 <p>Or you can build pdf documentation:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make -C docs latexpdf
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>-C<span class="w"> </span>docs<span class="w"> </span>latexpdf
 </pre></div>
 </div>
 <p>On Windows, this becomes:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> docs
-make html
-make latexpdf
-<span class="nb">cd</span> ..
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>docs
+make<span class="w"> </span>html
+make<span class="w"> </span>latexpdf
+<span class="nb">cd</span><span class="w"> </span>..
 </pre></div>
 </div>
 </div>
@@ -776,19 +776,19 @@ The version information is also accessible at <code class="docutils literal notr
 <h3>setup.py<a class="headerlink" href="#setup-py" title="Permalink to this heading">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> script is used to build and install your package.</p>
 <p>Your package can be installed from source with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install .
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>.
 </pre></div>
 </div>
 <p>or alternatively with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python setup.py install
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>setup.py<span class="w"> </span>install
 </pre></div>
 </div>
 <p>But do remember that as a developer, you should install your package in editable mode, using either:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install --editable .
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>--editable<span class="w"> </span>.
 </pre></div>
 </div>
 <p>or:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python setup.py develop
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>setup.py<span class="w"> </span>develop
 </pre></div>
 </div>
 <p>which will mean changes to the source will affect your installed package immediately without you having to reinstall it.</p>
@@ -796,7 +796,7 @@ The version information is also accessible at <code class="docutils literal notr
 Requirements listed in <code class="docutils literal notranslate"><span class="pre">requirements-dev.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">requirements-docs.txt</span></code>, and <code class="docutils literal notranslate"><span class="pre">requirements-test.txt</span></code> are optional extras.
 The <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> script is configured to include these as extras named <code class="docutils literal notranslate"><span class="pre">dev</span></code>, <code class="docutils literal notranslate"><span class="pre">docs</span></code>, and <code class="docutils literal notranslate"><span class="pre">test</span></code>.
 They can be installed along with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install .<span class="o">[</span>dev<span class="o">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>.<span class="o">[</span>dev<span class="o">]</span>
 </pre></div>
 </div>
 <p>etc.
@@ -880,7 +880,7 @@ This offers an alternative to GitHub Actions if you need to <a class="reference 
   
     By Author Name<br/>
   
-      &copy; Copyright 2022, Author Name.<br/>
+      &copy; Copyright 2023, Author Name.<br/>
 </p>
         </footer>
     </div>

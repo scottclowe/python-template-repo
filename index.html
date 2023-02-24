@@ -578,8 +578,7 @@ mv<span class="w"> </span>package_name<span class="w"> </span><span class="s2">&
 </li>
 <li><p>Change references to <code class="docutils literal notranslate"><span class="pre">package_name</span></code> to your path variable:</p>
 <p>This can be done with the sed command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">PACKAGE_NAME</span><span class="o">=</span>your_actual_package_name
-sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;s/package_name/</span><span class="nv">$PACKAGE_NAME</span><span class="s2">/&quot;</span><span class="w"> </span>setup.py<span class="w"> </span><span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;s/package_name/</span><span class="nv">$PACKAGE_NAME</span><span class="s2">/&quot;</span><span class="w"> </span>setup.py<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>docs/conf.py<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>docs/index.rst<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>CHANGELOG.rst<span class="w"> </span><span class="se">\</span>

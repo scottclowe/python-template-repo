@@ -129,7 +129,6 @@ When creating a new repository from this template, these are the steps to follow
 
     This can be done with the sed command::
 
-        PACKAGE_NAME=your_actual_package_name
         sed -i "s/package_name/$PACKAGE_NAME/" setup.py \
             docs/conf.py \
             docs/index.rst \

@@ -18,11 +18,11 @@ import sys
 import tempfile
 from inspect import getsourcefile
 
-DOCS_DIRECTORY = os.path.dirname(os.path.abspath(getsourcefile(lambda: 0)))
-REPO_DIRECTORY = os.path.dirname(DOCS_DIRECTORY)
+DOCS_DIR = os.path.dirname(os.path.abspath(getsourcefile(lambda: 0)))
+REPO_DIR = os.path.dirname(DOCS_DIR)
 
-sys.path.insert(0, DOCS_DIRECTORY)
-sys.path.insert(0, REPO_DIRECTORY)
+sys.path.insert(0, DOCS_DIR)
+sys.path.insert(0, REPO_DIR)
 
 from package_name import __meta__ as meta  # noqa: E402 isort:skip
 
@@ -97,9 +97,9 @@ def auto_convert_readme(_):
     Otherwise, and if it exists, converts README.md to to rST format, the
     output of which is docs/source/readme.rst.
     """
-    readme_path_md = os.path.join(REPO_DIRECTORY, "README.md")
+    readme_path_md = os.path.join(REPO_DIR, "README.md")
     readme_path_rst = os.path.splitext(readme_path_md)[0] + ".rst"
-    readme_path_output = os.path.join(DOCS_DIRECTORY, "source", "readme.rst")
+    readme_path_output = os.path.join(DOCS_DIR, "source", "readme.rst")
     # Ensure output directory exists
     output_dir = os.path.dirname(readme_path_output)
     os.makedirs(output_dir, exist_ok=True)
@@ -124,7 +124,7 @@ def auto_convert_readme(_):
         # Download pandoc if necessary. If pandoc is already installed and on
         # the PATH, the installed version will be used. Otherwise, we will
         # download a copy of pandoc into docs/bin/ and add that to our PATH.
-        pandoc_dir = os.path.join(DOCS_DIRECTORY, "bin")
+        pandoc_dir = os.path.join(DOCS_DIR, "bin")
         os.environ["PATH"] += os.pathsep + pandoc_dir
         pypandoc.ensure_pandoc_installed(
             quiet=True,

@@ -22,7 +22,6 @@ DOCS_SOURCE_DIR = os.path.dirname(os.path.abspath(getsourcefile(lambda: 0)))
 DOCS_DIR = DOCS_SOURCE_DIR
 REPO_DIR = os.path.dirname(DOCS_DIR)
 
-sys.path.insert(0, DOCS_DIR)
 sys.path.insert(0, REPO_DIR)
 
 from package_name import __meta__ as meta  # noqa: E402 isort:skip

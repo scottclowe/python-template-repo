@@ -161,7 +161,8 @@ When creating a new repository from this template, these are the steps to follow
 
 #.  Commit and push your changes::
 
-      git commit -am "Initialise project from template repository"
+      git add .
+      git commit -m "Initialise project from template repository"
       git push
 
 When it comes time to make your first release, make sure you update the placeholder entry in CHANGELOG.rst to contain the correct details.

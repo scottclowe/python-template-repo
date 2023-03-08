@@ -130,8 +130,8 @@ When creating a new repository from this template, these are the steps to follow
     This can be done with the sed command::
 
         sed -i "s/package_name/$PACKAGE_NAME/" setup.py \
-            docs/conf.py \
-            docs/index.rst \
+            docs/source/conf.py \
+            docs/source/index.rst \
             CHANGELOG.rst \
             .github/workflows/test*.yaml
 

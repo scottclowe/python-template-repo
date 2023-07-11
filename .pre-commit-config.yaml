@@ -11,7 +11,7 @@ repos:
         args: ["--profile=black"]
 
   - repo: https://github.com/psf/black
-    rev: 23.1.0
+    rev: 23.7.0
     hooks:
       - id: black
         args:
@@ -23,7 +23,7 @@ repos:
         types: [python]
 
   - repo: https://github.com/asottile/blacken-docs
-    rev: 1.13.0
+    rev: 1.15.0
     hooks:
       - id: blacken-docs
         additional_dependencies: ["black==23.1.0"]
@@ -34,7 +34,7 @@ repos:
       - id: nbstripout
 
   - repo: https://github.com/nbQA-dev/nbQA
-    rev: 1.6.4
+    rev: 1.7.0
     hooks:
       - id: nbqa-isort
         args: ["--profile=black"]
@@ -88,7 +88,7 @@ repos:
         exclude: \.(html|svg)$
 
   - repo: https://github.com/asottile/setup-cfg-fmt
-    rev: v2.2.0
+    rev: v2.4.0
     hooks:
       - id: setup-cfg-fmt
 

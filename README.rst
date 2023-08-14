@@ -100,7 +100,7 @@ When creating a new repository from this template, these are the steps to follow
 
         Copyright (c) YEAR, YOUR NAME
 
-        All right reserved.
+        All rights reserved.
 
     Note that if you don't include a LICENSE file, you will still have copyright over your own code (this copyright is automatically granted), and your code will be private source (technically nobody else will be permitted to use it, even if you make your code publicly available).
 
@@ -155,7 +155,7 @@ When creating a new repository from this template, these are the steps to follow
 #.  Swap out the contents of ``requirements.txt`` for your project's current requirements.
     If you don't have any requirements yet, delete the contents of ``requirements.txt``.
 
-#.  Swap out the contents of ``README.rst`` with an inital description of your project.
+#.  Swap out the contents of ``README.rst`` with an initial description of your project.
     If you are keeping all the badges, make sure to change the URLs from ``scottclowe/python-template-repo`` to ``your_username/your_repo``.
     If you prefer, you can use markdown instead of rST.
 

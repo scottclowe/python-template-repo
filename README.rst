@@ -16,7 +16,8 @@ When creating a new repository from this template, these are the steps to follow
 #. *Don't click the fork button.*
    The fork button is for making a new template based in this one, not for using the template to make a new repository.
 
-#.
+#.  Creating repository.
+
     #.  **New GitHub repository**.
 
         You can create a new repository on GitHub from this template by clicking the `Use this template <https://github.com/scottclowe/python-template-repo/generate>`_ button.

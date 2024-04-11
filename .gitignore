@@ -3,10 +3,10 @@
 ##---------------------------------------------------
 
 # Automatically generated API documentation stubs from sphinx-apidoc
-docs/source/packages
+docs/source/packages/
 
 # Automatically converting README from markdown to rST
-docs/bin
+docs/bin/
 docs/source/readme.rst
 
 

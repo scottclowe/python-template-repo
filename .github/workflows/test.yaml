@@ -23,10 +23,10 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        python-version: ["3.7", "3.11"]
+        python-version: ["3.8", "3.12"]
         include:
           - os: windows-latest
-            python-version: "3.11"
+            python-version: "3.12"
     env:
       OS: ${{ matrix.os }}
       PYTHON: ${{ matrix.python-version }}

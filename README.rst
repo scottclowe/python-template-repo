@@ -98,7 +98,7 @@ When creating a new repository from this template, these are the steps to follow
 
     .. code-block:: none
 
-        Copyright (c) YEAR, YOUR NAME
+        Copyright (c) CURRENT_YEAR, YOUR_NAME
 
         All rights reserved.
 

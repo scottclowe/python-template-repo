@@ -20,6 +20,23 @@ coverage.xml
 
 
 ##---------------------------------------------------
+# Code editor .gitignore files
+##---------------------------------------------------
+
+# Visual Studio Code
+.vscode/
+# Local History for Visual Studio Code
+.history/
+
+# JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
+.idea/
+
+# Sublime Text project files
+*.sublime-project
+*.sublime-workspace
+
+
+##---------------------------------------------------
 # Python default .gitignore
 ##---------------------------------------------------
 

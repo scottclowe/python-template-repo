@@ -33,7 +33,7 @@ When creating a new repository from this template, these are the steps to follow
         *If you need to support Python 2.7*, now move the reference for your default branch (master/main) to point to the python2.7 branch head::
 
           git reset --hard origin/python2.7
-          git push -f
+          git push --force-with-lease
 
         You can now delete the python2.7 branch from your remote.
 

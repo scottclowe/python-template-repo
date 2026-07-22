@@ -351,7 +351,7 @@ Make sure to check the “Include all branches” option while creating the new 
 </div>
 <p><em>If you need to support Python 2.7</em>, now move the reference for your default branch (master/main) to point to the python2.7 branch head:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w"> </span>origin/python2.7
-git<span class="w"> </span>push<span class="w"> </span>-f
+git<span class="w"> </span>push<span class="w"> </span>--force-with-lease
 </pre></div>
 </div>
 <p>You can now delete the python2.7 branch from your remote.</p>

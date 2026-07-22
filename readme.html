@@ -476,12 +476,19 @@ If you don’t have any requirements yet, delete the contents of <code class="do
 <li><p>Swap out the contents of <code class="docutils literal notranslate"><span class="pre">README.rst</span></code> with an initial description of your project.
 If you are keeping all the badges, make sure to change the URLs from <code class="docutils literal notranslate"><span class="pre">scottclowe/python-template-repo</span></code> to <code class="docutils literal notranslate"><span class="pre">your_username/your_repo</span></code>.
 If you prefer, you can use markdown instead of rST.</p></li>
+<li><p>Install <a class="reference external" href="https://pre-commit.com/">pre-commit</a> and enable the pre-commit hooks for this repository:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements-dev.txt
+pre-commit<span class="w"> </span>install
+</pre></div>
+</div>
+</li>
 <li><p>Commit and push your changes:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>.
 git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Initialise project from template repository&quot;</span>
 git<span class="w"> </span>push
 </pre></div>
 </div>
+<p>If your commit is blocked by pre-commit, run this step again (i.e. <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span></code>, etc) to include the automated style changes in the commit.</p>
 </li>
 </ol>
 <p>When it comes time to make your first release, make sure you update the placeholder entry in CHANGELOG.rst to contain the correct details.

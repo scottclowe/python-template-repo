@@ -160,11 +160,18 @@ When creating a new repository from this template, these are the steps to follow
     If you are keeping all the badges, make sure to change the URLs from ``scottclowe/python-template-repo`` to ``your_username/your_repo``.
     If you prefer, you can use markdown instead of rST.
 
+#.  Install pre-commit_ and enable the pre-commit hooks for this repository::
+
+      pip install -r requirements-dev.txt
+      pre-commit install
+
 #.  Commit and push your changes::
 
       git add .
       git commit -m "Initialise project from template repository"
       git push
+
+    If your commit is blocked by pre-commit, run this step again (i.e. ``git add .``, etc) to include the automated style changes in the commit.
 
 When it comes time to make your first release, make sure you update the placeholder entry in CHANGELOG.rst to contain the correct details.
 You'll need to change ``YYYY-MM-DD`` to the actual release date, and change the URL to point to your release.

@@ -412,17 +412,9 @@ Your package can be installed from source with::
 
     pip install .
 
-or alternatively with::
-
-    python setup.py install
-
-But do remember that as a developer, you should install your package in editable mode, using either::
+But do remember that as a developer, you should install your package in editable mode, using::
 
     pip install --editable .
-
-or::
-
-    python setup.py develop
 
 which will mean changes to the source will affect your installed package immediately without you having to reinstall it.
 
@@ -437,12 +429,21 @@ etc.
 Any additional files named ``requirements-EXTRANAME.txt`` will also be collected automatically and made available with the corresponding name ``EXTRANAME``.
 Another extra named ``all`` captures all of these optional dependencies.
 
-Your README file is automatically included in the metadata when you use setup.py build wheels for PyPI.
+To build an sdist and wheel for distribution on PyPI, use build_::
+
+    pip install build
+    python -m build
+
+Note that invoking ``setup.py`` directly (e.g. ``python setup.py install``, ``python setup.py sdist``) is `deprecated <setuptools-deprecated_>`_ and should not be used.
+
+Your README file is automatically included in the metadata of the built distributions.
 The rest of the metadata comes from ``package_name/__meta__.py``.
 
 Our template setup.py file is based on the `example from setuptools documentation <setuptools-setup.py_>`_, and the comprehensive example from `Kenneth Reitz <kennethreitz/setup.py_>`_ (released under `MIT License <https://github.com/kennethreitz/setup.py/blob/master/LICENSE>`__), with further features added.
 
+.. _build: https://build.pypa.io/
 .. _kennethreitz/setup.py: https://github.com/kennethreitz/setup.py
+.. _setuptools-deprecated: https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html
 .. _setuptools-setup.py: https://setuptools.readthedocs.io/en/latest/setuptools.html#basic-use
 
 

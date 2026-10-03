@@ -136,13 +136,14 @@ jobs:
     - name: Download wheel artifacts
       uses: actions/download-artifact@v4
       with:
-        name: wheel-*
+        pattern: wheel-*
         path: dist/
+        merge-multiple: true
 
-    - name: Store aggregated wheel artifacts
+    - name: Store aggregated distribution artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: wheels
+        name: dist
         path: dist/*
 
     - name: Publish package to Test PyPI

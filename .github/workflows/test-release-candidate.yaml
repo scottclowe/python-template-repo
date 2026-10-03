@@ -12,6 +12,10 @@
 # In addition, the package is built as a wheel on each OS/Python job, and these
 # are stored as artifacts to use for your distribution process. There is an
 # extra job (disabled by default) which can be enabled to push to Test PyPI.
+# If your package is pure-Python, all these wheels are identical and a single
+# one will be published. If your package includes compiled extensions, note
+# that PyPI does not accept plain linux_* wheels; you will need to build
+# manylinux wheels instead (e.g. with cibuildwheel).
 
 name: release candidate tests
 

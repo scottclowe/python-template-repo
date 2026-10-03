@@ -478,15 +478,18 @@ release candidate tests
     The release candidate tests workflow runs the unit tests on more Python versions and operating systems than the regular test workflow.
     This runs on all tags, plus pushes and PRs to branches named like "v1.2.x", etc.
     Wheels are built for all the tested systems, and stored as artifacts for your convenience when shipping a new distribution.
+    If your package is pure-Python, these wheels will all be the same; if it includes compiled extensions, you will get a wheel for each platform and Python version.
 
 If you enable the ``publish`` job on the release candidate tests workflow, you can also push built release candidates to the `Test PyPI <testpypi_>`_ server.
 The job uses `Trusted Publishing <trusted-publishing_>`_, so no API token is needed.
 Instead, you'll need to add your repository as a trusted publisher in your project's settings on Test PyPI, specifying the workflow file ``test-release-candidate.yaml`` and the environment name ``testpypi``.
 Checkout the `pypa/gh-action-pypi-publish <pypi-publish_>`_ GitHub action, and `PyPI's guide on distributing from CI <ci-packaging_>`_ for more information on this.
+If your package includes compiled extensions, note that PyPI will not accept the plain ``linux_*`` wheels built by this workflow, and you should build manylinux wheels instead (for instance with cibuildwheel_).
 With minimal tweaks, this job can be changed to push to PyPI for real, but be careful with this since once a version number has been uploaded to PyPI it can never be reused, even if that release is deleted.
 
 .. _Codecov: https://codecov.io/
 .. _ci-packaging: https://packaging.python.org/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/
+.. _cibuildwheel: https://cibuildwheel.pypa.io/
 .. _pypi-publish: https://github.com/pypa/gh-action-pypi-publish
 .. _testpypi: https://test.pypi.org/
 .. _trusted-publishing: https://docs.pypi.org/trusted-publishers/

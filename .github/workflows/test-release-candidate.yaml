@@ -52,8 +52,6 @@ jobs:
         include:
           - os: macos-latest
             python-version: "3.12"
-          - os: macos-latest
-            python-version: "3.12"
     env:
       OS: ${{ matrix.os }}
       PYTHON: ${{ matrix.python-version }}

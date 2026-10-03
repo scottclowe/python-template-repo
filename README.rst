@@ -275,7 +275,7 @@ The pre-commit stack which comes with the template is highly opinionated, and in
 
 - Code is reformatted to use the black_ style.
   Any code inside docstrings will be formatted to black using blackendocs_.
-  All code cells in Jupyter notebooks are also formatted to black using black_nbconvert_.
+  All code cells in Jupyter notebooks are also formatted to black (and have their imports sorted and checked with flake8) using nbQA_.
 
 - All Jupyter notebooks are cleared using nbstripout_.
 
@@ -294,10 +294,10 @@ The pre-commit stack which comes with the template is highly opinionated, and in
 Once it is set up, the pre-commit stack will run locally on every commit.
 The pre-commit stack will also run on github with one of the action workflows, which ensures PRs are checked without having to rely on contributors to enable the pre-commit locally.
 
-.. _black_nbconvert: https://github.com/dfm/black_nbconvert
 .. _blackendocs: https://github.com/asottile/blacken-docs
 .. _flake8: https://gitlab.com/pycqa/flake8
 .. _isort: https://github.com/timothycrosley/isort
+.. _nbQA: https://github.com/nbQA-dev/nbQA
 .. _nbstripout: https://github.com/kynan/nbstripout
 .. _PEP-8: https://www.python.org/dev/peps/pep-0008/
 .. _pre-commit: https://pre-commit.com/

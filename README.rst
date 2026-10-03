@@ -460,7 +460,7 @@ GitHub features the ability to run various workflows whenever code is pushed to 
 This is one service of several services that can be used to continually run the unit tests and ensure changes can be integrated together without issue.
 It is also useful to ensure that style guides are adhered to
 
-Five workflows are included:
+Four workflows are included:
 
 docs
     The docs workflow ensures the documentation builds correctly, and presents any errors and warnings nicely as annotations.
@@ -469,10 +469,6 @@ docs
 pre-commit
     Runs the pre-commit stack.
     Ensures all contributions are compliant, even if a contributor has not set up pre-commit on their local machine.
-
-lint
-    Checks the code uses the black_ style and tests for flake8_ errors.
-    If you are using the pre-commit hooks, the lint workflow is superfluous and can be deleted.
 
 test
     Runs the unit tests, and pushes coverage reports to Codecov_.

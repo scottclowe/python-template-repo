@@ -480,16 +480,16 @@ release candidate tests
     Wheels are built for all the tested systems, and stored as artifacts for your convenience when shipping a new distribution.
 
 If you enable the ``publish`` job on the release candidate tests workflow, you can also push built release candidates to the `Test PyPI <testpypi_>`_ server.
-For this to work, you'll also need to add your Test `PyPI API token <pypi-api-token_>`_ to your `GitHub secrets <github-secrets_>`_.
+The job uses `Trusted Publishing <trusted-publishing_>`_, so no API token is needed.
+Instead, you'll need to add your repository as a trusted publisher in your project's settings on Test PyPI, specifying the workflow file ``test-release-candidate.yaml`` and the environment name ``testpypi``.
 Checkout the `pypa/gh-action-pypi-publish <pypi-publish_>`_ GitHub action, and `PyPI's guide on distributing from CI <ci-packaging_>`_ for more information on this.
 With minimal tweaks, this job can be changed to push to PyPI for real, but be careful with this since releases on PyPI can not easily be yanked.
 
 .. _Codecov: https://codecov.io/
 .. _ci-packaging: https://packaging.python.org/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/
-.. _github-secrets: https://docs.github.com/en/actions/reference/encrypted-secrets
-.. _pypi-api-token: https://pypi.org/help/#apitoken
 .. _pypi-publish: https://github.com/pypa/gh-action-pypi-publish
 .. _testpypi: https://test.pypi.org/
+.. _trusted-publishing: https://docs.pypi.org/trusted-publishers/
 
 
 Other CI/CD options

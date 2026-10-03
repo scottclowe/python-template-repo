@@ -120,6 +120,14 @@ jobs:
     needs: test-build
 
     runs-on: ubuntu-latest
+    # Uses PyPI Trusted Publishing, which needs no API token. Before enabling
+    # this job, add this repository and workflow as a trusted publisher in
+    # your Test PyPI project settings. See
+    # https://docs.pypi.org/trusted-publishers/
+    environment: testpypi
+    permissions:
+      id-token: write
+
     steps:
     - uses: actions/checkout@v4
 
@@ -149,6 +157,4 @@ jobs:
     - name: Publish package to Test PyPI
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
-        user: __token__
-        password: ${{ secrets.TEST_PYPI_API_TOKEN }}
-        repository_url: https://test.pypi.org/legacy/
+        repository-url: https://test.pypi.org/legacy/

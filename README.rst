@@ -139,15 +139,15 @@ When creating a new repository from this template, these are the steps to follow
 
     .. highlight:: python
 
-    - In ``setup.py``, `L54 <https://github.com/scottclowe/python-template-repo/blob/master/setup.py#L54>`__::
+    - In ``setup.py``::
 
         exec(read("package_name/__meta__.py"), meta)
 
-    - In ``docs/source/conf.py``, `L27 <https://github.com/scottclowe/python-template-repo/blob/master/docs/source/conf.py#L27>`__::
+    - In ``docs/source/conf.py``::
 
         from package_name import __meta__ as meta  # noqa: E402 isort:skip
 
-    - In ``.github/workflows/test.yaml``, `L64 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/test.yaml#L64>`__, and ``.github/workflows/test-release-candidate.yaml``, `L90 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/test-release-candidate.yaml#L90>`__::
+    - In ``.github/workflows/test.yaml`` and ``.github/workflows/test-release-candidate.yaml``::
 
         python -m pytest --cov=package_name --cov-report term --cov-report xml --cov-config .coveragerc --junitxml=testresults.xml
 
@@ -240,10 +240,8 @@ For a given block of code, a fixed version of black will always produce the same
 However, you should note that different versions of black will produce different outputs.
 If you want to upgrade to a newer version of black, you must change the version everywhere it is specified:
 
-- requirements-dev.txt, `L1 <https://github.com/scottclowe/python-template-repo/blob/master/requirements-dev.txt#L1>`__
-- .pre-commit-config.yaml, `L14 <https://github.com/scottclowe/python-template-repo/blob/master/.pre-commit-config.yaml#L14>`__,
-  `L29 <https://github.com/scottclowe/python-template-repo/blob/master/.pre-commit-config.yaml#L29>`__, and
-  `L48 <https://github.com/scottclowe/python-template-repo/blob/master/.pre-commit-config.yaml#L48>`__
+- requirements-dev.txt (``black==...``)
+- .pre-commit-config.yaml (the ``rev`` of the black-pre-commit-mirror repo, and the ``black==...`` entries in ``additional_dependencies`` for the blacken-docs and nbqa-black hooks)
 
 .. _black: https://github.com/psf/black
 
@@ -277,7 +275,7 @@ The pre-commit stack which comes with the template is highly opinionated, and in
 
 - Code is reformatted to use the black_ style.
   Any code inside docstrings will be formatted to black using blackendocs_.
-  All code cells in Jupyter notebooks are also formatted to black using black_nbconvert_.
+  All code cells in Jupyter notebooks are also formatted to black (and have their imports sorted and checked with flake8) using nbQA_.
 
 - All Jupyter notebooks are cleared using nbstripout_.
 
@@ -296,10 +294,10 @@ The pre-commit stack which comes with the template is highly opinionated, and in
 Once it is set up, the pre-commit stack will run locally on every commit.
 The pre-commit stack will also run on github with one of the action workflows, which ensures PRs are checked without having to rely on contributors to enable the pre-commit locally.
 
-.. _black_nbconvert: https://github.com/dfm/black_nbconvert
 .. _blackendocs: https://github.com/asottile/blacken-docs
 .. _flake8: https://gitlab.com/pycqa/flake8
 .. _isort: https://github.com/timothycrosley/isort
+.. _nbQA: https://github.com/nbQA-dev/nbQA
 .. _nbstripout: https://github.com/kynan/nbstripout
 .. _PEP-8: https://www.python.org/dev/peps/pep-0008/
 .. _pre-commit: https://pre-commit.com/
@@ -412,17 +410,9 @@ Your package can be installed from source with::
 
     pip install .
 
-or alternatively with::
-
-    python setup.py install
-
-But do remember that as a developer, you should install your package in editable mode, using either::
+But do remember that as a developer, you should install your package in editable mode, using::
 
     pip install --editable .
-
-or::
-
-    python setup.py develop
 
 which will mean changes to the source will affect your installed package immediately without you having to reinstall it.
 
@@ -437,12 +427,21 @@ etc.
 Any additional files named ``requirements-EXTRANAME.txt`` will also be collected automatically and made available with the corresponding name ``EXTRANAME``.
 Another extra named ``all`` captures all of these optional dependencies.
 
-Your README file is automatically included in the metadata when you use setup.py build wheels for PyPI.
+To build an sdist and wheel for distribution on PyPI, use build_::
+
+    pip install build
+    python -m build
+
+Note that invoking ``setup.py`` directly (e.g. ``python setup.py install``, ``python setup.py sdist``) is `deprecated <setuptools-deprecated_>`_ and should not be used.
+
+Your README file is automatically included in the metadata of the built distributions.
 The rest of the metadata comes from ``package_name/__meta__.py``.
 
 Our template setup.py file is based on the `example from setuptools documentation <setuptools-setup.py_>`_, and the comprehensive example from `Kenneth Reitz <kennethreitz/setup.py_>`_ (released under `MIT License <https://github.com/kennethreitz/setup.py/blob/master/LICENSE>`__), with further features added.
 
+.. _build: https://build.pypa.io/
 .. _kennethreitz/setup.py: https://github.com/kennethreitz/setup.py
+.. _setuptools-deprecated: https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html
 .. _setuptools-setup.py: https://setuptools.readthedocs.io/en/latest/setuptools.html#basic-use
 
 
@@ -461,7 +460,7 @@ GitHub features the ability to run various workflows whenever code is pushed to 
 This is one service of several services that can be used to continually run the unit tests and ensure changes can be integrated together without issue.
 It is also useful to ensure that style guides are adhered to
 
-Five workflows are included:
+Four workflows are included:
 
 docs
     The docs workflow ensures the documentation builds correctly, and presents any errors and warnings nicely as annotations.
@@ -471,10 +470,6 @@ pre-commit
     Runs the pre-commit stack.
     Ensures all contributions are compliant, even if a contributor has not set up pre-commit on their local machine.
 
-lint
-    Checks the code uses the black_ style and tests for flake8_ errors.
-    If you are using the pre-commit hooks, the lint workflow is superfluous and can be deleted.
-
 test
     Runs the unit tests, and pushes coverage reports to Codecov_.
     You'll need to sign up at Codecov_ with your GitHub account in order for this integration to work.
@@ -483,18 +478,21 @@ release candidate tests
     The release candidate tests workflow runs the unit tests on more Python versions and operating systems than the regular test workflow.
     This runs on all tags, plus pushes and PRs to branches named like "v1.2.x", etc.
     Wheels are built for all the tested systems, and stored as artifacts for your convenience when shipping a new distribution.
+    If your package is pure-Python, these wheels will all be the same; if it includes compiled extensions, you will get a wheel for each platform and Python version.
 
 If you enable the ``publish`` job on the release candidate tests workflow, you can also push built release candidates to the `Test PyPI <testpypi_>`_ server.
-For this to work, you'll also need to add your Test `PyPI API token <pypi-api-token_>`_ to your `GitHub secrets <github-secrets_>`_.
+The job uses `Trusted Publishing <trusted-publishing_>`_, so no API token is needed.
+Instead, you'll need to add your repository as a trusted publisher in your project's settings on Test PyPI, specifying the workflow file ``test-release-candidate.yaml`` and the environment name ``testpypi``.
 Checkout the `pypa/gh-action-pypi-publish <pypi-publish_>`_ GitHub action, and `PyPI's guide on distributing from CI <ci-packaging_>`_ for more information on this.
-With minimal tweaks, this job can be changed to push to PyPI for real, but be careful with this since releases on PyPI can not easily be yanked.
+If your package includes compiled extensions, note that PyPI will not accept the plain ``linux_*`` wheels built by this workflow, and you should build manylinux wheels instead (for instance with cibuildwheel_).
+With minimal tweaks, this job can be changed to push to PyPI for real, but be careful with this since once a version number has been uploaded to PyPI it can never be reused, even if that release is deleted.
 
 .. _Codecov: https://codecov.io/
 .. _ci-packaging: https://packaging.python.org/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/
-.. _github-secrets: https://docs.github.com/en/actions/reference/encrypted-secrets
-.. _pypi-api-token: https://pypi.org/help/#apitoken
+.. _cibuildwheel: https://cibuildwheel.pypa.io/
 .. _pypi-publish: https://github.com/pypa/gh-action-pypi-publish
 .. _testpypi: https://test.pypi.org/
+.. _trusted-publishing: https://docs.pypi.org/trusted-publishers/
 
 
 Other CI/CD options
@@ -502,12 +500,9 @@ Other CI/CD options
 
 Alternative CI/CD services are also available for running tests.
 
-- `Travis CI <https://travis-ci.org/>`_ offers a free trial service.
+- `GitLab CI/CD <https://docs.gitlab.com/ee/ci/>`_ is the natural choice if your repository is hosted on GitLab.
 
-- `Circle CI <https://circleci.com>`_ is another option with a limited `free option <https://circleci.com/pricing/#build-linux>`_.
-
-- `Appveyor <https://www.appveyor.com>`_ useful for testing on Windows.
-  This offers an alternative to GitHub Actions if you need to `build Windows wheel files to submit to PyPI <https://github.com/ogrisel/python-appveyor-demo>`_.
+- `CircleCI <https://circleci.com>`_ is another option with a limited `free plan <https://circleci.com/pricing/>`_.
 
 - `Jenkins <https://jenkins.io/>`_ is useful if you want to run your CI test suite locally or on your own private server instead of in the cloud.
 

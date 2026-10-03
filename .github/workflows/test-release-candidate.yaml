@@ -12,6 +12,10 @@
 # In addition, the package is built as a wheel on each OS/Python job, and these
 # are stored as artifacts to use for your distribution process. There is an
 # extra job (disabled by default) which can be enabled to push to Test PyPI.
+# If your package is pure-Python, all these wheels are identical and a single
+# one will be published. If your package includes compiled extensions, note
+# that PyPI does not accept plain linux_* wheels; you will need to build
+# manylinux wheels instead (e.g. with cibuildwheel).
 
 name: release candidate tests
 
@@ -50,8 +54,6 @@ jobs:
         os: [ubuntu-latest, windows-latest]
         python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
         include:
-          - os: macos-latest
-            python-version: "3.12"
           - os: macos-latest
             python-version: "3.12"
     env:
@@ -96,10 +98,10 @@ jobs:
         env_vars: OS,PYTHON
         name: Python ${{ matrix.python-version }} on ${{ runner.os }}
 
-    - name: Build wheels
+    - name: Build wheel
       run: |
-        python -m pip install --upgrade setuptools wheel twine
-        python setup.py sdist bdist_wheel
+        python -m pip install --upgrade build
+        python -m build --wheel
 
     - name: Store wheel artifacts
       uses: actions/upload-artifact@v4
@@ -122,24 +124,41 @@ jobs:
     needs: test-build
 
     runs-on: ubuntu-latest
+    # Uses PyPI Trusted Publishing, which needs no API token. Before enabling
+    # this job, add this repository and workflow as a trusted publisher in
+    # your Test PyPI project settings. See
+    # https://docs.pypi.org/trusted-publishers/
+    environment: testpypi
+    permissions:
+      id-token: write
+
     steps:
     - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+
+    - name: Build sdist
+      run: |
+        python -m pip install --upgrade build
+        python -m build --sdist
 
     - name: Download wheel artifacts
       uses: actions/download-artifact@v4
       with:
-        name: wheel-*
+        pattern: wheel-*
         path: dist/
+        merge-multiple: true
 
-    - name: Store aggregated wheel artifacts
+    - name: Store aggregated distribution artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: wheels
+        name: dist
         path: dist/*
 
     - name: Publish package to Test PyPI
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
-        user: __token__
-        password: ${{ secrets.TEST_PYPI_API_TOKEN }}
-        repository_url: https://test.pypi.org/legacy/
+        repository-url: https://test.pypi.org/legacy/

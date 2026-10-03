@@ -14,8 +14,8 @@ on:
   push:
   pull_request:
   schedule:
+    # Scheduled runs always use the default branch
     - cron:  "0 0 * * 1"
-      branches: [ $default-branch ]
 
 jobs:
   test:

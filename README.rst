@@ -139,15 +139,15 @@ When creating a new repository from this template, these are the steps to follow
 
     .. highlight:: python
 
-    - In ``setup.py``, `L54 <https://github.com/scottclowe/python-template-repo/blob/master/setup.py#L54>`__::
+    - In ``setup.py``::
 
         exec(read("package_name/__meta__.py"), meta)
 
-    - In ``docs/source/conf.py``, `L27 <https://github.com/scottclowe/python-template-repo/blob/master/docs/source/conf.py#L27>`__::
+    - In ``docs/source/conf.py``::
 
         from package_name import __meta__ as meta  # noqa: E402 isort:skip
 
-    - In ``.github/workflows/test.yaml``, `L64 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/test.yaml#L64>`__, and ``.github/workflows/test-release-candidate.yaml``, `L90 <https://github.com/scottclowe/python-template-repo/blob/master/.github/workflows/test-release-candidate.yaml#L90>`__::
+    - In ``.github/workflows/test.yaml`` and ``.github/workflows/test-release-candidate.yaml``::
 
         python -m pytest --cov=package_name --cov-report term --cov-report xml --cov-config .coveragerc --junitxml=testresults.xml
 
@@ -240,10 +240,8 @@ For a given block of code, a fixed version of black will always produce the same
 However, you should note that different versions of black will produce different outputs.
 If you want to upgrade to a newer version of black, you must change the version everywhere it is specified:
 
-- requirements-dev.txt, `L1 <https://github.com/scottclowe/python-template-repo/blob/master/requirements-dev.txt#L1>`__
-- .pre-commit-config.yaml, `L14 <https://github.com/scottclowe/python-template-repo/blob/master/.pre-commit-config.yaml#L14>`__,
-  `L29 <https://github.com/scottclowe/python-template-repo/blob/master/.pre-commit-config.yaml#L29>`__, and
-  `L48 <https://github.com/scottclowe/python-template-repo/blob/master/.pre-commit-config.yaml#L48>`__
+- requirements-dev.txt (``black==...``)
+- .pre-commit-config.yaml (the ``rev`` of the black-pre-commit-mirror repo, and the ``black==...`` entries in ``additional_dependencies`` for the blacken-docs and nbqa-black hooks)
 
 .. _black: https://github.com/psf/black
 

@@ -497,12 +497,9 @@ Other CI/CD options
 
 Alternative CI/CD services are also available for running tests.
 
-- `Travis CI <https://travis-ci.org/>`_ offers a free trial service.
+- `GitLab CI/CD <https://docs.gitlab.com/ee/ci/>`_ is the natural choice if your repository is hosted on GitLab.
 
-- `Circle CI <https://circleci.com>`_ is another option with a limited `free option <https://circleci.com/pricing/#build-linux>`_.
-
-- `Appveyor <https://www.appveyor.com>`_ useful for testing on Windows.
-  This offers an alternative to GitHub Actions if you need to `build Windows wheel files to submit to PyPI <https://github.com/ogrisel/python-appveyor-demo>`_.
+- `CircleCI <https://circleci.com>`_ is another option with a limited `free plan <https://circleci.com/pricing/>`_.
 
 - `Jenkins <https://jenkins.io/>`_ is useful if you want to run your CI test suite locally or on your own private server instead of in the cloud.
 
